@@ -18,9 +18,9 @@ npm run dev
 
 Opens the Vite dev server (default http://localhost:5173).
 
-## Deploy to Cloudflare Pages
+## Deploy to Cloudflare
 
-This is a static Vite build, so it ships to Cloudflare Pages as static assets — no server/functions needed.
+This is a static Vite build, deployed as a Cloudflare Worker serving static assets (no server-side code) — see `wrangler.toml`'s `[assets]` block.
 
 **One-time setup:**
 ```sh
@@ -28,9 +28,24 @@ npx wrangler login
 # or set CLOUDFLARE_API_TOKEN + CLOUDFLARE_ACCOUNT_ID env vars (e.g. in CI)
 ```
 
-**Deploy:**
+**Deploy from your machine:**
 ```sh
 npm run deploy -w playground
 ```
+This runs from `apps/playground` (via the `-w` workspace flag), so `wrangler deploy` finds `wrangler.toml` automatically in the current directory and picks up its `[assets] directory = "dist"`.
 
-This runs `vite build` then `wrangler pages deploy dist`, using the config in `wrangler.toml` (project name `gurleen-ui-playground`, output dir `dist`). The first deploy will create the Cloudflare Pages project if it doesn't exist yet.
+**Deploy via the Cloudflare dashboard (Git-connected "Workers Build"):**
+
+Cloudflare's newer Git-connected Workers Build product runs your build and deploy commands from the **repo root** (not `apps/playground`), because the build needs to run `npm run build` at the root first to build `@gurleen-ui/tokens` → `core` → `broadcast` before the playground can build against them. But `wrangler deploy` only looks for a config file in its current directory — so from the repo root it won't find `apps/playground/wrangler.toml` unless you point it there explicitly. Dashboard settings (Settings → Build):
+
+- **Root directory:** `/` (leave at repo root)
+- **Build command:**
+  ```
+  npm run build && npm run build -w playground
+  ```
+- **Deploy command:**
+  ```
+  npx wrangler deploy --config apps/playground/wrangler.toml
+  ```
+
+The `--config` flag is the important part — without it, wrangler runs from the repo root, finds no config, and fails with "Missing entry-point to Worker script or to assets directory" even though the build itself succeeded.

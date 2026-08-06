@@ -1,14 +1,24 @@
-# Cloudflare Pages config for the @gurleen-ui playground.
+# Cloudflare config for the @gurleen-ui playground, deployed as a Worker serving static assets
+# (no server-side code — just the Vite build output in ./dist).
 #
 # One-time setup:
 #   1. `npx wrangler login` (or set CLOUDFLARE_API_TOKEN + CLOUDFLARE_ACCOUNT_ID env vars for CI).
-#   2. `npx wrangler pages project create gurleen-ui-playground` (only needed once, or let the
-#      first deploy create it interactively).
 #
-# Deploy:
+# Deploy locally:
 #   npm run deploy -w playground
-#   (equivalent to: npm run build -w playground && wrangler pages deploy dist)
+#   (equivalent to: npm run build -w playground && wrangler deploy, run from this directory
+#   so wrangler picks up this file automatically)
+#
+# Deploy via the Cloudflare dashboard (Git-connected "Workers Build"):
+#   wrangler only looks for a config file in its current working directory, and the dashboard
+#   runs both the build and deploy commands from the repo root (needed so `npm run build` can
+#   build the workspace packages in order first) — so the deploy command must point at this
+#   file explicitly:
+#     npx wrangler deploy --config apps/playground/wrangler.toml
+#   See apps/playground/README.md for the full dashboard settings.
 
 name = "gurleen-ui-playground"
-pages_build_output_dir = "dist"
 compatibility_date = "2024-11-01"
+
+[assets]
+directory = "dist"

@@ -1,0 +1,29 @@
+/* @gurleen-ui/tokens — typography. Mono-first. Density 9/10. */
+:root {
+  --font-mono: "IBM Plex Mono", "SF Mono", Consolas, monospace;
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif; /* rare: long prose only */
+
+  /* Scale (px). UI default is 11px. */
+  --fs-10: 10px;   /* unit suffixes, table meta */
+  --fs-11: 11px;   /* body / controls / grids */
+  --fs-12: 12px;   /* emphasized body, panel titles */
+  --fs-13: 13px;   /* section headers */
+  --fs-16: 16px;   /* page titles (rare) */
+  --fs-20: 20px;   /* big numerics */
+  --fs-28: 28px;   /* timecode / clocks */
+
+  --lh-tight: 1.25;
+  --lh-body: 1.45;
+
+  --fw-reg: 400;
+  --fw-med: 500;
+  --fw-semi: 600;
+  --fw-bold: 700;
+
+  /* Labels: uppercase, tracked */
+  --label-tracking: 0.08em;
+  --label-tracking-wide: 0.14em;
+
+  /* Numerics always tabular */
+  --numeric-features: "tnum" 1, "zero" 1;
+}

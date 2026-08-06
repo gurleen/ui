@@ -1,0 +1,41 @@
+/* @gurleen-ui/tokens — effects. Vibe: TACTILE HARDWARE.
+   Subtle bevels + gradients give controls a machined, rack-gear feel.
+   Glow is reserved for LED-style readouts and tally; never decorative. */
+:root {
+  /* Panels: faint top-light, soft drop */
+  --grad-panel: linear-gradient(#141920, #10141a);
+  --shadow-panel: 0 1px 0 #ffffff08 inset, 0 2px 6px #00000066;
+  --shadow-overlay: 0 8px 32px #000000e0, 0 1px 0 #ffffff0a inset;
+
+  /* Raised controls (buttons, tabs, macro keys) */
+  --grad-btn: linear-gradient(#262d37, #1a2028);
+  --grad-btn-hover: linear-gradient(#2c3440, #202730);
+  --bevel-raised: inset 0 1px 0 #ffffff1a, 0 1px 2px #00000080;
+  --bevel-pressed: inset 0 2px 4px #00000099;
+  --btn-border: #343e4b;
+  --btn-border-bottom: #12161b;
+
+  /* Recessed wells (meters, timecode, log, inputs) */
+  --inset-well: inset 0 2px 6px #000000cc, 0 1px 0 #ffffff0a;
+  --inset-input: inset 0 1px 3px #00000080;
+
+  /* Bus fills */
+  --grad-pgm: linear-gradient(#3a100c, #240a08);
+  --grad-pvw: linear-gradient(#0e2f19, #08200f);
+  --bevel-bus: inset 0 1px 0 #ffffff14, inset 0 -2px 4px #00000066;
+
+  /* LED readout glows */
+  --led-amber: #ffb020;
+  --led-glow-amber: 0 0 6px #ffb02044;
+  --led-glow-red: 0 0 8px #f23a3066;
+  --led-glow-green: 0 0 6px #2fd05f44;
+  --glow-pgm: 0 0 8px #f23a3066, 0 0 2px #f23a30aa;
+  --glow-pvw: 0 0 8px #2fd05f55, 0 0 2px #2fd05f99;
+  --glow-warn: 0 0 8px #ffb02055;
+  --focus-ring: 0 0 0 1px var(--bg-1), 0 0 0 2px var(--info);
+
+  /* Motion: near-instant. Operators hate lag. Tally changes are 0ms. */
+  --t-fast: 60ms linear;
+  --t-med: 120ms ease-out;
+  /* Press feedback: translateY(1px) + --bevel-pressed */
+}

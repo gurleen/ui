@@ -1,0 +1,16 @@
+/**
+ * @gurleen-ui/tokens — single entry point.
+ * Import this once at your app root (before any @gurleen-ui component renders):
+ *
+ *   import "@gurleen-ui/tokens";
+ *
+ * This is the only import consumers need — it pulls in all six token files
+ * in a safe load order. Everything below is CSS custom properties on :root
+ * plus a handful of base element resets (see base.css); it has no JS runtime.
+ */
+@import url("./fonts.css");
+@import url("./colors.css");
+@import url("./typography.css");
+@import url("./spacing.css");
+@import url("./effects.css");
+@import url("./base.css");

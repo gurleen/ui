@@ -1,0 +1,58 @@
+/* @gurleen-ui/tokens — color tokens. Dark-only, control-room standard.
+   Tally conventions are STRICT: red = program/on-air, green = preview.
+   Never use red or green decoratively. */
+:root {
+  /* Base surfaces (cool near-black, stepped) */
+  --bg-0: #07090b;          /* app chrome / deepest wells */
+  --bg-1: #0c0f12;          /* app background */
+  --bg-2: #12161b;          /* panel */
+  --bg-3: #191e25;          /* raised: rows, inputs, buttons */
+  --bg-4: #222831;          /* hover / active raised */
+  --bg-well: #04050699;     /* inset wells: meters, timecode, log (semi-transparent) */
+
+  /* Borders & lines */
+  --line-1: #1d232b;        /* hairline between panels */
+  --line-2: #2a323d;        /* control borders */
+  --line-3: #3b4652;        /* focused / hovered borders */
+
+  /* Text */
+  --fg-1: #dde4ec;          /* primary */
+  --fg-2: #97a3b1;          /* secondary / labels */
+  --fg-3: #5d6873;          /* muted / disabled / units */
+  --fg-inverse: #0b0d10;    /* text on bright fills */
+
+  /* Tally / bus — strict hardware semantics */
+  --tally-pgm: #f23a30;     /* PROGRAM: on-air. Red. Nothing else is this red. */
+  --tally-pgm-dim: #7c1611;
+  --tally-pgm-bg: #2a0d0b;
+  --tally-pvw: #2fd05f;     /* PREVIEW: next. Green. */
+  --tally-pvw-dim: #14602c;
+  --tally-pvw-bg: #0a2313;
+
+  /* Status */
+  --warn: #ffb020;          /* caution, low disk, late */
+  --warn-bg: #2b1f06;
+  --info: #3fa2f7;          /* selection, links, neutral-active */
+  --info-bg: #0c1f33;
+  --err: #f23a30;           /* faults share the red family but pair with ✕/FAULT text */
+  --ok-text: #7fdda0;       /* readable green for log OK lines */
+
+  /* Accent (non-tally interactive accent = blue) */
+  --accent: var(--info);
+  --accent-hi: #7cc0fa;
+
+  /* Data-viz / channel colors (never for tally) */
+  --ch-1: #3fa2f7;
+  --ch-2: #b48cf2;
+  --ch-3: #2ec4b6;
+  --ch-4: #f2789f;
+
+  /* Semantic aliases */
+  --surface-app: var(--bg-1);
+  --surface-panel: var(--bg-2);
+  --surface-raised: var(--bg-3);
+  --surface-input: var(--bg-3);
+  --text-body: var(--fg-1);
+  --text-label: var(--fg-2);
+  --text-muted: var(--fg-3);
+}

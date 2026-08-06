@@ -1,0 +1,14 @@
+# Cloudflare Pages config for the @gurleen-ui playground.
+#
+# One-time setup:
+#   1. `npx wrangler login` (or set CLOUDFLARE_API_TOKEN + CLOUDFLARE_ACCOUNT_ID env vars for CI).
+#   2. `npx wrangler pages project create gurleen-ui-playground` (only needed once, or let the
+#      first deploy create it interactively).
+#
+# Deploy:
+#   npm run deploy -w playground
+#   (equivalent to: npm run build -w playground && wrangler pages deploy dist)
+
+name = "gurleen-ui-playground"
+pages_build_output_dir = "dist"
+compatibility_date = "2024-11-01"

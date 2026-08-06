@@ -1,0 +1,23 @@
+/* @gurleen-ui/tokens — spacing & sizing. 4px base grid, dense. */
+:root {
+  --sp-1: 2px;
+  --sp-2: 4px;
+  --sp-3: 6px;
+  --sp-4: 8px;
+  --sp-5: 12px;
+  --sp-6: 16px;
+  --sp-7: 24px;
+
+  /* Control metrics */
+  --ctl-h: 24px;         /* default control height (buttons, inputs, selects) */
+  --ctl-h-lg: 32px;      /* prominent transport / macro buttons */
+  --ctl-h-xl: 48px;      /* take / hardware-critical buttons */
+  --ctl-pad-x: 8px;
+  --row-h: 22px;         /* grid/table row */
+  --row-h-dense: 18px;
+  --statusbar-h: 26px;
+  --panel-title-h: 24px;
+
+  --radius-0: 0px;       /* default: square */
+  --radius-1: 2px;       /* inputs/buttons max rounding */
+}

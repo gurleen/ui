@@ -1,0 +1,17 @@
+{
+  "name": "@gurleen-ui/tokens",
+  "version": "0.1.0",
+  "description": "Design tokens (CSS custom properties) shared by @gurleen-ui/core and @gurleen-ui/broadcast.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": true,
+  "files": [
+    "src"
+  ],
+  "main": "./src/index.css",
+  "style": "./src/index.css",
+  "exports": {
+    ".": "./src/index.css",
+    "./*": "./src/*"
+  }
+}

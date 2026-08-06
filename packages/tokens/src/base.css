@@ -1,0 +1,22 @@
+/* @gurleen-ui/tokens — base element rules */
+html { background: var(--bg-1); }
+body {
+  margin: 0;
+  background: var(--bg-1);
+  color: var(--fg-1);
+  font-family: var(--font-mono);
+  font-size: var(--fs-11);
+  line-height: var(--lh-body);
+  font-feature-settings: var(--numeric-features);
+  -webkit-font-smoothing: antialiased;
+}
+* { box-sizing: border-box; }
+a { color: var(--info); text-decoration: none; }
+a:hover { color: var(--accent-hi); text-decoration: underline; }
+::selection { background: #3fa2f755; }
+button, input, select, textarea { font: inherit; color: inherit; }
+/* Scrollbars: thin, square, dark */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-1); }
+::-webkit-scrollbar-thumb { background: var(--line-2); border: 2px solid var(--bg-1); }
+::-webkit-scrollbar-thumb:hover { background: var(--line-3); }

@@ -1,0 +1,28 @@
+{
+  "name": "playground",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Visual demo app for @gurleen-ui/core and @gurleen-ui/broadcast: a kitchen-sink of every component plus the three broadcast reference screens rebuilt as real composed React.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "deploy": "npm run build && wrangler pages deploy dist"
+  },
+  "dependencies": {
+    "@gurleen-ui/broadcast": "0.1.0",
+    "@gurleen-ui/core": "0.1.0",
+    "@gurleen-ui/tokens": "0.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3",
+    "wrangler": "^3.99.0"
+  }
+}

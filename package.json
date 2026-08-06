@@ -1,0 +1,23 @@
+{
+  "name": "gurleen-ui-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Monorepo for the @gurleen-ui component libraries (design tokens, generic components, broadcast-specific components) and their demo playground.",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w @gurleen-ui/core && npm run build -w @gurleen-ui/broadcast",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "dev": "npm run dev -w playground",
+    "deploy:playground": "npm run deploy -w playground"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  }
+}

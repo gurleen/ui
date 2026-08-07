@@ -15,14 +15,27 @@ _Added for general use — the original handoff was scoped to individual broadca
 
 `NavBar` is a **layout container** — it renders the bar and arranges three slots (brand · children · actions) but does not style your nav links for you, so you can drop in your own router links, `<Button>`s, or a `Tabs` strip. Pass `fixed` to pin it to the top of the viewport.
 
+Pass a `tabs` slot to render a two-row header (brand + actions above, tabs strip below) — useful for app-level navigation with hardware-style tabs:
+
+```jsx
+<NavBar
+  fixed
+  brand={<Link to="/" style={brandStyle}>MY APP</Link>}
+  tabs={<Tabs tabs={["HOME", "ABOUT"]} active={tab} onChange={setTab} />}
+/>
+```
+
 ## Props
 | Prop | Type | Default | Notes |
 |---|---|---|---|
 | `brand` | `ReactNode` | — | Leftmost slot (logo/title). |
 | `children` | `ReactNode` | — | Nav links area, grows to fill between brand and actions. |
 | `actions` | `ReactNode` | — | Far-right slot, pushed to the edge. |
+| `tabs` | `ReactNode` | — | Tabs strip rendered as a second row below the main bar. When set, the bar height becomes 60px instead of 44px. |
 | `fixed` | `boolean` | `false` | `position: fixed` to the viewport top, full width. Add top padding to body/content below when set. |
 | `label` | `string` | `"Primary"` | `aria-label` for the `<nav>`. |
 | `style` | `CSSProperties` | — | Override escape hatch. |
 
-Bar height is fixed at 44px with a panel-gradient surface and a hairline bottom border.
+## Heights
+
+Single-row bar height is fixed at 44px (`NAVBAR_H`). Two-row bar height (with `tabs`) is fixed at 60px (`NAVBAR_TABS_H`). Both constants are exported from the module.

@@ -56,6 +56,9 @@ None of these existed in the original handoff (which was scoped to broadcast con
 | [`Accordion`](src/components/Accordion.md) | Collapsible sections. |
 | [`Menu`](src/components/Menu.md) | Click-triggered dropdown/action menu (distinct from `Select`). |
 | [`Toast` / `ToastProvider` / `useToast`](src/components/Toast.md) | Transient status notifications with a context-based API. |
+| [`Breadcrumb`](src/components/Breadcrumb.md) | Uppercase path trail showing the current location. |
+| [`NavBar`](src/components/NavBar.md) | Horizontal app-level navigation bar (brand · links · actions). |
+| [`SideNav`](src/components/SideNav.md) | Vertical navigation rail with active-item state. |
 
 ## Conventions (read this before adding a component)
 

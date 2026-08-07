@@ -2,6 +2,7 @@ import { useState } from "react";
 import {
   Accordion,
   Badge,
+  Breadcrumb,
   Button,
   Checkbox,
   DataGrid,
@@ -11,11 +12,13 @@ import {
   Input,
   LogConsole,
   Menu,
+  NavBar,
   Panel,
   ProgressBar,
   PropertyEditor,
   RadioGroup,
   Select,
+  SideNav,
   Slider,
   Spinner,
   Switch,
@@ -41,6 +44,7 @@ export function CoreKitchenSink() {
   const [radio, setRadio] = useState("b");
   const [slider, setSlider] = useState(40);
   const [accordionOpen, setAccordionOpen] = useState<string[]>(["a"]);
+  const [sideActive, setSideActive] = useState("library");
 
   return (
     <div style={{ position: "relative", maxWidth: 900 }}>
@@ -89,6 +93,46 @@ export function CoreKitchenSink() {
         <Tabs tabs={["RUNDOWN", "LIBRARY", "LOG"]} active={tab} onChange={setTab} />
         <Divider orientation="vertical" style={{ height: 24 }} />
         <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--fg-2)" }}>Active tab index: {tab}</span>
+      </Section>
+
+      <Section title="Navigation">
+        <Breadcrumb
+          items={[
+            { label: "Projects", onClick: () => {} },
+            { label: "Broadcast" },
+          ]}
+        />
+        <div style={{ width: "100%" }}>
+          <NavBar
+            brand={<span style={{ fontWeight: 600 }}>STUDIO</span>}
+            actions={<Button label="Sync" variant="accent" size="sm" />}
+          >
+            <a href="#" style={{ color: "var(--fg-2)", textDecoration: "none", padding: "0 10px" }}>Rundown</a>
+            <a href="#" style={{ color: "var(--fg-1)", textDecoration: "none", padding: "0 10px" }}>Library</a>
+            <a href="#" style={{ color: "var(--fg-2)", textDecoration: "none", padding: "0 10px" }}>Log</a>
+          </NavBar>
+        </div>
+        <div style={{ display: "flex", gap: 12, width: "100%" }}>
+          <SideNav
+            items={[
+              { key: "rundown", label: "Rundown", icon: <Spinner size={12} color="var(--ch-1)" /> },
+              { key: "library", label: "Library", icon: <Spinner size={12} color="var(--ch-2)" /> },
+              { key: "log", label: "Log", icon: <Spinner size={12} color="var(--ch-3)" /> },
+            ]}
+            active={sideActive}
+            onChange={setSideActive}
+          />
+          <SideNav
+            collapsed
+            items={[
+              { key: "rundown", label: "Rundown", icon: <Spinner size={12} color="var(--ch-1)" /> },
+              { key: "library", label: "Library", icon: <Spinner size={12} color="var(--ch-2)" /> },
+              { key: "log", label: "Log", icon: <Spinner size={12} color="var(--ch-3)" /> },
+            ]}
+            defaultActive="rundown"
+          />
+          <em style={{ fontSize: 11, color: "var(--fg-2)" }}>Active: {sideActive}</em>
+        </div>
       </Section>
       <Divider label="ACCORDION" />
       <div style={{ marginTop: 8, marginBottom: 12 }}>

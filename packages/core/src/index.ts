@@ -23,3 +23,6 @@ export * from "./components/Tooltip";
 export * from "./components/Accordion";
 export * from "./components/Menu";
 export * from "./components/Toast";
+export * from "./components/Breadcrumb";
+export * from "./components/NavBar";
+export * from "./components/SideNav";

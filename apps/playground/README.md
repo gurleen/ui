@@ -1,10 +1,10 @@
 # playground
 
-Visual demo app for the `@gurleen-ui` libraries. Not published — it exists purely to render every component so changes can be checked visually, and to double as a smoke test that `@gurleen-ui/broadcast` correctly composes `@gurleen-ui/core` (e.g. `TransportControls` using `core`'s `Button`).
+Visual demo app for the `@hydra-tv` libraries. Not published — it exists purely to render every component so changes can be checked visually, and to double as a smoke test that `@hydra-tv/broadcast` correctly composes `@hydra-tv/ui` (e.g. `TransportControls` using `core`'s `Button`).
 
 ## Pages
-- **Core** — every `@gurleen-ui/core` component and its main variants (`src/pages/CoreKitchenSink.tsx`).
-- **Broadcast** — every `@gurleen-ui/broadcast` component (`src/pages/BroadcastKitchenSink.tsx`).
+- **Core** — every `@hydra-tv/ui` component and its main variants (`src/pages/CoreKitchenSink.tsx`).
+- **Broadcast** — every `@hydra-tv/broadcast` component (`src/pages/BroadcastKitchenSink.tsx`).
 - **GFX Controller / Clip Player / Macro Panel** — the three broadcast reference screens from the original design handoff, rebuilt as real composed React (`src/pages/GraphicsController.tsx`, `ClipPlayer.tsx`, `MacroPanel.tsx`) rather than copied from the handoff's prototyping-tool HTML. Each demonstrates real interaction state (rundown select → cue → TAKE, channel A/B loading, macro arm/run) using components from both packages together.
 
 ## Run locally
@@ -36,7 +36,7 @@ This runs from `apps/playground` (via the `-w` workspace flag), so `wrangler dep
 
 **Deploy via the Cloudflare dashboard (Git-connected "Workers Build"):**
 
-Cloudflare's newer Git-connected Workers Build product runs your build and deploy commands from the **repo root** (not `apps/playground`), because the build needs to run `npm run build` at the root first to build `@gurleen-ui/tokens` → `core` → `broadcast` before the playground can build against them. But `wrangler deploy` only looks for a config file in its current directory — so from the repo root it won't find `apps/playground/wrangler.toml` unless you point it there explicitly. Dashboard settings (Settings → Build):
+Cloudflare's newer Git-connected Workers Build product runs your build and deploy commands from the **repo root** (not `apps/playground`), because the build needs to run `npm run build` at the root first to build `@hydra-tv/tokens` → `core` → `broadcast` before the playground can build against them. But `wrangler deploy` only looks for a config file in its current directory — so from the repo root it won't find `apps/playground/wrangler.toml` unless you point it there explicitly. Dashboard settings (Settings → Build):
 
 - **Root directory:** `/` (leave at repo root)
 - **Build command:**

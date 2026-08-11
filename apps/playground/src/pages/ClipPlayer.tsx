@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Badge, DataGrid, Panel, RadioGroup, Slider } from "@gurleen-ui/core";
-import type { DataGridRow } from "@gurleen-ui/core";
-import { Timecode, TransportControls, VUMeter } from "@gurleen-ui/broadcast";
+import { Badge, DataGrid, Panel, RadioGroup, Slider } from "@hydra-tv/ui";
+import type { DataGridRow } from "@hydra-tv/ui";
+import { Timecode, TransportControls, VUMeter } from "@hydra-tv/broadcast";
 
 /**
  * Rebuild of the "HYDRA / PLAY" reference screen (ui_kits/clip_player in the original handoff):

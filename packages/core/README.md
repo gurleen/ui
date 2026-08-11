@@ -1,22 +1,22 @@
-# @gurleen-ui/core
+# @hydra-tv/ui
 
-Generic, domain-agnostic React components — buttons, inputs, dialogs, data grids, and the like. No broadcast-specific semantics live here; for those (tally lamps, timecode, transport controls, …) see [`@gurleen-ui/broadcast`](../broadcast).
+Generic, domain-agnostic React components — buttons, inputs, dialogs, data grids, and the like. No broadcast-specific semantics live here; for those (tally lamps, timecode, transport controls, …) see [`@hydra-tv/broadcast`](../broadcast).
 
-Visual language: dense, dark-only, "tactile hardware" — beveled controls, recessed LED-style wells, IBM Plex Mono. See [`@gurleen-ui/tokens`](../tokens) for the full token catalog these components are built from.
+Visual language: dense, dark-only, "tactile hardware" — beveled controls, recessed LED-style wells, IBM Plex Mono. See [`@hydra-tv/tokens`](../tokens) for the full token catalog these components are built from.
 
 ## Install & setup
 
 Within this monorepo, add it as a workspace dependency:
 
 ```json
-{ "dependencies": { "@gurleen-ui/core": "0.1.0", "@gurleen-ui/tokens": "0.1.0" } }
+{ "dependencies": { "@hydra-tv/ui": "0.1.0", "@hydra-tv/tokens": "0.1.0" } }
 ```
 
 In another repo, point at this one (path/version depend on how you're consuming it — see the root README's "Using this in another app" section), then in your app:
 
 ```tsx
-import "@gurleen-ui/tokens"; // once, at your app's entry point
-import { Button, Panel } from "@gurleen-ui/core";
+import "@hydra-tv/tokens"; // once, at your app's entry point
+import { Button, Panel } from "@hydra-tv/ui";
 ```
 
 `react` and `react-dom` (`>=18`) are peer dependencies — this package doesn't bundle its own React.
@@ -63,7 +63,7 @@ None of these existed in the original handoff (which was scoped to broadcast con
 
 ## Conventions (read this before adding a component)
 
-- **No CSS-in-JS, no external UI dependency.** Every component is plain React + inline `style` objects that reference `@gurleen-ui/tokens` CSS custom properties (`var(--bg-2)`, `var(--ctl-h)`, etc.). The one exception is components that need CSS the `style` prop can't express — pseudo-elements (`Slider`'s thumb) or `@keyframes` (`Spinner`, `ProgressBar`'s indeterminate mode) — those inject one small scoped `<style>` tag from within the component. Don't reach for a CSS-in-JS library or a new build step for this; it hasn't been needed yet.
+- **No CSS-in-JS, no external UI dependency.** Every component is plain React + inline `style` objects that reference `@hydra-tv/tokens` CSS custom properties (`var(--bg-2)`, `var(--ctl-h)`, etc.). The one exception is components that need CSS the `style` prop can't express — pseudo-elements (`Slider`'s thumb) or `@keyframes` (`Spinner`, `ProgressBar`'s indeterminate mode) — those inject one small scoped `<style>` tag from within the component. Don't reach for a CSS-in-JS library or a new build step for this; it hasn't been needed yet.
 - **Controlled/uncontrolled pattern.** Stateful inputs accept both `value`/`checked` (controlled) and `defaultValue`/`defaultChecked` (uncontrolled, via internal `useState`) — see `Checkbox.tsx` or `Slider.tsx` for the pattern (`const current = value !== undefined ? value : internal`).
 - **Every prop type is exported.** `export interface ButtonProps { ... }` alongside `export function Button(...)`, so consumers (and other components — see `Dialog.tsx` importing `ButtonProps["variant"]`) get real type-checking.
 - **A `style?: CSSProperties` escape hatch** on (almost) every component, spread last so it can override any computed style.

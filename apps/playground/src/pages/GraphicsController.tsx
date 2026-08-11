@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Badge, Button, DataGrid, LogConsole, Panel, PropertyEditor } from "@gurleen-ui/core";
-import type { DataGridRow, LogLine } from "@gurleen-ui/core";
-import { BusButton, StatusBar, Tally } from "@gurleen-ui/broadcast";
+import { Badge, Button, DataGrid, LogConsole, Panel, PropertyEditor } from "@hydra-tv/ui";
+import type { DataGridRow, LogLine } from "@hydra-tv/ui";
+import { BusButton, StatusBar, Tally } from "@hydra-tv/broadcast";
 
 /**
  * Rebuild of the "HYDRA / GFX" reference screen (ui_kits/graphics_controller in the original

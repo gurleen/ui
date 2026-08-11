@@ -1,7 +1,7 @@
 {
-  "name": "@gurleen-ui/tokens",
+  "name": "@hydra-tv/tokens",
   "version": "0.1.0",
-  "description": "Design tokens (CSS custom properties) shared by @gurleen-ui/core and @gurleen-ui/broadcast.",
+  "description": "Design tokens (CSS custom properties) shared by @hydra-tv/ui and @hydra-tv/broadcast.",
   "license": "MIT",
   "type": "module",
   "sideEffects": true,
@@ -13,5 +13,23 @@
   "exports": {
     ".": "./src/index.css",
     "./*": "./src/*"
-  }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gurleen/ui.git",
+    "directory": "packages/tokens"
+  },
+  "bugs": {
+    "url": "https://github.com/gurleen/ui/issues"
+  },
+  "homepage": "https://github.com/gurleen/ui/tree/main/packages/tokens#readme",
+  "keywords": [
+    "design-tokens",
+    "css",
+    "css-variables",
+    "hydra-tv"
+  ]
 }

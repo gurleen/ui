@@ -1,4 +1,4 @@
-// @gurleen-ui/core — generic, domain-agnostic components.
+// @hydra-tv/ui — generic, domain-agnostic components.
 // See ./components/<Name>.md for per-component usage docs, or the package README for the full catalog.
 
 export * from "./components/Button";

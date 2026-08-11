@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Button, FieldRow, LogConsole, Panel, Switch } from "@gurleen-ui/core";
-import type { LogLine } from "@gurleen-ui/core";
-import { MacroKey, StatusBar } from "@gurleen-ui/broadcast";
+import { Button, FieldRow, LogConsole, Panel, Switch } from "@hydra-tv/ui";
+import type { LogLine } from "@hydra-tv/ui";
+import { MacroKey, StatusBar } from "@hydra-tv/broadcast";
 
 /**
  * Rebuild of the "HYDRA / MACRO" reference screen (ui_kits/macro_panel in the original handoff):

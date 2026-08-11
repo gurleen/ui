@@ -1,4 +1,4 @@
-# Cloudflare config for the @gurleen-ui playground, deployed as a Worker serving static assets
+# Cloudflare config for the @hydra-tv playground, deployed as a Worker serving static assets
 # (no server-side code — just the Vite build output in ./dist).
 #
 # One-time setup:

@@ -1,8 +1,8 @@
 /**
- * @gurleen-ui/tokens — single entry point.
- * Import this once at your app root (before any @gurleen-ui component renders):
+ * @hydra-tv/tokens — single entry point.
+ * Import this once at your app root (before any @hydra-tv component renders):
  *
- *   import "@gurleen-ui/tokens";
+ *   import "@hydra-tv/tokens";
  *
  * This is the only import consumers need — it pulls in all six token files
  * in a safe load order. Everything below is CSS custom properties on :root

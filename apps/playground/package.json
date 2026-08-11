@@ -2,7 +2,7 @@
   "name": "playground",
   "version": "0.1.0",
   "private": true,
-  "description": "Visual demo app for @gurleen-ui/core and @gurleen-ui/broadcast: a kitchen-sink of every component plus the three broadcast reference screens rebuilt as real composed React.",
+  "description": "Visual demo app for @hydra-tv/ui and @hydra-tv/broadcast: a kitchen-sink of every component plus the three broadcast reference screens rebuilt as real composed React.",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,9 +11,9 @@
     "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
-    "@gurleen-ui/broadcast": "0.1.0",
-    "@gurleen-ui/core": "0.1.0",
-    "@gurleen-ui/tokens": "0.1.0",
+    "@hydra-tv/broadcast": "0.1.0",
+    "@hydra-tv/ui": "0.1.0",
+    "@hydra-tv/tokens": "0.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

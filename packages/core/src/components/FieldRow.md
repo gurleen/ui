@@ -13,6 +13,6 @@ Stacked rows get a light hairline separator by default (`divided`).
 | Prop | Type | Notes |
 |---|---|---|
 | `label` | `string` | Uppercase, in the fixed-width left gutter. |
-| `children` | `ReactNode` | Any control(s) — not limited to `@gurleen-ui` components. |
+| `children` | `ReactNode` | Any control(s) — not limited to `@hydra-tv` components. |
 | `divided` | `boolean` | Hairline under the row. Default `true`. Set `false` in horizontal toolbars. |
 | `style` | `CSSProperties` | |

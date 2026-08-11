@@ -1,18 +1,19 @@
 {
-  "name": "gurleen-ui-monorepo",
+  "name": "hydra-tv-ui-monorepo",
   "version": "0.1.0",
   "private": true,
-  "description": "Monorepo for the @gurleen-ui component libraries (design tokens, generic components, broadcast-specific components) and their demo playground.",
+  "description": "Monorepo for the @hydra-tv component libraries (design tokens, generic components, broadcast-specific components) and their demo playground.",
   "license": "MIT",
   "workspaces": [
     "packages/*",
     "apps/*"
   ],
   "scripts": {
-    "build": "npm run build -w @gurleen-ui/core && npm run build -w @gurleen-ui/broadcast",
+    "build": "npm run build -w @hydra-tv/ui && npm run build -w @hydra-tv/broadcast",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "dev": "npm run dev -w playground",
-    "deploy:playground": "npm run deploy -w playground"
+    "deploy:playground": "npm run deploy -w playground",
+    "publish:packages": "npm run build && npm publish -w @hydra-tv/tokens && npm publish -w @hydra-tv/ui && npm publish -w @hydra-tv/broadcast"
   },
   "devDependencies": {
     "@types/react": "^18.3.12",

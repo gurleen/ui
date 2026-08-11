@@ -1,6 +1,6 @@
 # TransportControls
 
-Transport key cluster: `CUE ◀◀ ▶ ⏸ ■ ▶▶` (+ optional `LOOP`). Composed from `@gurleen-ui/core`'s `Button` — the one component in this package with a real cross-package dependency, so it's a useful reference if you're composing your own broadcast widgets from `core` primitives.
+Transport key cluster: `CUE ◀◀ ▶ ⏸ ■ ▶▶` (+ optional `LOOP`). Composed from `@hydra-tv/ui`'s `Button` — the one component in this package with a real cross-package dependency, so it's a useful reference if you're composing your own broadcast widgets from `core` primitives.
 
 ```jsx
 <TransportControls state="playing" loop loopActive onCommand={(cmd) => handleTransport(cmd)} />

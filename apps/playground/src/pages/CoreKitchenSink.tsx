@@ -26,7 +26,7 @@ import {
   Tabs,
   Tooltip,
   useToast,
-} from "@gurleen-ui/core";
+} from "@hydra-tv/ui";
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (

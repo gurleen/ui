@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import { Button } from "@gurleen-ui/core";
+import { Button } from "@hydra-tv/ui";
 
 /** Transport key cluster: CUE ◀◀ ▶ ⏸ ■ ▶▶ (+LOOP). Active state latches in; play glyph goes green while playing. */
 export interface TransportControlsProps {

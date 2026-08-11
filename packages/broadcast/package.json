@@ -1,7 +1,7 @@
 {
-  "name": "@gurleen-ui/broadcast",
+  "name": "@hydra-tv/broadcast",
   "version": "0.1.0",
-  "description": "Broadcast-TV control-room components (tally lamps, timecode, transport controls, VU meters, macro keys) built on @gurleen-ui/core and @gurleen-ui/tokens.",
+  "description": "Broadcast-TV control-room components (tally lamps, timecode, transport controls, VU meters, macro keys) built on @hydra-tv/ui and @hydra-tv/tokens.",
   "license": "MIT",
   "type": "module",
   "sideEffects": false,
@@ -22,20 +22,41 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
     "react": ">=18",
     "react-dom": ">=18"
   },
   "dependencies": {
-    "@gurleen-ui/core": "0.1.0",
-    "@gurleen-ui/tokens": "0.1.0"
+    "@hydra-tv/ui": "0.1.0",
+    "@hydra-tv/tokens": "0.1.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "tsup": "^8.3.5",
     "typescript": "^5.7.2"
-  }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gurleen/ui.git",
+    "directory": "packages/broadcast"
+  },
+  "bugs": {
+    "url": "https://github.com/gurleen/ui/issues"
+  },
+  "homepage": "https://github.com/gurleen/ui/tree/main/packages/broadcast#readme",
+  "keywords": [
+    "react",
+    "broadcast",
+    "control-room",
+    "hydra-tv",
+    "tally",
+    "timecode"
+  ]
 }

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Panel } from "@gurleen-ui/core";
-import { BusButton, ClockCountdown, MacroKey, StatusBar, Tally, Timecode, TransportControls, VUMeter } from "@gurleen-ui/broadcast";
+import { Panel } from "@hydra-tv/ui";
+import { BusButton, ClockCountdown, MacroKey, StatusBar, Tally, Timecode, TransportControls, VUMeter } from "@hydra-tv/broadcast";
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (

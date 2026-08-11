@@ -1,19 +1,19 @@
-# @gurleen-ui/tokens
+# @hydra-tv/tokens
 
-Design tokens for the `@gurleen-ui` component libraries: plain CSS custom properties, no JS runtime, no build step. Used by both [`@gurleen-ui/core`](../core) (generic components) and [`@gurleen-ui/broadcast`](../broadcast) (broadcast-specific components) — every component in both packages reads these variables instead of hardcoding values.
+Design tokens for the `@hydra-tv` component libraries: plain CSS custom properties, no JS runtime, no build step. Used by both [`@hydra-tv/ui`](../core) (generic components) and [`@hydra-tv/broadcast`](../broadcast) (broadcast-specific components) — every component in both packages reads these variables instead of hardcoding values.
 
 ## Usage
 
-Import once at your app's root, before any `@gurleen-ui` component renders:
+Import once at your app's root, before any `@hydra-tv` component renders:
 
 ```ts
-import "@gurleen-ui/tokens";
+import "@hydra-tv/tokens";
 ```
 
 That pulls in all six token files in a safe load order (`fonts` → `colors` → `typography` → `spacing` → `effects` → `base`). You can also import an individual file if you only need the variables (e.g. to theme something outside the component library):
 
 ```ts
-import "@gurleen-ui/tokens/colors.css";
+import "@hydra-tv/tokens/colors.css";
 ```
 
 There is **no light theme** — this is a dark-only, high-density "tactile hardware" system (beveled controls, recessed LED-style readouts). See `effects.css` for the bevel/glow vocabulary.
@@ -24,7 +24,7 @@ There is **no light theme** — this is a dark-only, high-density "tactile hardw
 - **Surfaces**, stepped: `--bg-0` (deepest) → `--bg-4` (hover/active raised). `--bg-well` for recessed readouts (meters, timecode, log, inputs).
 - **Borders**: `--line-1` (hairline) → `--line-3` (focus/hover).
 - **Text**: `--fg-1` (primary) → `--fg-3` (muted/units), `--fg-inverse` for text on bright fills.
-- **Tally** (broadcast semantics — see `@gurleen-ui/broadcast`'s README before using these outside that package): `--tally-pgm` (red = program/on-air, and *only* that meaning), `--tally-pvw` (green = preview/next, and *only* that meaning), each with `-dim`/`-bg` variants. Never repurpose these two colors decoratively.
+- **Tally** (broadcast semantics — see `@hydra-tv/broadcast`'s README before using these outside that package): `--tally-pgm` (red = program/on-air, and *only* that meaning), `--tally-pvw` (green = preview/next, and *only* that meaning), each with `-dim`/`-bg` variants. Never repurpose these two colors decoratively.
 - **Status**: `--warn` (amber, caution), `--info` (blue, the generic interactive/selection accent — this is the one to reach for in `core`), `--err`, `--ok-text`.
 - **Data-viz / channel colors** (never tally): `--ch-1` … `--ch-4`.
 - **Semantic aliases**: `--surface-app`, `--surface-panel`, `--surface-raised`, `--surface-input`, `--text-body`, `--text-label`, `--text-muted`.

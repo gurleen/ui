@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Tabs, ToastProvider } from "@gurleen-ui/core";
-import { StatusBar } from "@gurleen-ui/broadcast";
+import { Tabs, ToastProvider } from "@hydra-tv/ui";
+import { StatusBar } from "@hydra-tv/broadcast";
 import { CoreKitchenSink } from "./pages/CoreKitchenSink";
 import { BroadcastKitchenSink } from "./pages/BroadcastKitchenSink";
 import { GraphicsController } from "./pages/GraphicsController";

@@ -6,5 +6,5 @@ export default defineConfig({
   dts: true,
   sourcemap: true,
   clean: true,
-  external: ["react", "react-dom", "@gurleen-ui/core"],
+  external: ["react", "react-dom", "@hydra-tv/ui"],
 });

@@ -1,5 +1,5 @@
-// @gurleen-ui/broadcast — broadcast-TV control-room components.
-// Built on @gurleen-ui/core + @gurleen-ui/tokens. See ./components/<Name>.md for usage docs.
+// @hydra-tv/broadcast — broadcast-TV control-room components.
+// Built on @hydra-tv/ui + @hydra-tv/tokens. See ./components/<Name>.md for usage docs.
 
 export * from "./components/Tally";
 export * from "./components/BusButton";

@@ -14,8 +14,10 @@ App-bottom status strip: a row of segmented system readouts plus a live wall clo
 ## Props
 | Prop | Type | Default | Notes |
 |---|---|---|---|
-| `items` | `StatusBarItem[]` | `[]` | `{ label?, value, kind? }`. |
+| `items` | `StatusBarItem[]` | `[]` | `{ label?, value, kind?, onClick?, title? }`. |
 | `item.kind` | `"ok" \| "warn" \| "err" \| "info" \| "neutral"` | `"neutral"` | `ok`/`err`/`warn` prefix the value with `●`/`✕`/`⚠` respectively. |
+| `item.onClick` | `() => void` | — | Makes the segment a button (pointer cursor). |
+| `item.title` | `string` | — | Native tooltip. |
 | `clock` | `boolean` | `true` | Live `HH:MM:SS` at the far right. |
 | `right` | `ReactNode` | — | Extra content between the items and the clock. |
 

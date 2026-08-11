@@ -9,6 +9,10 @@ export interface StatusBarItem {
   value: string;
   /** ok (green ●) · warn (⚠) · err (✕) · info · neutral */
   kind?: "ok" | "warn" | "err" | "info" | "neutral";
+  /** Optional click handler — item becomes a button. */
+  onClick?: () => void;
+  /** Native title / tooltip when clickable or for extra context. */
+  title?: string;
 }
 
 export interface StatusBarProps {
@@ -36,14 +40,50 @@ export function StatusBar({ items = [], clock = true, right, style }: StatusBarP
       borderTop: "1px solid var(--line-2)", fontFamily: "var(--font-mono)", fontSize: 10,
       letterSpacing: "0.06em", color: "var(--fg-2)", ...style,
     }}>
-      {items.map((it, i) => (
-        <span key={i} style={{ display: "flex", alignItems: "center", gap: 5, padding: "0 10px", borderRight: "1px solid var(--line-1)", whiteSpace: "nowrap" }}>
-          {it.label && <span style={{ color: "var(--fg-3)", textTransform: "uppercase" }}>{it.label}</span>}
-          <span style={{ color: KIND_COLOR[it.kind || "neutral"], fontWeight: it.kind && it.kind !== "neutral" ? 600 : 400 }}>
-            {it.kind === "ok" && "● "}{it.kind === "err" && "✕ "}{it.kind === "warn" && "⚠ "}{it.value}
+      {items.map((it, i) => {
+        const content = (
+          <>
+            {it.label && <span style={{ color: "var(--fg-3)", textTransform: "uppercase" }}>{it.label}</span>}
+            <span style={{ color: KIND_COLOR[it.kind || "neutral"], fontWeight: it.kind && it.kind !== "neutral" ? 600 : 400 }}>
+              {it.kind === "ok" && "● "}{it.kind === "err" && "✕ "}{it.kind === "warn" && "⚠ "}{it.value}
+            </span>
+          </>
+        );
+        const segmentStyle: CSSProperties = {
+          display: "flex",
+          alignItems: "center",
+          gap: 5,
+          padding: "0 10px",
+          borderRight: "1px solid var(--line-1)",
+          whiteSpace: "nowrap",
+          background: "transparent",
+          borderTop: "none",
+          borderBottom: "none",
+          borderLeft: "none",
+          color: "inherit",
+          font: "inherit",
+          letterSpacing: "inherit",
+          cursor: it.onClick ? "pointer" : undefined,
+        };
+        if (it.onClick) {
+          return (
+            <button
+              key={i}
+              type="button"
+              title={it.title}
+              onClick={it.onClick}
+              style={segmentStyle}
+            >
+              {content}
+            </button>
+          );
+        }
+        return (
+          <span key={i} title={it.title} style={segmentStyle}>
+            {content}
           </span>
-        </span>
-      ))}
+        );
+      })}
       <span style={{ flex: 1 }}></span>
       {right}
       {clock && (

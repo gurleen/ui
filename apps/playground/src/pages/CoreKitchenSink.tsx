@@ -45,6 +45,11 @@ export function CoreKitchenSink() {
   const [slider, setSlider] = useState(40);
   const [accordionOpen, setAccordionOpen] = useState<string[]>(["a"]);
   const [sideActive, setSideActive] = useState("library");
+  const [reorderRows, setReorderRows] = useState([
+    { id: "a", name: "Intro", size: "0:30" },
+    { id: "b", name: "Segment A", size: "4:12" },
+    { id: "c", name: "Outro", size: "0:15" },
+  ]);
 
   return (
     <div style={{ position: "relative", maxWidth: 900 }}>
@@ -160,6 +165,25 @@ export function CoreKitchenSink() {
               { id: "003", name: "notes.txt", size: "4 KB" },
             ]}
             height={110}
+          />
+        </div>
+        <div style={{ width: "100%" }}>
+          <DataGrid
+            columns={[
+              { key: "name", label: "Segment" },
+              { key: "size", label: "Dur", width: "60px", align: "right", dim: true },
+            ]}
+            rows={reorderRows}
+            height={110}
+            reorderable
+            onReorder={(from, to) => {
+              setReorderRows((prev) => {
+                const next = [...prev];
+                const [item] = next.splice(from, 1);
+                next.splice(to, 0, item!);
+                return next;
+              });
+            }}
           />
         </div>
         <div style={{ width: "100%" }}>

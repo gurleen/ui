@@ -18,6 +18,30 @@ Dense table/grid with sticky header and optional row highlight states. Generic �
 />
 ```
 
+Reorderable rows (drag the handle column):
+
+```jsx
+const [rows, setRows] = useState([
+  { id: "a", name: "Intro" },
+  { id: "b", name: "Segment A" },
+  { id: "c", name: "Outro" },
+]);
+
+<DataGrid
+  columns={[{ key: "name", label: "Segment" }]}
+  rows={rows}
+  reorderable
+  onReorder={(from, to) => {
+    setRows((prev) => {
+      const next = [...prev];
+      const [item] = next.splice(from, 1);
+      next.splice(to, 0, item!);
+      return next;
+    });
+  }}
+/>
+```
+
 ## Props
 | Prop | Type | Default | Notes |
 |---|---|---|---|
@@ -26,6 +50,8 @@ Dense table/grid with sticky header and optional row highlight states. Generic �
 | `row._state` | `"onair" \| "cued" \| "selected" \| "disabled"` | — | Row highlight. `onair`=red bar, `cued`=green bar, `selected`=blue bar, `disabled`=dimmed. `onair`/`cued` carry broadcast tally meaning — for non-broadcast tables just use `selected`/`disabled` or the `selected` prop. |
 | `selected` | `number` | — | Controlled selected row index (equivalent to setting that row's `_state` to `"selected"`). |
 | `onSelect` | `(index, row) => void` | — | Row click handler; rows without it aren't clickable. |
+| `reorderable` | `boolean` | `false` | Prepends a drag-handle column for HTML5 drag-and-drop row reordering. |
+| `onReorder` | `(fromIndex, toIndex) => void` | — | Called when a row is dropped at a new index. Requires `reorderable`. |
 | `dense` | `boolean` | `false` | 18px rows instead of 22px. |
 | `zebra` | `boolean` | `true` | Faint alternating row background. |
 | `height` | `number \| string` | — | If set, the grid scrolls internally with a sticky header; if omitted, it grows to fit content. |

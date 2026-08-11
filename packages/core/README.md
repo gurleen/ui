@@ -59,6 +59,7 @@ None of these existed in the original handoff (which was scoped to broadcast con
 | [`Breadcrumb`](src/components/Breadcrumb.md) | Uppercase path trail showing the current location. |
 | [`NavBar`](src/components/NavBar.md) | Horizontal app-level navigation bar (brand · links · actions). |
 | [`SideNav`](src/components/SideNav.md) | Vertical navigation rail with active-item state. |
+| [`LauncherTile`](src/components/LauncherTile.md) | Large icon+label tile for home/app launchers. |
 
 ## Conventions (read this before adding a component)
 

@@ -26,3 +26,4 @@ export * from "./components/Toast";
 export * from "./components/Breadcrumb";
 export * from "./components/NavBar";
 export * from "./components/SideNav";
+export * from "./components/LauncherTile";

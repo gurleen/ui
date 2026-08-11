@@ -10,6 +10,7 @@ import {
   Divider,
   FieldRow,
   Input,
+  LauncherTile,
   LogConsole,
   Menu,
   NavBar,
@@ -60,6 +61,20 @@ export function CoreKitchenSink() {
         <Button label="Armed" variant="armed" active />
         <Button label="Disabled" disabled />
         <Button label="XL" size="xl" variant="accent" />
+      </Section>
+
+      <Section title="Launcher tiles">
+        <LauncherTile
+          label="RUNDOWNS"
+          description="Playout and templates"
+          icon={
+            <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
+              <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" strokeLinecap="round" />
+            </svg>
+          }
+          onClick={() => show({ message: "Rundowns", level: "ok" })}
+        />
+        <LauncherTile label="SETTINGS" description="Coming soon" disabled size={140} />
       </Section>
 
       <Section title="Inputs">

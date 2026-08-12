@@ -1,6 +1,6 @@
 {
   "name": "@hydra-tv/broadcast",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Broadcast-TV control-room components (tally lamps, timecode, transport controls, VU meters, macro keys) built on @hydra-tv/ui and @hydra-tv/tokens.",
   "license": "MIT",
   "type": "module",
@@ -30,8 +30,8 @@
     "react-dom": ">=18"
   },
   "dependencies": {
-    "@hydra-tv/ui": "0.1.0",
-    "@hydra-tv/tokens": "0.1.0"
+    "@hydra-tv/ui": "0.2.0",
+    "@hydra-tv/tokens": "0.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.12",

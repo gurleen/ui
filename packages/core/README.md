@@ -9,7 +9,7 @@ Visual language: dense, dark-only, "tactile hardware" — beveled controls, rece
 Within this monorepo, add it as a workspace dependency:
 
 ```json
-{ "dependencies": { "@hydra-tv/ui": "0.1.0", "@hydra-tv/tokens": "0.1.0" } }
+{ "dependencies": { "@hydra-tv/ui": "0.2.0", "@hydra-tv/tokens": "0.2.0" } }
 ```
 
 In another repo, point at this one (path/version depend on how you're consuming it — see the root README's "Using this in another app" section), then in your app:
@@ -60,6 +60,7 @@ None of these existed in the original handoff (which was scoped to broadcast con
 | [`NavBar`](src/components/NavBar.md) | Horizontal app-level navigation bar (brand · links · actions). |
 | [`SideNav`](src/components/SideNav.md) | Vertical navigation rail with active-item state. |
 | [`LauncherTile`](src/components/LauncherTile.md) | Large icon+label tile for home/app launchers. |
+| [`Combobox`](src/components/Combobox.md) | Searchable single-select with a custom listbox (distinct from native `Select`). |
 
 ## Conventions (read this before adding a component)
 

@@ -29,7 +29,7 @@ npm run dev            # starts the playground (apps/playground) at http://local
 **Within this monorepo** (e.g. a new `apps/*` package): just declare the dependency in `package.json` — npm workspaces symlinks it automatically:
 
 ```json
-{ "dependencies": { "@hydra-tv/ui": "0.1.0", "@hydra-tv/tokens": "0.1.0" } }
+{ "dependencies": { "@hydra-tv/ui": "0.2.0", "@hydra-tv/tokens": "0.2.0" } }
 ```
 
 **From a separate repo**, install from npm (recommended):

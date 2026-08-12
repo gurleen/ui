@@ -11,9 +11,9 @@
     "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
-    "@hydra-tv/broadcast": "0.1.0",
-    "@hydra-tv/ui": "0.1.0",
-    "@hydra-tv/tokens": "0.1.0",
+    "@hydra-tv/broadcast": "0.2.0",
+    "@hydra-tv/ui": "0.2.0",
+    "@hydra-tv/tokens": "0.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

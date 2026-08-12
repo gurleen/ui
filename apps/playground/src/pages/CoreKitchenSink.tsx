@@ -5,6 +5,7 @@ import {
   Breadcrumb,
   Button,
   Checkbox,
+  Combobox,
   DataGrid,
   Dialog,
   Divider,
@@ -44,6 +45,7 @@ export function CoreKitchenSink() {
   const [switched, setSwitched] = useState(false);
   const [radio, setRadio] = useState("b");
   const [slider, setSlider] = useState(40);
+  const [combo, setCombo] = useState("h264");
   const [accordionOpen, setAccordionOpen] = useState<string[]>(["a"]);
   const [sideActive, setSideActive] = useState("library");
   const [reorderRows, setReorderRows] = useState([
@@ -81,6 +83,29 @@ export function CoreKitchenSink() {
         <Input label="Name" defaultValue="report.pdf" width={160} />
         <Input label="Size" defaultValue="2.1" unit="MB" align="right" width={100} />
         <Select label="Format" options={["PDF", "CSV", "JSON"]} defaultValue="PDF" />
+        <Combobox
+          label="Export"
+          options={["PDF", "CSV", "JSON", "XML", "YAML", "TOML", "HTML", "Markdown", "TSV", "Parquet", "Avro", "ORC", "Excel"]}
+          defaultValue="JSON"
+          width={180}
+        />
+        <Combobox
+          label="Codec"
+          options={[
+            { value: "h264", label: "H.264" },
+            { value: "h265", label: "H.265" },
+            { value: "prores", label: "ProRes" },
+            { value: "dnxhd", label: "DNxHD" },
+            { value: "av1", label: "AV1" },
+            { value: "vp9", label: "VP9" },
+            { value: "mjpeg", label: "MJPEG", disabled: true },
+          ]}
+          value={combo}
+          onChange={setCombo}
+          placeholder="Choose…"
+          clearable
+          width={160}
+        />
         <Checkbox label="AUTO-SAVE" checked={checked} onChange={setChecked} />
         <Switch label="Notify" labels={["OFF", "ON"]} checked={switched} onChange={setSwitched} />
         <RadioGroup direction="row" options={[{ value: "a", label: "A" }, { value: "b", label: "B" }, { value: "c", label: "C" }]} value={radio} onChange={setRadio} />

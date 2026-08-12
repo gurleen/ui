@@ -1,6 +1,6 @@
 # Select
 
-Beveled dropdown styled as a hardware control (native `<select>` under the hood).
+Beveled dropdown styled as a hardware control (native `<select>` under the hood). Prefer `Combobox` when the list is long and type-to-filter helps; this native control is the right default for short lists and real form `<select>` semantics.
 
 ```jsx
 <Select label="Output" options={["SDI-1", "SDI-2", "NDI"]} defaultValue="SDI-2" />

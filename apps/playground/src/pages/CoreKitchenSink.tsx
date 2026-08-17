@@ -2,6 +2,7 @@ import { useState } from "react";
 import {
   Accordion,
   Badge,
+  BarChart,
   Breadcrumb,
   Button,
   Checkbox,
@@ -10,19 +11,25 @@ import {
   Dialog,
   Divider,
   FieldRow,
+  HeatGrid,
   Input,
   LauncherTile,
+  LineChart,
   LogConsole,
   Menu,
   NavBar,
   Panel,
+  PercentileBar,
   ProgressBar,
   PropertyEditor,
   RadioGroup,
+  ScatterPlot,
   Select,
   SideNav,
   Slider,
+  Sparkline,
   Spinner,
+  Stat,
   Switch,
   Tabs,
   Tooltip,
@@ -249,6 +256,94 @@ export function CoreKitchenSink() {
           />
         </div>
         <FieldRow label="Custom"><em style={{ fontSize: 11, color: "var(--fg-2)" }}>any custom control here</em></FieldRow>
+      </Section>
+
+      <Section title="Stats & sparklines">
+        <Stat label="Throughput" value="1,284" unit="req/s" delta={12.4} deltaKind="good" deltaUnit="%" />
+        <Stat label="Error rate" value="0.42" unit="%" delta={-0.18} deltaKind="good" caption="Last 24 hours" />
+        <Stat label="P99 latency" value={312} unit="ms" delta={41} deltaKind="bad" deltaUnit="ms" size="lg" />
+        <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+          <Sparkline data={[12, 18, 9, 24, 22, 31, 28, 35]} showLast />
+          <Sparkline data={[12, 18, 9, 24, 22, 31, 28, 35]} color="var(--ch-3)" fill baseline={20} width={120} height={28} />
+        </div>
+      </Section>
+
+      <Section title="Bar charts">
+        <div style={{ width: 280 }}>
+          <BarChart
+            data={[
+              { label: "Rim", value: 214 },
+              { label: "Mid-range", value: 88 },
+              { label: "Corner 3", value: 131 },
+              { label: "Above break", value: 196 },
+            ]}
+          />
+        </div>
+        <BarChart
+          orientation="vertical"
+          height={110}
+          style={{ width: 240 }}
+          data={[
+            { label: "Q1", value: [12, 9] },
+            { label: "Q2", value: [18, 14] },
+            { label: "Q3", value: [8, 21] },
+            { label: "Q4", value: [24, 16] },
+          ]}
+        />
+      </Section>
+
+      <Section title="Line chart">
+        <div style={{ width: "100%" }}>
+          <LineChart
+            height={170}
+            yDomain={[0, 100]}
+            referenceLine={50}
+            band={[40, 60]}
+            legend
+            series={[
+              { label: "Home", color: "var(--ch-1)", fill: true, points: [[0, 50], [8, 61], [16, 47], [24, 55], [32, 71], [40, 66], [48, 84]] },
+              { label: "Away", color: "var(--ch-2)", dashed: true, points: [[0, 50], [8, 39], [16, 53], [24, 45], [32, 29], [40, 34], [48, 16]] },
+            ]}
+          />
+        </div>
+      </Section>
+
+      <Section title="Scatter plot & heat grid">
+        <div style={{ width: 300 }}>
+          <ScatterPlot
+            height={190}
+            xDomain={[0, 100]}
+            yDomain={[0, 60]}
+            grid
+            points={[
+              { x: 12, y: 40, title: "A · 12/40" },
+              { x: 26, y: 18, color: "var(--ch-2)", shape: "ring" },
+              { x: 48, y: 32, color: "var(--ch-3)", shape: "square" },
+              { x: 63, y: 51, shape: "triangle", color: "var(--ch-2)" },
+              { x: 77, y: 24, shape: "cross", color: "var(--warn)" },
+              { x: 88, y: 44, label: "9", size: 7 },
+            ]}
+          />
+        </div>
+        <HeatGrid
+          rowLabels={["Fastball", "Slider", "Changeup"]}
+          colLabels={["0-0", "0-1", "1-0", "2-2", "3-2"]}
+          data={[
+            [62, 55, 71, 48, 74],
+            [21, 30, 14, 33, 12],
+            [17, 15, 15, 19, null],
+          ]}
+          showValues
+          legend
+        />
+      </Section>
+
+      <Section title="Percentile bars">
+        <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: 5 }}>
+          <PercentileBar label="Exit velocity" percentile={88} value="94.1" />
+          <PercentileBar label="Chase rate" percentile={31} value="28.4%" color="var(--ch-4)" />
+          <PercentileBar label="Barrel rate" percentile={64} value="9.7%" color="var(--ch-3)" showScale />
+        </div>
       </Section>
 
       <Dialog

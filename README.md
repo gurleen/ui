@@ -1,6 +1,6 @@
 # @hydra-tv
 
-A reusable React component library monorepo, originally distilled from a broadcast-TV design handoff ("HYDRA") into a generic-first library — with the broadcast-specific pieces kept in their own sub-package so non-broadcast apps aren't forced to depend on them.
+A reusable React component library monorepo, originally distilled from a broadcast-TV design handoff ("HYDRA") into a generic-first library — with each set of domain-specific pieces kept in its own sub-package, so apps aren't forced to depend on a domain they don't work in.
 
 Visual language across all packages: dense, dark-only, "tactile hardware" (beveled controls, recessed LED-style readouts, IBM Plex Mono). See [`packages/tokens`](packages/tokens) for the full token catalog.
 
@@ -11,15 +11,16 @@ Visual language across all packages: dense, dark-only, "tactile hardware" (bevel
 | [`@hydra-tv/tokens`](packages/tokens) | Design tokens — plain CSS custom properties, no JS. Import once at your app root. |
 | [`@hydra-tv/ui`](packages/core) | Generic, domain-agnostic components: `Button`, `Input`, `Select`, `Dialog`, `DataGrid`, `Toast`, `Menu`, `Slider`, and 14 more. **Start here for any non-broadcast app.** |
 | [`@hydra-tv/broadcast`](packages/broadcast) | Broadcast-TV control-room components: `Tally`, `Timecode`, `TransportControls`, `VUMeter`, `MacroKey`, and more. Depends on `core` + `tokens`. Only pull this in if you're building a broadcast/production-control tool. |
-| [`playground`](apps/playground) (app, unpublished) | Vite demo app: a kitchen sink of every component in both libraries, plus the three original reference screens rebuilt as real composed React. Also the visual regression check when changing a component. |
+| [`@hydra-tv/sports`](packages/sports) | Basketball and baseball analytics components: `Scoreboard`, `BoxScore`, `ShotChart`, `StrikeZonePlot`, `SprayChart`, `WinProbability`, and more. Depends on `core` + `tokens`. Only pull this in if you're building a sports analytics tool. |
+| [`playground`](apps/playground) (app, unpublished) | Vite demo app: a kitchen sink of every component in all three libraries, plus the three broadcast reference screens and two sports-analytics reference screens rebuilt as real composed React. Also the visual regression check when changing a component. |
 
-Dependency direction: `broadcast` → `core` → `tokens`.
+Dependency direction: `broadcast` → `core` → `tokens`, and `sports` → `core` → `tokens`. The two domain packages don't know about each other.
 
 ## Quickstart
 
 ```sh
 npm install
-npm run build        # builds tokens (no-op) → core → broadcast, in that order
+npm run build        # builds tokens (no-op) → core → broadcast → sports, in that order
 npm run typecheck     # tsc --noEmit across every package
 npm run dev            # starts the playground (apps/playground) at http://localhost:5173
 ```
@@ -36,8 +37,9 @@ npm run dev            # starts the playground (apps/playground) at http://local
 
 ```sh
 npm install @hydra-tv/tokens @hydra-tv/ui
-# optional broadcast control-room components:
-npm install @hydra-tv/broadcast
+# optional domain packages:
+npm install @hydra-tv/broadcast   # control-room components
+npm install @hydra-tv/sports      # basketball/baseball analytics components
 ```
 
 In your app:
@@ -49,11 +51,11 @@ import { Button, Panel } from "@hydra-tv/ui";
 
 ## Publishing to npm
 
-All three library packages publish to the public [`@hydra-tv` org on npm](https://www.npmjs.com/org/hydra-tv). The root `.npmrc` sets scoped packages to publish publicly.
+All four library packages publish to the public [`@hydra-tv` org on npm](https://www.npmjs.com/org/hydra-tv). The root `.npmrc` sets scoped packages to publish publicly.
 
 **Prerequisites:** be logged in (`npm login`) and a member of the `@hydra-tv` npm org with publish rights.
 
-**Publish all packages** (builds first, then publishes in dependency order — tokens → ui → broadcast):
+**Publish all packages** (builds first, then publishes in dependency order — tokens → ui → broadcast → sports):
 
 ```sh
 npm run publish:packages
@@ -65,6 +67,7 @@ Or publish individually after `npm run build`:
 npm publish -w @hydra-tv/tokens
 npm publish -w @hydra-tv/ui
 npm publish -w @hydra-tv/broadcast
+npm publish -w @hydra-tv/sports
 ```
 
 Bump versions in each package's `package.json` (and matching internal dependency pins) before each release.
@@ -76,6 +79,7 @@ packages/
   tokens/       @hydra-tv/tokens    — CSS custom properties
   core/         @hydra-tv/ui      — generic components
   broadcast/    @hydra-tv/broadcast — broadcast-specific components
+  sports/       @hydra-tv/sports    — basketball/baseball analytics components
 apps/
   playground/   demo app + Cloudflare Pages deploy config
 tsconfig.base.json   shared strict TS config, extended by each package

@@ -1,6 +1,6 @@
 # @hydra-tv/tokens
 
-Design tokens for the `@hydra-tv` component libraries: plain CSS custom properties, no JS runtime, no build step. Used by both [`@hydra-tv/ui`](../core) (generic components) and [`@hydra-tv/broadcast`](../broadcast) (broadcast-specific components) — every component in both packages reads these variables instead of hardcoding values.
+Design tokens for the `@hydra-tv` component libraries: plain CSS custom properties, no JS runtime, no build step. Used by [`@hydra-tv/ui`](../core) (generic components), [`@hydra-tv/broadcast`](../broadcast) (broadcast-specific components) and [`@hydra-tv/sports`](../sports) (sports-analytics components) — every component in all three packages reads these variables instead of hardcoding values.
 
 ## Usage
 
@@ -24,7 +24,7 @@ There is **no light theme** — this is a dark-only, high-density "tactile hardw
 - **Surfaces**, stepped: `--bg-0` (deepest) → `--bg-4` (hover/active raised). `--bg-well` for recessed readouts (meters, timecode, log, inputs).
 - **Borders**: `--line-1` (hairline) → `--line-3` (focus/hover).
 - **Text**: `--fg-1` (primary) → `--fg-3` (muted/units), `--fg-inverse` for text on bright fills.
-- **Tally** (broadcast semantics — see `@hydra-tv/broadcast`'s README before using these outside that package): `--tally-pgm` (red = program/on-air, and *only* that meaning), `--tally-pvw` (green = preview/next, and *only* that meaning), each with `-dim`/`-bg` variants. Never repurpose these two colors decoratively.
+- **Tally** (broadcast semantics — see `@hydra-tv/broadcast`'s README before using these outside that package): `--tally-pgm` (red = program/on-air, and *only* that meaning), `--tally-pvw` (green = preview/next, and *only* that meaning), each with `-dim`/`-bg` variants. Never repurpose these two colors decoratively — not for error/success, not for made/missed shots, not for balls and strikes. Use `--ch-1`…`--ch-4` for data series and `--warn`/`--err`/`--info`/`--ok-text` for status.
 - **Status**: `--warn` (amber, caution), `--info` (blue, the generic interactive/selection accent — this is the one to reach for in `core`), `--err`, `--ok-text`.
 - **Data-viz / channel colors** (never tally): `--ch-1` … `--ch-4`.
 - **Semantic aliases**: `--surface-app`, `--surface-panel`, `--surface-raised`, `--surface-input`, `--text-body`, `--text-label`, `--text-muted`.

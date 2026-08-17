@@ -1,6 +1,6 @@
 # @hydra-tv/ui
 
-Generic, domain-agnostic React components — buttons, inputs, dialogs, data grids, and the like. No broadcast-specific semantics live here; for those (tally lamps, timecode, transport controls, …) see [`@hydra-tv/broadcast`](../broadcast).
+Generic, domain-agnostic React components — buttons, inputs, dialogs, data grids, charts, and the like. No domain semantics live here: for broadcast (tally lamps, timecode, transport controls, …) see [`@hydra-tv/broadcast`](../broadcast), and for sports (scoreboards, box scores, shot charts, …) see [`@hydra-tv/sports`](../sports).
 
 Visual language: dense, dark-only, "tactile hardware" — beveled controls, recessed LED-style wells, IBM Plex Mono. See [`@hydra-tv/tokens`](../tokens) for the full token catalog these components are built from.
 

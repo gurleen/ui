@@ -10,3 +10,9 @@ export * from "./components/BoxScore";
 export * from "./components/StandingsTable";
 export * from "./components/PlayByPlay";
 export * from "./components/WinProbability";
+
+// Basketball
+export * from "./components/CourtDiagram";
+export * from "./components/ShotChart";
+export * from "./components/ShotZoneChart";
+export * from "./components/RotationChart";

@@ -2,7 +2,7 @@
   "name": "playground",
   "version": "0.1.0",
   "private": true,
-  "description": "Visual demo app for @hydra-tv/ui and @hydra-tv/broadcast: a kitchen-sink of every component plus the three broadcast reference screens rebuilt as real composed React.",
+  "description": "Visual demo app for @hydra-tv/ui, @hydra-tv/broadcast and @hydra-tv/sports: a kitchen-sink of every component plus the broadcast and sports-analytics reference screens rebuilt as real composed React.",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@hydra-tv/broadcast": "0.2.0",
+    "@hydra-tv/sports": "0.2.0",
     "@hydra-tv/ui": "0.2.0",
     "@hydra-tv/tokens": "0.2.0",
     "react": "^18.3.1",

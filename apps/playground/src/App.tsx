@@ -3,16 +3,22 @@ import { Tabs, ToastProvider } from "@hydra-tv/ui";
 import { StatusBar } from "@hydra-tv/broadcast";
 import { CoreKitchenSink } from "./pages/CoreKitchenSink";
 import { BroadcastKitchenSink } from "./pages/BroadcastKitchenSink";
+import { SportsKitchenSink } from "./pages/SportsKitchenSink";
 import { GraphicsController } from "./pages/GraphicsController";
 import { ClipPlayer } from "./pages/ClipPlayer";
 import { MacroPanel } from "./pages/MacroPanel";
+import { GameCenter } from "./pages/GameCenter";
+import { PitchLab } from "./pages/PitchLab";
 
 const PAGES = [
   { label: "CORE", Component: CoreKitchenSink },
   { label: "BROADCAST", Component: BroadcastKitchenSink },
+  { label: "SPORTS", Component: SportsKitchenSink },
   { label: "GFX CONTROLLER", Component: GraphicsController },
   { label: "CLIP PLAYER", Component: ClipPlayer },
   { label: "MACRO PANEL", Component: MacroPanel },
+  { label: "GAME CENTER", Component: GameCenter },
+  { label: "PITCH LAB", Component: PitchLab },
 ];
 
 export function App() {

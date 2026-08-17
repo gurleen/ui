@@ -2,18 +2,18 @@
   "name": "hydra-tv-ui-monorepo",
   "version": "0.1.0",
   "private": true,
-  "description": "Monorepo for the @hydra-tv component libraries (design tokens, generic components, broadcast-specific components) and their demo playground.",
+  "description": "Monorepo for the @hydra-tv component libraries (design tokens, generic components, broadcast-specific components, sports-analytics components) and their demo playground.",
   "license": "MIT",
   "workspaces": [
     "packages/*",
     "apps/*"
   ],
   "scripts": {
-    "build": "npm run build -w @hydra-tv/ui && npm run build -w @hydra-tv/broadcast",
+    "build": "npm run build -w @hydra-tv/ui && npm run build -w @hydra-tv/broadcast && npm run build -w @hydra-tv/sports",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "dev": "npm run dev -w playground",
     "deploy:playground": "npm run deploy -w playground",
-    "publish:packages": "npm run build && npm publish -w @hydra-tv/tokens && npm publish -w @hydra-tv/ui && npm publish -w @hydra-tv/broadcast"
+    "publish:packages": "npm run build && npm publish -w @hydra-tv/tokens && npm publish -w @hydra-tv/ui && npm publish -w @hydra-tv/broadcast && npm publish -w @hydra-tv/sports"
   },
   "devDependencies": {
     "@types/react": "^18.3.12",

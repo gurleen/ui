@@ -10,7 +10,8 @@ export interface PlayEvent {
   team?: "home" | "away";
   /** Overrides the team color for this row */
   color?: string;
-  text: string;
+  /** The play description. Optional only for `kind: "period"` markers, which use `period`. */
+  text?: string;
   /** Running score after the play, e.g. "78-74" */
   score?: string;
   /** `score` bolds the row; `period` renders it as a section marker */
@@ -58,7 +59,7 @@ export function PlayByPlay({
               display: "flex", alignItems: "center", gap: 8, padding: "3px 8px", background: "var(--bg-3)",
               borderTop: "1px solid var(--line-1)", borderBottom: "1px solid var(--line-1)",
               fontSize: 9, fontWeight: "var(--fw-semi)", letterSpacing: "var(--label-tracking-wide)", textTransform: "uppercase", color: "var(--fg-2)",
-            }}>{ev.period ?? ev.text}</div>
+            }}>{ev.period ?? ev.text ?? ""}</div>
           );
         }
         const bar = ev.color ?? (ev.team === "home" ? homeColor : ev.team === "away" ? awayColor : "transparent");

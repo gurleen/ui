@@ -19,7 +19,7 @@ Scrolling, clock-ordered feed of game events with team attribution and a running
 ## Props
 | Prop | Type | Default | Notes |
 |---|---|---|---|
-| `events` | `PlayEvent[]` | `[]` | `{ clock?, period?, team?, color?, text, score?, kind? }`. |
+| `events` | `PlayEvent[]` | `[]` | `{ clock?, period?, team?, color?, text?, score?, kind? }`. `text` is required in practice for every kind except `"period"`, which uses `period` instead. |
 | `homeColor` / `awayColor` | `string` | `--ch-1` / `--ch-2` | Left color bar per row; a row's own `color` wins. |
 | `height` | `number \| string` | `220` | |
 | `follow` | `boolean` | `true` | Auto-scroll to the newest event. Ignored when `newestFirst`. |

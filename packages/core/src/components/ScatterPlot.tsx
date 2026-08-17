@@ -10,6 +10,10 @@ export interface ScatterPoint {
   /** Marker radius in px; overrides `pointSize` */
   size?: number;
   opacity?: number;
+  /** Short text centered in the marker, e.g. a sequence number. Sizes off the marker. */
+  label?: string;
+  /** Overrides the automatic label color */
+  labelColor?: string;
   /** Native browser tooltip on hover */
   title?: string;
 }
@@ -69,13 +73,24 @@ function Marker({ p, cx, cy, r, color, onClick }: { p: ScatterPoint; cx: number;
         return <circle {...common} cx={cx} cy={cy} r={r} fill={color} />;
     }
   })();
-  return p.title ? (
+  if (!p.title && !p.label) return node;
+  return (
     <g>
       {node}
-      <title>{p.title}</title>
+      {p.label && (
+        <text
+          x={cx}
+          y={cy}
+          textAnchor="middle"
+          dominantBaseline="central"
+          fill={p.labelColor ?? (p.shape === "ring" || p.shape === "cross" ? color : "var(--fg-inverse)")}
+          style={{ fontSize: Math.max(7, r * 1.1), fontWeight: 700, fontFamily: "var(--font-mono)", pointerEvents: "none" }}
+        >
+          {p.label}
+        </text>
+      )}
+      {p.title && <title>{p.title}</title>}
     </g>
-  ) : (
-    node
   );
 }
 

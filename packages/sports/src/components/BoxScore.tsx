@@ -33,6 +33,12 @@ export interface BoxScoreProps {
   style?: CSSProperties;
 }
 
+/** `formatIp(20)` → `"6.2"` — whole innings plus the odd outs, as innings pitched is conventionally written. */
+export function formatIp(outs: number): string {
+  const o = Math.max(0, Math.floor(outs));
+  return `${Math.floor(o / 3)}.${o % 3}`;
+}
+
 const num = (key: string, label: string, width = "44px"): DataGridColumn => ({ key, label, width, align: "right" });
 
 const PRESETS: Record<BoxScorePreset, DataGridColumn[]> = {

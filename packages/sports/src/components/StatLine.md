@@ -30,3 +30,11 @@ Stacked, as a summary strip:
 | `stacked` | `boolean` | `false` | Value over code, in a wrapping row — for a summary strip rather than a caption. |
 
 `kind` colors the value: `good` → `--ok-text`, `bad` → `--warn`, `neutral` → `--fg-1`. It is a judgement you pass in, not one derived from the number, because a low value is good for some stats and bad for others.
+
+## Helper
+
+`slashLine(avg, obp, slg)` → `".312/.389/.544"` — three decimals with the leading zero dropped, as batting rates are always written:
+
+```jsx
+<StatLine items={[{ value: slashLine(0.312, 0.389, 0.544), label: "AVG/OBP/SLG" }]} />
+```

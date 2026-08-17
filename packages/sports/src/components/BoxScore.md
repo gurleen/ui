@@ -43,4 +43,8 @@ Baseball uses two presets, one per side of the game:
 
 Values are printed as given — pass `"9-17"` for a made-attempted pair and a pre-formatted `".312"` for a rate. This component does no stat math; splits, rates and totals are the app's to compute.
 
+## Helper
+
+`formatIp(outs)` → `"6.2"`. Innings pitched is conventionally written as whole innings plus the odd outs (`6.2` is six innings and two outs, not six and two-tenths), which is easy to get wrong with plain division — `formatIp(20)` is `"6.2"`.
+
 Players with `starter: true` sort to the top and show their `position` beside the name.

@@ -19,7 +19,7 @@ _Added for general use — an x/y point cloud with a pluggable background layer.
 ## Props
 | Prop | Type | Default | Notes |
 |---|---|---|---|
-| `points` | `ScatterPoint[]` | `[]` | `{ x, y, color?, shape?, size?, opacity?, title? }`. `title` becomes a native hover tooltip. |
+| `points` | `ScatterPoint[]` | `[]` | `{ x, y, color?, shape?, size?, opacity?, label?, labelColor?, title? }`. `title` becomes a native hover tooltip; `label` prints short text centered in the marker (a sequence number), sized off the marker radius. |
 | `xDomain` / `yDomain` | `[number, number]` | data extent | Fix both whenever a `background` is used, or the diagram drifts out of register as the data changes. |
 | `width` | `number \| string` | `"100%"` | A number is a fixed pixel width; a CSS string measures the container. |
 | `height` | `number` | — | Total height. Omit it and pass `aspect` to derive the height from the measured width. |

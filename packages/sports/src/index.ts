@@ -16,3 +16,12 @@ export * from "./components/CourtDiagram";
 export * from "./components/ShotChart";
 export * from "./components/ShotZoneChart";
 export * from "./components/RotationChart";
+
+// Baseball
+export * from "./components/FieldDiagram";
+export * from "./components/SprayChart";
+export * from "./components/StrikeZonePlot";
+export * from "./components/PitchSequence";
+export * from "./components/CountDisplay";
+export * from "./components/BaseState";
+export * from "./components/LineScore";

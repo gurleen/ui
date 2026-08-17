@@ -18,6 +18,12 @@ export interface StatLineProps {
   style?: CSSProperties;
 }
 
+/** `slashLine(0.312, 0.389, 0.544)` → `".312/.389/.544"` — three decimals, no leading zero. */
+export function slashLine(avg: number, obp: number, slg: number): string {
+  const fmt = (v: number) => v.toFixed(3).replace(/^0/, "");
+  return `${fmt(avg)}/${fmt(obp)}/${fmt(slg)}`;
+}
+
 const KIND_COLORS = {
   good: "var(--ok-text)",
   bad: "var(--warn)",

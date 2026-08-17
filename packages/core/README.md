@@ -62,10 +62,24 @@ None of these existed in the original handoff (which was scoped to broadcast con
 | [`LauncherTile`](src/components/LauncherTile.md) | Large icon+label tile for home/app launchers. |
 | [`Combobox`](src/components/Combobox.md) | Searchable single-select with a custom listbox (distinct from native `Select`). |
 
+### Data visualization
+Hand-rolled SVG and flex layout — no charting dependency, same inline-style/token idiom as everything else. Series colors default to the `--ch-*` data-viz tokens; never plot with `--tally-pgm`/`--tally-pvw`.
+
+| Component | What it is |
+|---|---|
+| [`Stat`](src/components/Stat.md) | Headline figure in a recessed well, with label, unit and delta. |
+| [`Sparkline`](src/components/Sparkline.md) | Inline trend glyph, small enough for a table cell. |
+| [`BarChart`](src/components/BarChart.md) | Categorical bars, horizontal or vertical, optionally stacked. |
+| [`LineChart`](src/components/LineChart.md) | Multi-series x/y lines with axes, reference line and band. |
+| [`ScatterPlot`](src/components/ScatterPlot.md) | x/y point cloud over a pluggable background layer drawn in domain units. |
+| [`HeatGrid`](src/components/HeatGrid.md) | Labelled matrix shaded by value; sequential or diverging. |
+| [`PercentileBar`](src/components/PercentileBar.md) | Where one value sits in a distribution. |
+
 ## Conventions (read this before adding a component)
 
 - **No CSS-in-JS, no external UI dependency.** Every component is plain React + inline `style` objects that reference `@hydra-tv/tokens` CSS custom properties (`var(--bg-2)`, `var(--ctl-h)`, etc.). The one exception is components that need CSS the `style` prop can't express — pseudo-elements (`Slider`'s thumb) or `@keyframes` (`Spinner`, `ProgressBar`'s indeterminate mode) — those inject one small scoped `<style>` tag from within the component. Don't reach for a CSS-in-JS library or a new build step for this; it hasn't been needed yet.
 - **Controlled/uncontrolled pattern.** Stateful inputs accept both `value`/`checked` (controlled) and `defaultValue`/`defaultChecked` (uncontrolled, via internal `useState`) — see `Checkbox.tsx` or `Slider.tsx` for the pattern (`const current = value !== undefined ? value : internal`).
 - **Every prop type is exported.** `export interface ButtonProps { ... }` alongside `export function Button(...)`, so consumers (and other components — see `Dialog.tsx` importing `ButtonProps["variant"]`) get real type-checking.
 - **A `style?: CSSProperties` escape hatch** on (almost) every component, spread last so it can override any computed style.
+- **Shared non-component code lives in `src/internal/`** and is deliberately *not* re-exported from the barrel (scale/tick math and the chart width-measuring hook live there). Keep the public API to components and their prop types.
 - **Every `.tsx` file has a matching `.md`** with a one-line description, a props table, and a runnable example. When you add a component, add its doc in the same commit — an agent picking this library up should never have to read implementation code just to learn the API.

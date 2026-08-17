@@ -54,6 +54,7 @@ const [rows, setRows] = useState([
 | `onReorder` | `(fromIndex, toIndex) => void` | — | Called when a row is dropped at a new index. Requires `reorderable`. |
 | `dense` | `boolean` | `false` | 18px rows instead of 22px. |
 | `zebra` | `boolean` | `true` | Faint alternating row background. |
+| `showHeader` | `boolean` | `true` | Hide the column header when stacking a second grid directly beneath one with the same columns (a totals or below-the-cut section). Explicit `px` column widths keep the two aligned; avoid bare `1fr` tracks in that case. |
 | `height` | `number \| string` | — | If set, the grid scrolls internally with a sticky header; if omitted, it grows to fit content. |
 
 `DataGridColumn.render(value, row, rowIndex)` lets you render arbitrary content (badges, buttons) per cell.

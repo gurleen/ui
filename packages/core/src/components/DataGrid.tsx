@@ -31,6 +31,8 @@ export interface DataGridProps {
   /** 18px rows instead of 22px */
   dense?: boolean;
   zebra?: boolean;
+  /** Hide the column header — for a grid stacked directly beneath another with the same columns */
+  showHeader?: boolean;
   /** Fixed height with scroll + sticky header */
   height?: number | string;
   style?: CSSProperties;
@@ -67,6 +69,7 @@ export function DataGrid({
   onReorder,
   dense = false,
   zebra = true,
+  showHeader = true,
   height,
   style,
 }: DataGridProps) {
@@ -103,11 +106,13 @@ export function DataGrid({
 
   return (
     <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, overflow: height ? "auto" : "visible", height, background: "#0a0d10", boxShadow: "var(--inset-input)", border: "1px solid var(--line-1)", ...style }}>
-      <div style={{ display: "grid", gridTemplateColumns: template, position: "sticky", top: 0, background: "var(--bg-3)", borderBottom: "1px solid var(--line-2)", zIndex: 1 }}>
-        {cols.map((c, i) => (
-          <span key={i} style={{ padding: "3px 6px", fontSize: 9, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--fg-2)", textAlign: c.align || "left", whiteSpace: "nowrap", overflow: "hidden" }}>{c.label}</span>
-        ))}
-      </div>
+      {showHeader && (
+        <div style={{ display: "grid", gridTemplateColumns: template, position: "sticky", top: 0, background: "var(--bg-3)", borderBottom: "1px solid var(--line-2)", zIndex: 1 }}>
+          {cols.map((c, i) => (
+            <span key={i} style={{ padding: "3px 6px", fontSize: 9, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--fg-2)", textAlign: c.align || "left", whiteSpace: "nowrap", overflow: "hidden" }}>{c.label}</span>
+          ))}
+        </div>
+      )}
       {rows.map((row, ri) => {
         const st = row._state === "selected" || selected === ri ? ROWSTATES.selected : row._state ? ROWSTATES[row._state] : undefined;
         const isDragging = dragIndex === ri;

@@ -76,9 +76,6 @@ const PALETTE = ["var(--ch-1)", "var(--ch-2)", "var(--ch-3)", "var(--ch-4)", "va
 
 const DIM = 0.22;
 
-/** Default plot height when `showEmpty` and no explicit `height` — keeps the 4×5 ft window stable. */
-const EMPTY_PLOT_HEIGHT = 250;
-
 export function StrikeZonePlot({
   pitches = [],
   zoneTop = 3.4,
@@ -107,7 +104,6 @@ export function StrikeZonePlot({
   const xDomain: [number, number] = [-2, 2];
   const yDomain: [number, number] = [0, 5];
   const aspect = (xDomain[1] - xDomain[0]) / (yDomain[1] - yDomain[0]);
-  const plotHeight = height ?? (showEmpty ? EMPTY_PLOT_HEIGHT : undefined);
   const flip = view === "pitcher" ? -1 : 1;
 
   const types = Array.from(new Set(pitches.map((p) => p.type).filter((t): t is string => Boolean(t))));
@@ -168,19 +164,21 @@ export function StrikeZonePlot({
 
   return (
     <div style={{ width, fontFamily: "var(--font-data)", ...style }}>
-      <ScatterPlot
-        points={points}
-        xDomain={xDomain}
-        yDomain={yDomain}
-        aspect={aspect}
-        width={width}
-        height={plotHeight}
-        axes={false}
-        pointSize={markerSize}
-        background={background}
-        onPointClick={onPitchClick ? (_p, i) => onPitchClick(pitches[i]!, i) : undefined}
-        onPointHover={(_p, i) => report(i)}
-      />
+      <div style={showEmpty ? { width: "100%", aspectRatio: aspect } : undefined}>
+        <ScatterPlot
+          points={points}
+          xDomain={xDomain}
+          yDomain={yDomain}
+          aspect={aspect}
+          width={width}
+          height={height}
+          axes={false}
+          pointSize={markerSize}
+          background={background}
+          onPointClick={onPitchClick ? (_p, i) => onPitchClick(pitches[i]!, i) : undefined}
+          onPointHover={(_p, i) => report(i)}
+        />
+      </div>
       <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 10, paddingTop: 5, fontSize: 9, color: "var(--fg-2)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase" }}>
         {legend &&
           legendItems.map((it) => (

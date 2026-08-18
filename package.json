@@ -11,6 +11,7 @@
   "scripts": {
     "build": "npm run build -w @hydra-tv/ui && npm run build -w @hydra-tv/broadcast && npm run build -w @hydra-tv/sports",
     "typecheck": "npm run typecheck --workspaces --if-present",
+    "verify:deps": "node scripts/verify-cross-package-deps.mjs",
     "dev": "npm run dev -w playground",
     "deploy:playground": "npm run deploy -w playground",
     "publish:packages": "npm run build && bash scripts/publish-packages.sh"

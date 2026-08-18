@@ -36,6 +36,7 @@ Statcast's own: `x` is `plate_x` in feet from the center of the plate (positive 
 | `markerSize` | `number` | `6` | Marker radius in px. Large by default so `number` fits. |
 | `legend` | `boolean` | `true` | Follows `colorBy`. |
 | `onPitchClick` | `(pitch, index) => void` | — | |
+| `focused` / `onFocus` | `number \| null` / `(index, pitch) => void` | — | Hovering a pitch fades the others. Omit `focused` for uncontrolled hover; pass the same index to `PitchSequence` to keep the two views in lockstep. |
 
 Result colors: ball `--fg-3`, called strike `--ch-1`, swinging strike `--ch-2`, foul `--ch-3`, in play `--warn`, HBP `--ch-4`. Deliberately not the red/green a broadcast strike-zone graphic would use — `--tally-pgm`/`--tally-pvw` mean program and preview here and nothing else.
 

@@ -24,6 +24,10 @@ export interface DataGridProps {
   /** Controlled selected row index */
   selected?: number;
   onSelect?: (index: number, row: DataGridRow) => void;
+  /** Controlled focused row index — fades the other rows. Distinct from `selected`. */
+  focused?: number | null;
+  /** Enter a row, or `(null, null)` when the pointer leaves the grid. */
+  onRowHover?: (index: number | null, row: DataGridRow | null) => void;
   /** Enable drag-and-drop row reordering via a handle column */
   reorderable?: boolean;
   /** Called when a row is dropped at a new index */
@@ -65,6 +69,8 @@ export function DataGrid({
   rows = [],
   selected,
   onSelect,
+  focused,
+  onRowHover,
   reorderable = false,
   onReorder,
   dense = false,
@@ -105,7 +111,10 @@ export function DataGrid({
   };
 
   return (
-    <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, overflow: height ? "auto" : "visible", height, background: "#0a0d10", boxShadow: "var(--inset-input)", border: "1px solid var(--line-1)", ...style }}>
+    <div
+      onMouseLeave={onRowHover ? () => onRowHover(null, null) : undefined}
+      style={{ fontFamily: "var(--font-mono)", fontSize: 11, overflow: height ? "auto" : "visible", height, background: "#0a0d10", boxShadow: "var(--inset-input)", border: "1px solid var(--line-1)", ...style }}
+    >
       {showHeader && (
         <div style={{ display: "grid", gridTemplateColumns: template, position: "sticky", top: 0, background: "var(--bg-3)", borderBottom: "1px solid var(--line-2)", zIndex: 1 }}>
           {cols.map((c, i) => (
@@ -117,10 +126,12 @@ export function DataGrid({
         const st = row._state === "selected" || selected === ri ? ROWSTATES.selected : row._state ? ROWSTATES[row._state] : undefined;
         const isDragging = dragIndex === ri;
         const isDropTarget = dropIndex === ri && dragIndex !== ri;
+        const dimmed = typeof focused === "number" && focused !== ri;
         return (
           <div
             key={row.id ?? ri}
             onClick={onSelect ? () => onSelect(ri, row) : undefined}
+            onMouseEnter={onRowHover ? () => onRowHover(ri, row) : undefined}
             onDragOver={reorderable ? (e) => handleDragOver(e, ri) : undefined}
             onDrop={reorderable ? (e) => handleDrop(e, ri) : undefined}
             style={{
@@ -132,8 +143,9 @@ export function DataGrid({
                 : st && st.bar !== "transparent"
                   ? `inset 2px 0 0 ${st.bar}`
                   : "none",
-              opacity: isDragging ? 0.4 : 1,
-              cursor: onSelect ? "pointer" : "default", borderBottom: "1px solid #ffffff06",
+              opacity: isDragging ? 0.4 : dimmed ? 0.28 : 1,
+              transition: "opacity 120ms",
+              cursor: onSelect || onRowHover ? "pointer" : "default", borderBottom: "1px solid #ffffff06",
             }}
           >
             {reorderable && (

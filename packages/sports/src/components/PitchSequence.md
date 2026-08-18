@@ -25,8 +25,9 @@ Ordered pitch log for an at-bat: count, type, velocity, result, and a thumbnail 
 | `showSpin` | `boolean` | `false` | Adds an RPM column. |
 | `height` | `number \| string` | — | Scrolls internally with a sticky header when set. |
 | `dense` | `boolean` | `false` | Shrinks the thumbnails to match the shorter rows. |
-| `selected` / `onSelect` | `number` / `(index, pitch) => void` | — | |
+| `selected` / `onSelect` | `number` / `(index, pitch) => void` | — | Click selection. Distinct from hover focus. |
+| `focused` / `onFocus` | `number \| null` / `(index, pitch) => void` | — | Hovering a row fades the others. Omit `focused` for uncontrolled hover; pass the same index to `StrikeZonePlot` to keep the two views in lockstep. |
 
 `kind` colors the result text and the thumbnail dot: `strike` → `--ch-1`, `foul` → `--ch-3`, `inplay` → `--warn`, `ball` → `--fg-2`. `result` itself is free text, so it can carry whatever detail the feed has.
 
-Velocity is printed to one decimal. Pair this with `StrikeZonePlot` for the same at-bat: one reads as a sequence, the other as a spatial pattern.
+Velocity is printed to one decimal. Pair this with `StrikeZonePlot` for the same at-bat: one reads as a sequence, the other as a spatial pattern. Share `focused` / `onFocus` so hovering a pitch in either view fades it in both.

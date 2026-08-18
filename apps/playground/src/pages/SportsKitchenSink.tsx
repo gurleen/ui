@@ -54,6 +54,7 @@ const BATTED = Array.from({ length: 40 }, (_, i) => {
 
 export function SportsKitchenSink() {
   const [pitch, setPitch] = useState<number | undefined>(1);
+  const [hovered, setHovered] = useState<number | null>(null);
 
   return (
     <div style={{ maxWidth: 940 }}>
@@ -245,6 +246,8 @@ export function SportsKitchenSink() {
             zoneTop={3.42}
             zoneBottom={1.61}
             colorBy="result"
+            focused={hovered}
+            onFocus={(i) => setHovered(i)}
             pitches={[
               { x: -0.21, z: 2.44, type: "FF", result: "called", number: 1, label: "FF 96.2 — called strike" },
               { x: 0.88, z: 1.42, type: "SL", result: "swinging", number: 2, label: "SL 87.4 — swinging strike" },
@@ -261,6 +264,8 @@ export function SportsKitchenSink() {
             showSpin
             selected={pitch}
             onSelect={(i) => setPitch(i)}
+            focused={hovered}
+            onFocus={(i) => setHovered(i)}
             pitches={[
               { count: "0-0", type: "FF", velocity: 96.2, spin: 2418, result: "CALLED STRIKE", kind: "strike", x: -0.21, z: 2.44 },
               { count: "0-1", type: "SL", velocity: 87.4, spin: 2611, result: "SWINGING STRIKE", kind: "strike", x: 0.88, z: 1.42 },

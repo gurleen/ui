@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import { useState, type CSSProperties } from "react";
 import { ScatterPlot, type ScatterPoint } from "@hydra-tv/ui";
 
 export type PitchResult = "ball" | "called" | "swinging" | "foul" | "inplay" | "hbp";
@@ -38,6 +38,12 @@ export interface StrikeZonePlotProps {
   markerSize?: number;
   legend?: boolean;
   onPitchClick?: (pitch: Pitch, index: number) => void;
+  /**
+   * Controlled focused pitch index. Omit for uncontrolled hover-to-focus
+   * (other pitches fade). Pass `null` to clear a controlled focus.
+   */
+  focused?: number | null;
+  onFocus?: (index: number | null, pitch: Pitch | null) => void;
   style?: CSSProperties;
 }
 
@@ -66,6 +72,8 @@ const RESULT_LABELS: Record<PitchResult, string> = {
 
 const PALETTE = ["var(--ch-1)", "var(--ch-2)", "var(--ch-3)", "var(--ch-4)", "var(--warn)", "var(--info)"];
 
+const DIM = 0.22;
+
 export function StrikeZonePlot({
   pitches = [],
   zoneTop = 3.4,
@@ -80,8 +88,16 @@ export function StrikeZonePlot({
   markerSize = 6,
   legend = true,
   onPitchClick,
+  focused,
+  onFocus,
   style,
 }: StrikeZonePlotProps) {
+  const [internal, setInternal] = useState<number | null>(null);
+  const active = focused !== undefined ? focused : internal;
+  const report = (index: number | null) => {
+    if (focused === undefined) setInternal(index);
+    onFocus?.(index, index == null ? null : pitches[index] ?? null);
+  };
   const xDomain: [number, number] = [-2, 2];
   const yDomain: [number, number] = [0, 5];
   const flip = view === "pitcher" ? -1 : 1;
@@ -100,13 +116,13 @@ export function StrikeZonePlot({
     return "var(--ch-1)";
   };
 
-  const points: ScatterPoint[] = pitches.map((p) => ({
+  const points: ScatterPoint[] = pitches.map((p, i) => ({
     x: p.x * flip,
     y: p.z,
     color: colorFor(p),
     shape: "circle",
-    size: markerSize,
-    opacity: 0.9,
+    size: active === i ? markerSize * 1.15 : markerSize,
+    opacity: active == null || active === i ? 0.95 : DIM,
     label: p.number !== undefined ? String(p.number) : undefined,
     title: p.label,
   }));
@@ -155,6 +171,7 @@ export function StrikeZonePlot({
         pointSize={markerSize}
         background={background}
         onPointClick={onPitchClick ? (_p, i) => onPitchClick(pitches[i]!, i) : undefined}
+        onPointHover={(_p, i) => report(i)}
       />
       <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 10, paddingTop: 5, fontSize: 9, color: "var(--fg-2)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase" }}>
         {legend &&

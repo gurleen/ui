@@ -67,6 +67,7 @@ const USAGE_BY_COUNT = [
 
 export function PitchLab() {
   const [pitchIndex, setPitchIndex] = useState(AT_BAT.length - 1);
+  const [hovered, setHovered] = useState<number | null>(null);
   const [view, setView] = useState<"catcher" | "pitcher">("catcher");
 
   const current = AT_BAT[pitchIndex]!;
@@ -129,7 +130,15 @@ export function PitchLab() {
           actions={<Select value={view} options={["catcher", "pitcher"]} onChange={(v) => setView(v as "catcher" | "pitcher")} width={100} />}
           style={{ flex: "0 0 240px" }}
         >
-          <StrikeZonePlot pitches={shown} zoneTop={ZONE_TOP} zoneBottom={ZONE_BOTTOM} view={view} colorBy="result" />
+          <StrikeZonePlot
+            pitches={shown}
+            zoneTop={ZONE_TOP}
+            zoneBottom={ZONE_BOTTOM}
+            view={view}
+            colorBy="result"
+            focused={hovered != null && hovered <= pitchIndex ? hovered : null}
+            onFocus={(i) => setHovered(i)}
+          />
         </Panel>
 
         <Panel title="Sequence" padded={false} style={{ flex: "1 1 400px", minWidth: 360 }}>
@@ -141,6 +150,8 @@ export function PitchLab() {
             showSpin
             selected={pitchIndex}
             onSelect={(i) => setPitchIndex(i)}
+            focused={hovered != null && hovered <= pitchIndex ? hovered : null}
+            onFocus={(i) => setHovered(i)}
           />
         </Panel>
       </div>

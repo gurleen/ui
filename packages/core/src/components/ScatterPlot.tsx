@@ -45,14 +45,32 @@ export interface ScatterPlotProps {
   pointSize?: number;
   defaultColor?: string;
   onPointClick?: (point: ScatterPoint, index: number) => void;
+  /** Enter a point, or `(null, null)` when the pointer leaves the plot. */
+  onPointHover?: (point: ScatterPoint | null, index: number | null) => void;
   style?: CSSProperties;
 }
 
-function Marker({ p, cx, cy, r, color, onClick }: { p: ScatterPoint; cx: number; cy: number; r: number; color: string; onClick?: () => void }) {
+function Marker({
+  p,
+  cx,
+  cy,
+  r,
+  color,
+  onClick,
+  onMouseEnter,
+}: {
+  p: ScatterPoint;
+  cx: number;
+  cy: number;
+  r: number;
+  color: string;
+  onClick?: () => void;
+  onMouseEnter?: () => void;
+}) {
+  const interactive = Boolean(onClick || onMouseEnter);
   const common = {
     opacity: p.opacity ?? 0.9,
-    onClick,
-    style: onClick ? { cursor: "pointer" as const } : undefined,
+    style: { transition: "opacity 120ms", cursor: interactive ? ("pointer" as const) : undefined },
   };
   const node = (() => {
     switch (p.shape) {
@@ -73,9 +91,9 @@ function Marker({ p, cx, cy, r, color, onClick }: { p: ScatterPoint; cx: number;
         return <circle {...common} cx={cx} cy={cy} r={r} fill={color} />;
     }
   })();
-  if (!p.title && !p.label) return node;
   return (
-    <g>
+    <g onClick={onClick} onMouseEnter={onMouseEnter} style={interactive ? { cursor: "pointer" } : undefined}>
+      {interactive && <circle cx={cx} cy={cy} r={Math.max(r + 4, 10)} fill="transparent" />}
       {node}
       {p.label && (
         <text
@@ -111,6 +129,7 @@ export function ScatterPlot({
   pointSize = 3,
   defaultColor = "var(--ch-1)",
   onPointClick,
+  onPointHover,
   style,
 }: ScatterPlotProps) {
   const [ref, w] = useMeasuredWidth(width, 320);
@@ -140,7 +159,13 @@ export function ScatterPlot({
 
   return (
     <div ref={ref} style={{ width, fontFamily: "var(--font-mono)", ...style }}>
-      <svg width={w} height={svgH} viewBox={`0 0 ${w} ${svgH}`} style={{ display: "block", overflow: "visible" }}>
+      <svg
+        width={w}
+        height={svgH}
+        viewBox={`0 0 ${w} ${svgH}`}
+        style={{ display: "block", overflow: "visible" }}
+        onMouseLeave={onPointHover ? () => onPointHover(null, null) : undefined}
+      >
         <rect x={padL} y={padT} width={plotW} height={plotH} fill="#0a0d10" stroke="var(--line-1)" strokeWidth={1} />
 
         {background && <g transform={bgTransform}>{background}</g>}
@@ -157,6 +182,7 @@ export function ScatterPlot({
             r={p.size ?? pointSize}
             color={p.color ?? defaultColor}
             onClick={onPointClick ? () => onPointClick(p, i) : undefined}
+            onMouseEnter={onPointHover ? () => onPointHover(p, i) : undefined}
           />
         ))}
 

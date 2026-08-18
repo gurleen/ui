@@ -32,6 +32,7 @@ _Added for general use — an x/y point cloud with a pluggable background layer.
 | `pointSize` | `number` | `3` | Marker radius in px; a point's own `size` wins. |
 | `defaultColor` | `string` | `"var(--ch-1)"` | |
 | `onPointClick` | `(point, index) => void` | — | |
+| `onPointHover` | `(point, index) => void` | — | `(null, null)` when the pointer leaves the plot. |
 
 `shape` is `"circle"` (default), `"ring"`, `"cross"`, `"square"` or `"triangle"`. Markers are drawn in pixel space, so they stay the same size regardless of the domain.
 

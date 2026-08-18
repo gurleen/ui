@@ -50,6 +50,8 @@ const [rows, setRows] = useState([
 | `row._state` | `"onair" \| "cued" \| "selected" \| "disabled"` | — | Row highlight. `onair`=red bar, `cued`=green bar, `selected`=blue bar, `disabled`=dimmed. `onair`/`cued` carry broadcast tally meaning — for non-broadcast tables just use `selected`/`disabled` or the `selected` prop. |
 | `selected` | `number` | — | Controlled selected row index (equivalent to setting that row's `_state` to `"selected"`). |
 | `onSelect` | `(index, row) => void` | — | Row click handler; rows without it aren't clickable. |
+| `focused` | `number \| null` | — | Controlled focused row index. Other rows fade. Distinct from `selected`. |
+| `onRowHover` | `(index, row) => void` | — | `(null, null)` when the pointer leaves the grid. |
 | `reorderable` | `boolean` | `false` | Prepends a drag-handle column for HTML5 drag-and-drop row reordering. |
 | `onReorder` | `(fromIndex, toIndex) => void` | — | Called when a row is dropped at a new index. Requires `reorderable`. |
 | `dense` | `boolean` | `false` | 18px rows instead of 22px. |

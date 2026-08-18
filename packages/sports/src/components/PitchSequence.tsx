@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import { useState, type CSSProperties } from "react";
 import { DataGrid, type DataGridColumn, type DataGridRow } from "@hydra-tv/ui";
 
 export interface SequencePitch {
@@ -33,6 +33,12 @@ export interface PitchSequenceProps {
   dense?: boolean;
   selected?: number;
   onSelect?: (index: number, pitch: SequencePitch) => void;
+  /**
+   * Controlled focused row index. Omit for uncontrolled hover-to-focus
+   * (other rows fade). Pass `null` to clear a controlled focus.
+   */
+  focused?: number | null;
+  onFocus?: (index: number | null, pitch: SequencePitch | null) => void;
   style?: CSSProperties;
 }
 
@@ -79,9 +85,17 @@ export function PitchSequence({
   dense = false,
   selected,
   onSelect,
+  focused,
+  onFocus,
   style,
 }: PitchSequenceProps) {
   const flip = view === "pitcher" ? -1 : 1;
+  const [internal, setInternal] = useState<number | null>(null);
+  const active = focused !== undefined ? focused : internal;
+  const report = (index: number | null) => {
+    if (focused === undefined) setInternal(index);
+    onFocus?.(index, index == null ? null : pitches[index] ?? null);
+  };
 
   const columns: DataGridColumn[] = [
     { key: "_no", label: "#", width: "26px", align: "right", dim: true },
@@ -130,6 +144,8 @@ export function PitchSequence({
       dense={dense}
       selected={selected}
       onSelect={handleSelect}
+      focused={active}
+      onRowHover={(i) => report(i)}
       style={style}
     />
   );

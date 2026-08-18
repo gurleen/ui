@@ -8,6 +8,10 @@ export interface SequencePitch {
   velocity?: number;
   /** Spin rate in rpm */
   spin?: number;
+  /** Horizontal break in inches */
+  hb?: number;
+  /** Induced vertical break in inches */
+  ivb?: number;
   /** Free text, e.g. "CALLED STRIKE", "FOUL" */
   result?: string;
   /** Drives the result color; leave unset for plain text */
@@ -29,6 +33,8 @@ export interface PitchSequenceProps {
   /** Location thumbnail column */
   showLocation?: boolean;
   showSpin?: boolean;
+  /** Horizontal and induced-vertical break columns (inches) */
+  showBreak?: boolean;
   height?: number | string;
   dense?: boolean;
   selected?: number;
@@ -50,6 +56,11 @@ const KIND_COLORS = {
 } as const;
 
 const ZONE_HALF_WIDTH = 0.708;
+
+function formatBreak(value: unknown): string {
+  if (typeof value !== "number" || !Number.isFinite(value)) return "";
+  return `${value > 0 ? "+" : ""}${value.toFixed(1)}`;
+}
 
 function MiniZone({ x, z, zoneTop, zoneBottom, flip, color, height }: { x?: number; z?: number; zoneTop: number; zoneBottom: number; flip: number; color: string; height: number }) {
   // Same 4ft × 5ft window as StrikeZonePlot, shrunk to fit inside a grid row.
@@ -81,6 +92,7 @@ export function PitchSequence({
   view = "catcher",
   showLocation = true,
   showSpin = false,
+  showBreak = false,
   height,
   dense = false,
   selected,
@@ -103,6 +115,12 @@ export function PitchSequence({
     { key: "type", label: "Pitch", width: "52px" },
     { key: "velocity", label: "MPH", width: "48px", align: "right", render: (v) => (v === undefined ? "" : Number(v).toFixed(1)) },
     ...(showSpin ? [{ key: "spin", label: "RPM", width: "52px", align: "right" as const, dim: true }] : []),
+    ...(showBreak
+      ? [
+          { key: "hb", label: "HB", width: "48px", align: "right" as const, dim: true, render: formatBreak },
+          { key: "ivb", label: "IVB", width: "48px", align: "right" as const, dim: true, render: formatBreak },
+        ]
+      : []),
     {
       key: "result",
       label: "Result",

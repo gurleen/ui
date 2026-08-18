@@ -294,16 +294,17 @@ export function SportsKitchenSink() {
             zoneTop={3.42}
             zoneBottom={1.61}
             showSpin
+            showBreak
             selected={pitch}
             onSelect={(i) => setPitch(i)}
             focused={hovered}
             onFocus={(i) => setHovered(i)}
             pitches={[
-              { count: "0-0", type: "FF", velocity: 96.2, spin: 2418, result: "CALLED STRIKE", kind: "strike", x: -0.21, z: 2.44 },
-              { count: "0-1", type: "SL", velocity: 87.4, spin: 2611, result: "SWINGING STRIKE", kind: "strike", x: 0.88, z: 1.42 },
-              { count: "0-2", type: "FF", velocity: 96.8, spin: 2402, result: "BALL", kind: "ball", x: -1.12, z: 3.71 },
-              { count: "1-2", type: "CU", velocity: 81.0, spin: 2790, result: "FOUL", kind: "foul", x: 0.42, z: 3.15 },
-              { count: "1-2", type: "CH", velocity: 88.1, spin: 1644, result: "GROUNDOUT 6-3", kind: "inplay", x: 0.05, z: 2.11 },
+              { count: "0-0", type: "FF", velocity: 96.2, spin: 2418, hb: -7.2, ivb: 16.4, result: "CALLED STRIKE", kind: "strike", x: -0.21, z: 2.44 },
+              { count: "0-1", type: "SL", velocity: 87.4, spin: 2611, hb: 14.1, ivb: 2.8, result: "SWINGING STRIKE", kind: "strike", x: 0.88, z: 1.42 },
+              { count: "0-2", type: "FF", velocity: 96.8, spin: 2402, hb: -6.8, ivb: 15.9, result: "BALL", kind: "ball", x: -1.12, z: 3.71 },
+              { count: "1-2", type: "CU", velocity: 81.0, spin: 2790, hb: 9.4, ivb: -12.6, result: "FOUL", kind: "foul", x: 0.42, z: 3.15 },
+              { count: "1-2", type: "CH", velocity: 88.1, spin: 1644, hb: -13.2, ivb: 8.1, result: "GROUNDOUT 6-3", kind: "inplay", x: 0.05, z: 2.11 },
             ]}
           />
         </div>

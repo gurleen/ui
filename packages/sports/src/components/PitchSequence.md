@@ -18,11 +18,12 @@ Ordered pitch log for an at-bat: count, type, velocity, result, and a thumbnail 
 ## Props
 | Prop | Type | Default | Notes |
 |---|---|---|---|
-| `pitches` | `SequencePitch[]` | `[]` | `{ type?, velocity?, spin?, result?, kind?, count?, x?, z? }`. Order is the order given; the `#` column is generated. |
+| `pitches` | `SequencePitch[]` | `[]` | `{ type?, velocity?, spin?, hb?, ivb?, result?, kind?, count?, x?, z? }`. Order is the order given; the `#` column is generated. |
 | `zoneTop` / `zoneBottom` | `number` | `3.4` / `1.6` | Per-batter zone bounds for the location thumbnails. |
 | `view` | `"catcher" \| "pitcher"` | `"catcher"` | Mirrors the thumbnails. |
 | `showLocation` | `boolean` | `true` | The zone thumbnail column. |
 | `showSpin` | `boolean` | `false` | Adds an RPM column. |
+| `showBreak` | `boolean` | `false` | Adds HB / IVB columns (inches, signed, one decimal). |
 | `height` | `number \| string` | — | Scrolls internally with a sticky header when set. |
 | `dense` | `boolean` | `false` | Shrinks the thumbnails to match the shorter rows. |
 | `selected` / `onSelect` | `number` / `(index, pitch) => void` | — | Click selection. Distinct from hover focus. |
@@ -30,4 +31,4 @@ Ordered pitch log for an at-bat: count, type, velocity, result, and a thumbnail 
 
 `kind` colors the result text and the thumbnail dot: `strike` → `--ch-1`, `foul` → `--ch-3`, `inplay` → `--warn`, `ball` → `--fg-2`. `result` itself is free text, so it can carry whatever detail the feed has.
 
-Velocity is printed to one decimal. Pair this with `StrikeZonePlot` for the same at-bat: one reads as a sequence, the other as a spatial pattern. Share `focused` / `onFocus` so hovering a pitch in either view fades it in both.
+Velocity is printed to one decimal. Break is signed inches to one decimal (`+16.4`, `-7.2`). Pair this with `StrikeZonePlot` for the same at-bat: one reads as a sequence, the other as a spatial pattern. Share `focused` / `onFocus` so hovering a pitch in either view fades it in both.

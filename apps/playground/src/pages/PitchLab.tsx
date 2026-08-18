@@ -23,13 +23,13 @@ const ZONE_TOP = 3.42;
 const ZONE_BOTTOM = 1.61;
 
 const AT_BAT = [
-  { count: "0-0", type: "FF", velocity: 96.2, spin: 2418, result: "CALLED STRIKE", kind: "strike" as const, x: -0.21, z: 2.44 },
-  { count: "0-1", type: "SL", velocity: 87.4, spin: 2611, result: "SWINGING STRIKE", kind: "strike" as const, x: 0.88, z: 1.42 },
-  { count: "0-2", type: "FF", velocity: 96.8, spin: 2402, result: "BALL", kind: "ball" as const, x: -1.12, z: 3.71 },
-  { count: "1-2", type: "CU", velocity: 81.0, spin: 2790, result: "FOUL", kind: "foul" as const, x: 0.42, z: 3.15 },
-  { count: "1-2", type: "CH", velocity: 88.1, spin: 1644, result: "BALL", kind: "ball" as const, x: 0.94, z: 0.98 },
-  { count: "2-2", type: "FF", velocity: 97.1, spin: 2431, result: "FOUL", kind: "foul" as const, x: -0.05, z: 3.02 },
-  { count: "2-2", type: "SL", velocity: 86.9, spin: 2588, result: "GROUNDOUT 6-3", kind: "inplay" as const, x: 0.31, z: 1.55 },
+  { count: "0-0", type: "FF", velocity: 96.2, spin: 2418, hb: -7.2, ivb: 16.4, result: "CALLED STRIKE", kind: "strike" as const, x: -0.21, z: 2.44 },
+  { count: "0-1", type: "SL", velocity: 87.4, spin: 2611, hb: 14.1, ivb: 2.8, result: "SWINGING STRIKE", kind: "strike" as const, x: 0.88, z: 1.42 },
+  { count: "0-2", type: "FF", velocity: 96.8, spin: 2402, hb: -6.8, ivb: 15.9, result: "BALL", kind: "ball" as const, x: -1.12, z: 3.71 },
+  { count: "1-2", type: "CU", velocity: 81.0, spin: 2790, hb: 9.4, ivb: -12.6, result: "FOUL", kind: "foul" as const, x: 0.42, z: 3.15 },
+  { count: "1-2", type: "CH", velocity: 88.1, spin: 1644, hb: -13.2, ivb: 8.1, result: "BALL", kind: "ball" as const, x: 0.94, z: 0.98 },
+  { count: "2-2", type: "FF", velocity: 97.1, spin: 2431, hb: -7.5, ivb: 16.8, result: "FOUL", kind: "foul" as const, x: -0.05, z: 3.02 },
+  { count: "2-2", type: "SL", velocity: 86.9, spin: 2588, hb: 13.7, ivb: 3.1, result: "GROUNDOUT 6-3", kind: "inplay" as const, x: 0.31, z: 1.55 },
 ];
 
 const RESULT_KIND: Record<string, Pitch["result"]> = {
@@ -148,6 +148,7 @@ export function PitchLab() {
             zoneBottom={ZONE_BOTTOM}
             view={view}
             showSpin
+            showBreak
             selected={pitchIndex}
             onSelect={(i) => setPitchIndex(i)}
             focused={hovered != null && hovered <= pitchIndex ? hovered : null}

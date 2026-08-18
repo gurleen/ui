@@ -13,7 +13,7 @@
     "typecheck": "npm run typecheck --workspaces --if-present",
     "dev": "npm run dev -w playground",
     "deploy:playground": "npm run deploy -w playground",
-    "publish:packages": "npm run build && npm publish -w @hydra-tv/tokens && npm publish -w @hydra-tv/ui && npm publish -w @hydra-tv/broadcast && npm publish -w @hydra-tv/sports"
+    "publish:packages": "npm run build && bash scripts/publish-packages.sh"
   },
   "devDependencies": {
     "@types/react": "^18.3.12",

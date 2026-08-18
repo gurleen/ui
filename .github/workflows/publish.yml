@@ -1,0 +1,63 @@
+# Publish @hydra-tv packages to npm on every push to main.
+#
+# Auth (pick one; OIDC is preferred):
+#   1. Trusted publishing — on each package at npmjs.com → Settings → Trusted
+#      Publisher, set GitHub Actions to gurleen / ui / publish.yml
+#      (filename only). Requires npm CLI ≥ 11.5.1; no secret needed.
+#   2. Fallback — repository secret NPM_TOKEN (automation token with publish
+#      rights on @hydra-tv). Needed for a package's first publish, before a
+#      trusted publisher can be attached.
+#
+# A push that does not bump any package version is a no-op: already-published
+# versions are skipped rather than failing the job.
+name: Publish
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: npm-publish
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    if: github.repository == 'gurleen/ui' && github.event.repository.fork == false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+
+      # Trusted publishing needs npm ≥ 11.5.1; runner images lag.
+      - name: Update npm
+        run: npm install -g npm@latest
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Publish unpublished packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          set -euo pipefail
+          # An empty secret expands to "" and would block OIDC; drop it.
+          if [ -z "${NODE_AUTH_TOKEN:-}" ]; then
+            unset NODE_AUTH_TOKEN
+          fi
+          bash scripts/publish-packages.sh

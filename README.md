@@ -53,15 +53,38 @@ import { Button, Panel } from "@hydra-tv/ui";
 
 All four library packages publish to the public [`@hydra-tv` org on npm](https://www.npmjs.com/org/hydra-tv). The root `.npmrc` sets scoped packages to publish publicly.
 
-**Prerequisites:** be logged in (`npm login`) and a member of the `@hydra-tv` npm org with publish rights.
+**CI (preferred):** every push to `main` runs [`.github/workflows/publish.yml`](.github/workflows/publish.yml). It builds, typechecks, then publishes any library package whose `package.json` version is not already on the registry. A merge that doesn't bump a version is a no-op.
 
-**Publish all packages** (builds first, then publishes in dependency order — tokens → ui → broadcast → sports):
+**To cut a release:** bump the version in each package you want to ship (and any matching internal dependency pins, e.g. `@hydra-tv/ui`'s pin of `@hydra-tv/tokens`), merge to `main`. The workflow publishes only the packages whose versions are new.
+
+### One-time npm + GitHub setup
+
+Trusted publishing (OIDC) is the default. After each package exists on npm, on that package's npmjs.com page go to **Settings → Trusted Publisher**, choose GitHub Actions, and set:
+
+| Field | Value |
+|---|---|
+| Organization or user | `gurleen` |
+| Repository | `ui` |
+| Workflow filename | `publish.yml` (filename only, including `.yml`) |
+| Environment name | leave blank |
+| Allowed actions | `npm publish` |
+
+Do this for `@hydra-tv/tokens`, `@hydra-tv/ui`, `@hydra-tv/broadcast`, and `@hydra-tv/sports`. The workflow name must stay `publish.yml` — npm matches the filename exactly.
+
+**First publish of a brand-new package** cannot use trusted publishing (the package has to exist before you can attach a publisher). Either:
+
+1. Publish it once locally (`npm login`, then `npm run publish:packages`), then add the trusted publisher; or
+2. Add a repository secret `NPM_TOKEN` (an npm automation token with publish rights on `@hydra-tv`). The workflow uses it when present and falls back to OIDC when it isn't.
+
+### Local publish
+
+**Prerequisites:** be logged in (`npm login`) and a member of the `@hydra-tv` npm org with publish rights.
 
 ```sh
 npm run publish:packages
 ```
 
-Or publish individually after `npm run build`:
+That builds, then publishes in dependency order (tokens → ui → broadcast → sports), skipping versions that are already on the registry. Or publish individually after `npm run build`:
 
 ```sh
 npm publish -w @hydra-tv/tokens
@@ -69,8 +92,6 @@ npm publish -w @hydra-tv/ui
 npm publish -w @hydra-tv/broadcast
 npm publish -w @hydra-tv/sports
 ```
-
-Bump versions in each package's `package.json` (and matching internal dependency pins) before each release.
 
 ## Repo layout
 

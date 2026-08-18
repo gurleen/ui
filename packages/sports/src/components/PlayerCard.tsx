@@ -33,7 +33,7 @@ export function PlayerCard({ name, number, position, team, photo, stats, meta, s
       style={{
         display: "flex", alignItems: "center", gap: 10, padding: size === "sm" ? "6px 8px" : "8px 10px", minWidth: 0,
         background: "var(--grad-panel)", border: "1px solid var(--line-2)", borderRadius: "var(--radius-1)",
-        boxShadow: "var(--shadow-panel)", fontFamily: "var(--font-mono)",
+        boxShadow: "var(--shadow-panel)", fontFamily: "var(--font-ui)",
         cursor: onClick ? "pointer" : "default", ...style,
       }}
     >
@@ -52,18 +52,18 @@ export function PlayerCard({ name, number, position, team, photo, stats, meta, s
           minWidth: 30, padding: "2px 5px", flexShrink: 0, textAlign: "center",
           background: "#04050699", border: "1px solid var(--line-1)", borderRadius: "var(--radius-1)", boxShadow: "var(--inset-well)",
           color: "var(--led-amber)", textShadow: "var(--led-glow-amber)",
-          fontSize: size === "sm" ? "var(--fs-12)" : "var(--fs-16)", fontWeight: "var(--fw-bold)", fontFeatureSettings: "var(--numeric-features)",
+          fontFamily: "var(--font-data)", fontSize: size === "sm" ? "var(--fs-12)" : "var(--fs-16)", fontWeight: "var(--fw-bold)", fontFeatureSettings: "var(--numeric-features)",
         }}>{number}</span>
       )}
 
       <div style={{ display: "flex", flexDirection: "column", gap: 2, minWidth: 0, flex: 1 }}>
         <span style={{ display: "flex", alignItems: "center", gap: 6, minWidth: 0 }}>
-          <span style={{ fontSize: size === "sm" ? "var(--fs-11)" : "var(--fs-13)", fontWeight: "var(--fw-semi)", color: "var(--fg-1)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{name}</span>
-          {position && <span style={{ fontSize: 9, color: "var(--fg-3)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase", flexShrink: 0 }}>{position}</span>}
+          <span style={{ fontFamily: "var(--font-copy)", fontSize: size === "sm" ? "var(--fs-11)" : "var(--fs-13)", fontWeight: "var(--fw-semi)", color: "var(--fg-1)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{name}</span>
+          {position && <span style={{ fontFamily: "var(--font-label)", fontSize: 9, color: "var(--fg-3)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase", flexShrink: 0 }}>{position}</span>}
           {status && <Badge kind={statusKind} label={status} style={{ flexShrink: 0 }} />}
         </span>
         {team && <TeamChip abbr={team.abbr} name={team.name} color={team.color} size="sm" />}
-        {meta && <span style={{ fontSize: 9, color: "var(--fg-3)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{meta}</span>}
+        {meta && <span style={{ fontFamily: "var(--font-label)", fontSize: 9, color: "var(--fg-3)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{meta}</span>}
         {stats && stats.length > 0 && <StatLine items={stats} size="sm" />}
       </div>
     </div>

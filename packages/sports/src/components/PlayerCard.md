@@ -1,6 +1,6 @@
 # PlayerCard
 
-Player identity block: jersey number in an LED well, name, position, team chip, and a stat line.
+Player identity block: jersey number in an LED well, name, position, team chip, and a stat line. The name uses `--font-copy`; the jersey number and stat values use `--font-data`; position and meta use `--font-label`.
 
 ```jsx
 <PlayerCard

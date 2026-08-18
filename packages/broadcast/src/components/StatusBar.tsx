@@ -37,7 +37,7 @@ export function StatusBar({ items = [], clock = true, right, style }: StatusBarP
   return (
     <div style={{
       height: "var(--statusbar-h)", display: "flex", alignItems: "stretch", background: "var(--bg-0)",
-      borderTop: "1px solid var(--line-2)", fontFamily: "var(--font-mono)", fontSize: 10,
+      borderTop: "1px solid var(--line-2)", fontFamily: "var(--font-ui)", fontSize: 10,
       letterSpacing: "0.06em", color: "var(--fg-2)", ...style,
     }}>
       {items.map((it, i) => {

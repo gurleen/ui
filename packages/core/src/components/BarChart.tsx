@@ -60,18 +60,18 @@ export function BarChart({
 
   if (vertical) {
     return (
-      <div style={{ display: "flex", alignItems: "flex-end", gap: gap * 2, width, fontFamily: "var(--font-mono)", ...style }}>
+      <div style={{ display: "flex", alignItems: "flex-end", gap: gap * 2, width, ...style }}>
         {data.map((bar, i) => {
           const sum = total(bar.value);
           return (
             <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 3, flex: "1 1 0", minWidth: 0 }}>
-              {showValues && <span style={{ fontSize: "var(--fs-10)", color: "var(--fg-2)", fontFeatureSettings: "var(--numeric-features)" }}>{valueFormat(sum)}</span>}
+              {showValues && <span style={{ fontFamily: "var(--font-data)", fontSize: "var(--fs-10)", color: "var(--fg-2)", fontFeatureSettings: "var(--numeric-features)" }}>{valueFormat(sum)}</span>}
               <div style={{ position: "relative", width: barSize, height, background: "#0a0d10", boxShadow: "var(--inset-well)", borderRadius: "var(--radius-1)", display: "flex", flexDirection: "column-reverse", overflow: "hidden" }}>
                 {segments(bar, i, colors).map((seg, si) => (
                   <span key={si} title={`${bar.label}: ${valueFormat(seg.value)}`} style={{ height: `${(seg.value / domainMax) * 100}%`, background: seg.color, transition: "height var(--t-med)" }} />
                 ))}
               </div>
-              <span style={{ fontSize: 9, color: "var(--fg-3)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase", maxWidth: "100%", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{bar.label}</span>
+              <span style={{ fontFamily: "var(--font-label)", fontSize: 9, color: "var(--fg-3)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase", maxWidth: "100%", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{bar.label}</span>
             </div>
           );
         })}
@@ -80,13 +80,13 @@ export function BarChart({
   }
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap, width, fontFamily: "var(--font-mono)", ...style }}>
+    <div style={{ display: "flex", flexDirection: "column", gap, width, ...style }}>
       {data.map((bar, i) => {
         const sum = total(bar.value);
         return (
           <div key={i} style={{ display: "flex", alignItems: "center", gap: 8 }}>
             {labelWidth > 0 && (
-              <span style={{ width: labelWidth, flexShrink: 0, fontSize: "var(--fs-10)", color: "var(--fg-2)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{bar.label}</span>
+              <span style={{ width: labelWidth, flexShrink: 0, fontFamily: "var(--font-label)", fontSize: "var(--fs-10)", color: "var(--fg-2)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{bar.label}</span>
             )}
             <span style={{ position: "relative", flex: 1, minWidth: 40, height: barSize, background: "#0a0d10", boxShadow: "var(--inset-well)", borderRadius: "var(--radius-1)", display: "flex", overflow: "hidden" }}>
               {segments(bar, i, colors).map((seg, si) => (
@@ -94,7 +94,7 @@ export function BarChart({
               ))}
             </span>
             {showValues && (
-              <span style={{ width: 48, flexShrink: 0, textAlign: "right", fontSize: "var(--fs-11)", color: "var(--fg-1)", fontFeatureSettings: "var(--numeric-features)" }}>{valueFormat(sum)}</span>
+              <span style={{ width: 48, flexShrink: 0, textAlign: "right", fontFamily: "var(--font-data)", fontSize: "var(--fs-11)", color: "var(--fg-1)", fontFeatureSettings: "var(--numeric-features)" }}>{valueFormat(sum)}</span>
             )}
           </div>
         );

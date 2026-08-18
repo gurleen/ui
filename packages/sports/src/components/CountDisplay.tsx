@@ -32,7 +32,7 @@ export function formatCount(balls: number, strikes: number): string {
 function LampRow({ label, on, total, color, size }: { label: string; on: number; total: number; color: string; size: (typeof SIZES)[keyof typeof SIZES] }) {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: size.gap + 2 }}>
-      <span style={{ width: 10, fontSize: size.font, fontWeight: "var(--fw-bold)", color: "var(--fg-2)", letterSpacing: "var(--label-tracking)" }}>{label}</span>
+      <span style={{ width: 10, fontFamily: "var(--font-label)", fontSize: size.font, fontWeight: "var(--fw-bold)", color: "var(--fg-2)", letterSpacing: "var(--label-tracking)" }}>{label}</span>
       <span style={{ display: "flex", gap: size.gap }}>
         {Array.from({ length: total }, (_, i) => {
           const lit = i < on;
@@ -72,15 +72,15 @@ export function CountDisplay({
     <div style={{
       display: "inline-flex", flexDirection: horizontal ? "row" : "column", gap: horizontal ? s.gap * 3 : s.gap,
       padding: "5px 8px", background: "#04050699", border: "1px solid var(--line-1)", borderRadius: "var(--radius-1)",
-      boxShadow: "var(--inset-well)", fontFamily: "var(--font-mono)", ...style,
+      boxShadow: "var(--inset-well)", fontFamily: "var(--font-data)", ...style,
     }}>
       {numeric ? (
         <>
-          <span style={{ fontSize: s.font + 6, fontWeight: "var(--fw-bold)", color: "var(--led-amber)", textShadow: "var(--led-glow-amber)", fontFeatureSettings: "var(--numeric-features)" }}>
+          <span style={{ fontFamily: "var(--font-data)", fontSize: s.font + 6, fontWeight: "var(--fw-bold)", color: "var(--led-amber)", textShadow: "var(--led-glow-amber)", fontFeatureSettings: "var(--numeric-features)" }}>
             {formatCount(balls, strikes)}
           </span>
           {showOuts && (
-            <span style={{ fontSize: s.font, color: "var(--fg-2)", letterSpacing: "var(--label-tracking)" }}>
+            <span style={{ fontFamily: "var(--font-label)", fontSize: s.font, color: "var(--fg-2)", letterSpacing: "var(--label-tracking)" }}>
               {outs} OUT{outs === 1 ? "" : "S"}
             </span>
           )}

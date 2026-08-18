@@ -144,7 +144,7 @@ export function CoreKitchenSink() {
       <Section title="Layout">
         <Tabs tabs={["RUNDOWN", "LIBRARY", "LOG"]} active={tab} onChange={setTab} />
         <Divider orientation="vertical" style={{ height: 24 }} />
-        <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--fg-2)" }}>Active tab index: {tab}</span>
+        <span style={{ fontFamily: "var(--font-data)", fontSize: 11, color: "var(--fg-2)" }}>Active tab index: {tab}</span>
       </Section>
 
       <Section title="Navigation">

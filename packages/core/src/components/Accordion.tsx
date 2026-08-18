@@ -32,7 +32,7 @@ export function Accordion({ items, multiple = false, defaultOpen = [], open, onC
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", border: "1px solid var(--line-1)", fontFamily: "var(--font-mono)", ...style }}>
+    <div style={{ display: "flex", flexDirection: "column", border: "1px solid var(--line-1)", fontFamily: "var(--font-ui)", ...style }}>
       {items.map((item) => {
         const isOpen = current.includes(item.key);
         return (
@@ -45,7 +45,7 @@ export function Accordion({ items, multiple = false, defaultOpen = [], open, onC
                 background: isOpen ? "var(--bg-3)" : "transparent", userSelect: "none",
               }}
             >
-              <span style={{ fontSize: 10, letterSpacing: "var(--label-tracking-wide)", textTransform: "uppercase", color: "var(--fg-2)", fontWeight: 600 }}>{item.title}</span>
+              <span style={{ fontFamily: "var(--font-label)", fontSize: 10, letterSpacing: "var(--label-tracking-wide)", textTransform: "uppercase", color: "var(--fg-2)", fontWeight: 600 }}>{item.title}</span>
               <span style={{ fontSize: 8, color: "var(--fg-3)", transform: isOpen ? "rotate(180deg)" : "none", transition: "transform var(--t-med)" }}>▼</span>
             </div>
             {isOpen && <div style={{ padding: 8 }}>{item.content}</div>}

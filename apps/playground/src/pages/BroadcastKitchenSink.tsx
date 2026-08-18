@@ -40,7 +40,7 @@ export function BroadcastKitchenSink() {
           else if (cmd === "pause") setTransport("paused");
           else if (cmd === "stop") setTransport("stopped");
         }} />
-        <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--fg-2)" }}>state: {transport}</span>
+        <span style={{ fontFamily: "var(--font-data)", fontSize: 11, color: "var(--fg-2)" }}>state: {transport}</span>
       </Section>
 
       <Section title="VU meter">

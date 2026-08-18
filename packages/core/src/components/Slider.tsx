@@ -25,7 +25,7 @@ export function Slider({ value, defaultValue = 0, min = 0, max = 100, step = 1, 
   const current = value !== undefined ? value : internal;
 
   return (
-    <label style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: "var(--font-mono)" }}>
+    <label style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: "var(--font-ui)" }}>
       {label && <span style={{ fontSize: 10, color: "var(--fg-2)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase", whiteSpace: "nowrap" }}>{label}</span>}
       <style>{`
         .gu-slider-${id} { -webkit-appearance: none; appearance: none; background: transparent; }

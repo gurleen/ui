@@ -106,6 +106,38 @@ export function SportsKitchenSink() {
         </div>
       </Section>
 
+      <Section title="Type mix — --font-copy → sans">
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 16,
+            alignItems: "flex-start",
+            ["--font-copy" as string]: "var(--font-sans)",
+          }}
+        >
+          <PlayerCard
+            name="J. Carter"
+            number={23}
+            position="PG"
+            team={{ abbr: "BOS", name: "Celtics", color: BOS }}
+            stats={[{ value: 24, label: "PTS" }, { value: 6, label: "AST" }]}
+          />
+          <div style={{ flex: "1 1 280px", minWidth: 240 }}>
+            <PlayByPlay
+              homeColor={DEN}
+              awayColor={BOS}
+              height={140}
+              events={[
+                { clock: "9:42", team: "away", text: "J. Carter 26' three-point jumper", score: "61-58", kind: "score" },
+                { clock: "9:20", team: "home", text: "M. Boone bad pass turnover", kind: "turnover" },
+              ]}
+            />
+          </div>
+        </div>
+      </Section>
+
       <Section title="Box score">
         <div style={{ width: "100%" }}>
           <BoxScore
@@ -204,7 +236,7 @@ export function SportsKitchenSink() {
         </div>
         <div style={{ flex: "1 1 200px", minWidth: 180 }}>
           <CourtDiagram league="ncaa" paintColor="#141b24" />
-          <div style={{ fontFamily: "var(--font-mono)", fontSize: 9, color: "var(--fg-3)", letterSpacing: "0.08em", textTransform: "uppercase", paddingTop: 5 }}>
+          <div style={{ fontFamily: "var(--font-label)", fontSize: 9, color: "var(--fg-3)", letterSpacing: "0.08em", textTransform: "uppercase", paddingTop: 5 }}>
             NCAA half court
           </div>
         </div>
@@ -280,7 +312,7 @@ export function SportsKitchenSink() {
         </div>
         <div style={{ flex: "1 1 240px", minWidth: 220 }}>
           <FieldDiagram fence={{ left: 310, center: 420, right: 302 }} showDistances />
-          <div style={{ fontFamily: "var(--font-mono)", fontSize: 9, color: "var(--fg-3)", letterSpacing: "0.08em", textTransform: "uppercase", paddingTop: 5 }}>
+          <div style={{ fontFamily: "var(--font-label)", fontSize: 9, color: "var(--fg-3)", letterSpacing: "0.08em", textTransform: "uppercase", paddingTop: 5 }}>
             Asymmetric park
           </div>
         </div>

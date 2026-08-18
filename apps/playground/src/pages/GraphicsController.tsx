@@ -35,7 +35,7 @@ function MonitorWell({ tally, caption }: { tally: "pgm" | "pvw" | "off"; caption
     <div style={{
       aspectRatio: "16/9", background: "#030405", border: `1px solid ${tally === "off" ? "var(--line-1)" : color}`,
       borderRadius: "var(--radius-1)", display: "flex", alignItems: "center", justifyContent: "center",
-      fontFamily: "var(--font-mono)", color, fontSize: 12, letterSpacing: "0.1em",
+      fontFamily: "var(--font-ui)", color, fontSize: 12, letterSpacing: "0.1em",
     }}>{caption}</div>
   );
 }

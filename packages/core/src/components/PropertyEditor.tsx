@@ -30,7 +30,7 @@ export interface PropertyEditorProps {
 
 export function PropertyEditor({ sections = [], onChange, style }: PropertyEditorProps) {
   return (
-    <div style={{ display: "flex", flexDirection: "column", fontFamily: "var(--font-mono)", ...style }}>
+    <div style={{ display: "flex", flexDirection: "column", fontFamily: "var(--font-ui)", ...style }}>
       {sections.map((sec, si) => (
         <div key={si}>
           {sec.title && (

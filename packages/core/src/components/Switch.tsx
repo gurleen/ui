@@ -25,7 +25,7 @@ export function Switch({ checked, defaultChecked = false, onChange, label, label
   return (
     <span onClick={toggle} style={{
       display: "inline-flex", alignItems: "center", gap: 6, cursor: disabled ? "not-allowed" : "pointer",
-      opacity: disabled ? 0.5 : 1, fontFamily: "var(--font-mono)", userSelect: "none", ...style,
+      opacity: disabled ? 0.5 : 1, fontFamily: "var(--font-ui)", userSelect: "none", ...style,
     }}>
       {label && <span style={{ fontSize: 10, color: "var(--fg-2)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase" }}>{label}</span>}
       <span style={{

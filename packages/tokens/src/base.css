@@ -4,7 +4,7 @@ body {
   margin: 0;
   background: var(--bg-1);
   color: var(--fg-1);
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: var(--fs-11);
   line-height: var(--lh-body);
   font-feature-settings: var(--numeric-features);

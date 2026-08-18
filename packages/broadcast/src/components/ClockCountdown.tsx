@@ -43,7 +43,7 @@ export function ClockCountdown({ mode = "clock", target, label, color, size = "l
     <div style={{
       display: "inline-flex", flexDirection: "column", alignItems: "center",
       background: "#030405", border: "1px solid #000", borderRadius: "var(--radius-1)",
-      boxShadow: "var(--inset-well)", padding: "4px 14px", fontFamily: "var(--font-mono)", ...style,
+      boxShadow: "var(--inset-well)", padding: "4px 14px", fontFamily: "var(--font-data)", ...style,
     }}>
       {label && <span style={{ fontSize: 9, letterSpacing: "0.14em", color: "var(--fg-3)", textTransform: "uppercase" }}>{label}</span>}
       <span style={{ fontSize: fs, fontWeight: 500, lineHeight: 1.15, letterSpacing: "0.04em", color: c, textShadow: "0 0 8px currentColor33", fontFeatureSettings: '"tnum" 1, "zero" 1' }}>{text}</span>

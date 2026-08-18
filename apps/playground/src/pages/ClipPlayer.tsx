@@ -29,7 +29,7 @@ function ChannelPanel({ id, ch, onCommand, onScrub }: { id: "A" | "B"; ch: Chann
     <Panel title={`CHANNEL ${id}`} meta={ch.clip?.name ?? "EMPTY"} style={{ flex: 1, minWidth: 0 }}>
       <div style={{
         aspectRatio: "16/9", background: "#030405", border: "1px solid var(--line-1)", borderRadius: "var(--radius-1)",
-        display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-mono)",
+        display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-ui)",
         color: "var(--fg-3)", fontSize: 12, letterSpacing: "0.1em", marginBottom: 8,
       }}>{ch.clip ? ch.clip.name : "NO CLIP LOADED"}</div>
 

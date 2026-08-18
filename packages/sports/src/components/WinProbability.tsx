@@ -77,13 +77,13 @@ export function WinProbability({
   const leaderPct = current ? (current.y >= 50 ? current.y : 100 - current.y) : undefined;
 
   return (
-    <div style={{ fontFamily: "var(--font-mono)", width, ...style }}>
+    <div style={{ width, ...style }}>
       {showCurrent && current && leader && (
         <div style={{ display: "flex", alignItems: "baseline", gap: 6, paddingBottom: 4 }}>
           <span style={{ width: 3, height: 12, background: current.y >= 50 ? homeColor : awayColor, alignSelf: "center" }} />
-          <span style={{ fontSize: "var(--fs-12)", fontWeight: "var(--fw-bold)", color: "var(--fg-1)", letterSpacing: "var(--label-tracking)" }}>{leader.abbr}</span>
-          <span style={{ fontSize: "var(--fs-16)", fontWeight: "var(--fw-bold)", color: "var(--fg-1)", fontFeatureSettings: "var(--numeric-features)" }}>{leaderPct!.toFixed(1)}%</span>
-          <span style={{ fontSize: 9, color: "var(--fg-3)", letterSpacing: "var(--label-tracking-wide)", textTransform: "uppercase" }}>Win probability</span>
+          <span style={{ fontFamily: "var(--font-data)", fontSize: "var(--fs-12)", fontWeight: "var(--fw-bold)", color: "var(--fg-1)", letterSpacing: "var(--label-tracking)" }}>{leader.abbr}</span>
+          <span style={{ fontFamily: "var(--font-data)", fontSize: "var(--fs-16)", fontWeight: "var(--fw-bold)", color: "var(--fg-1)", fontFeatureSettings: "var(--numeric-features)" }}>{leaderPct!.toFixed(1)}%</span>
+          <span style={{ fontFamily: "var(--font-label)", fontSize: 9, color: "var(--fg-3)", letterSpacing: "var(--label-tracking-wide)", textTransform: "uppercase" }}>Win probability</span>
         </div>
       )}
 

@@ -36,7 +36,7 @@ export function BusButton({ label, index, state = "off", width = 72, height = 44
         width, height, display: "inline-flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 1,
         background: bg, color: disabled ? "var(--fg-3)" : l.color,
         border: `1px solid ${l.border}`, borderBottomColor: prs ? l.border : "var(--btn-border-bottom)",
-        borderRadius: "var(--radius-1)", fontFamily: "var(--font-mono)", cursor: disabled ? "not-allowed" : "pointer",
+        borderRadius: "var(--radius-1)", fontFamily: "var(--font-ui)", cursor: disabled ? "not-allowed" : "pointer",
         boxShadow: (prs ? "var(--bevel-pressed)" : "var(--bevel-raised)") + l.glow,
         transform: prs ? "translateY(1px)" : "none", opacity: disabled ? 0.5 : 1, ...style,
       }}

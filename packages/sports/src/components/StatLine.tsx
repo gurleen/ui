@@ -35,11 +35,11 @@ export function StatLine({ items = [], separator = "·", size = "md", stacked = 
 
   if (stacked) {
     return (
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 12, fontFamily: "var(--font-mono)", ...style }}>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 12, ...style }}>
         {items.map((it, i) => (
           <span key={i} style={{ display: "inline-flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
-            <span style={{ fontSize: valueSize, fontWeight: "var(--fw-bold)", color: KIND_COLORS[it.kind || "neutral"], fontFeatureSettings: "var(--numeric-features)", lineHeight: "var(--lh-tight)" }}>{it.value}</span>
-            <span style={{ fontSize: 9, color: "var(--fg-3)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase" }}>{it.label}</span>
+            <span style={{ fontFamily: "var(--font-data)", fontSize: valueSize, fontWeight: "var(--fw-bold)", color: KIND_COLORS[it.kind || "neutral"], fontFeatureSettings: "var(--numeric-features)", lineHeight: "var(--lh-tight)" }}>{it.value}</span>
+            <span style={{ fontFamily: "var(--font-label)", fontSize: 9, color: "var(--fg-3)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase" }}>{it.label}</span>
           </span>
         ))}
       </div>
@@ -47,12 +47,12 @@ export function StatLine({ items = [], separator = "·", size = "md", stacked = 
   }
 
   return (
-    <span style={{ display: "inline-flex", flexWrap: "wrap", alignItems: "baseline", gap: 5, fontFamily: "var(--font-mono)", ...style }}>
+    <span style={{ display: "inline-flex", flexWrap: "wrap", alignItems: "baseline", gap: 5, ...style }}>
       {items.map((it, i) => (
         <span key={i} style={{ display: "inline-flex", alignItems: "baseline", gap: 5 }}>
-          {i > 0 && <span style={{ color: "var(--fg-3)", fontSize: valueSize }}>{separator}</span>}
-          <span style={{ fontSize: valueSize, fontWeight: "var(--fw-semi)", color: KIND_COLORS[it.kind || "neutral"], fontFeatureSettings: "var(--numeric-features)" }}>{it.value}</span>
-          <span style={{ fontSize: 9, color: "var(--fg-3)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase" }}>{it.label}</span>
+          {i > 0 && <span style={{ fontFamily: "var(--font-data)", color: "var(--fg-3)", fontSize: valueSize }}>{separator}</span>}
+          <span style={{ fontFamily: "var(--font-data)", fontSize: valueSize, fontWeight: "var(--fw-semi)", color: KIND_COLORS[it.kind || "neutral"], fontFeatureSettings: "var(--numeric-features)" }}>{it.value}</span>
+          <span style={{ fontFamily: "var(--font-label)", fontSize: 9, color: "var(--fg-3)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase" }}>{it.label}</span>
         </span>
       ))}
     </span>

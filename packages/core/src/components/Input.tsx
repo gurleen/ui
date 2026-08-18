@@ -28,7 +28,7 @@ export function Input({ value, defaultValue, onChange, placeholder, label, unit,
   // and let the well fill 100% of that now-definite label width. Numeric/px widths are unaffected.
   const isPercent = typeof width === "string" && width.trim().endsWith("%");
   return (
-    <label style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: "var(--font-mono)", ...(isPercent ? { width, minWidth: 0 } : {}) }}>
+    <label style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: "var(--font-ui)", ...(isPercent ? { width, minWidth: 0 } : {}) }}>
       {label && <span style={{ fontSize: 10, color: "var(--fg-2)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase", whiteSpace: "nowrap" }}>{label}</span>}
       <span style={{
         display: "inline-flex", alignItems: "center", width: isPercent ? "100%" : width, height: "var(--ctl-h)",

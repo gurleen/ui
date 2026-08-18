@@ -1,6 +1,6 @@
 # BoxScore
 
-Player box score: a `DataGrid` from `@hydra-tv/ui` with league-standard column presets, starters sorted to the top, and a bold totals row.
+Player box score: a `DataGrid` from `@hydra-tv/ui` with league-standard column presets, starters sorted to the top, and a bold totals row. Player names use `--font-copy`; numeric cells use `--font-data`; column headers and the totals label use `--font-label`.
 
 ```jsx
 <BoxScore

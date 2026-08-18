@@ -20,14 +20,14 @@ export function Panel({ title, meta, children, actions, padded = true, style, bo
     <div style={{
       display: "flex", flexDirection: "column", background: "var(--grad-panel)",
       border: "1px solid var(--line-2)", borderRadius: "var(--radius-1)",
-      boxShadow: "var(--shadow-panel)", fontFamily: "var(--font-mono)", minWidth: 0, ...style,
+      boxShadow: "var(--shadow-panel)", fontFamily: "var(--font-ui)", minWidth: 0, ...style,
     }}>
       {title !== undefined && (
         <div style={{
           height: "var(--panel-title-h)", display: "flex", alignItems: "center", justifyContent: "space-between",
           padding: "0 8px", borderBottom: "1px solid var(--line-1)", flexShrink: 0,
         }}>
-          <span style={{ fontSize: 10, letterSpacing: "var(--label-tracking-wide)", textTransform: "uppercase", color: "var(--fg-2)", fontWeight: 600 }}>{title}</span>
+          <span style={{ fontFamily: "var(--font-label)", fontSize: 10, letterSpacing: "var(--label-tracking-wide)", textTransform: "uppercase", color: "var(--fg-2)", fontWeight: 600 }}>{title}</span>
           <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
             {meta && <span style={{ fontSize: 10, color: "var(--fg-3)", letterSpacing: "0.06em" }}>{meta}</span>}
             {actions}

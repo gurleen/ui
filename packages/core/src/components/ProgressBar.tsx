@@ -17,7 +17,7 @@ export interface ProgressBarProps {
 export function ProgressBar({ value = 0, indeterminate = false, width = "100%", height = 6, label, style }: ProgressBarProps) {
   const pct = Math.max(0, Math.min(100, value));
   return (
-    <span style={{ display: "inline-flex", flexDirection: "column", gap: 4, width, fontFamily: "var(--font-mono)" }}>
+    <span style={{ display: "inline-flex", flexDirection: "column", gap: 4, width, fontFamily: "var(--font-ui)" }}>
       {label && <span style={{ fontSize: 10, color: "var(--fg-2)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase" }}>{label}</span>}
       <span style={{ position: "relative", height, width: "100%", background: "#0a0d10", borderRadius: "var(--radius-1)", boxShadow: "var(--inset-well)", overflow: "hidden", ...style }}>
         {indeterminate ? (

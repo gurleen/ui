@@ -14,7 +14,7 @@ export function Divider({ orientation = "horizontal", label, style }: DividerPro
   }
   if (label) {
     return (
-      <div style={{ display: "flex", alignItems: "center", gap: 8, fontFamily: "var(--font-mono)", ...style }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, fontFamily: "var(--font-ui)", ...style }}>
         <span style={{ flex: 1, height: 1, background: "var(--line-1)" }} />
         <span style={{ fontSize: 9, color: "var(--fg-3)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase" }}>{label}</span>
         <span style={{ flex: 1, height: 1, background: "var(--line-1)" }} />

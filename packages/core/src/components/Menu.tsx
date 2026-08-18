@@ -53,7 +53,7 @@ export function Menu({ trigger, items, onSelect, align = "left", disabled = fals
           style={{
             position: "absolute", top: "calc(100% + 4px)", minWidth: 160, zIndex: 200,
             background: "var(--grad-panel)", border: "1px solid var(--line-3)", borderRadius: "var(--radius-1)",
-            boxShadow: "var(--shadow-overlay)", padding: 4, fontFamily: "var(--font-mono)",
+            boxShadow: "var(--shadow-overlay)", padding: 4, fontFamily: "var(--font-ui)",
             ...(align === "right" ? { right: 0 } : { left: 0 }),
           }}
         >

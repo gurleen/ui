@@ -42,22 +42,22 @@ export function Stat({ value, label, unit, delta, deltaKind = "neutral", deltaUn
     <div style={{
       display: "inline-flex", flexDirection: "column", gap: 2, padding: s.pad, minWidth: 0,
       background: "var(--bg-well)", border: "1px solid var(--line-1)", borderRadius: "var(--radius-1)",
-      boxShadow: "var(--inset-well)", fontFamily: "var(--font-mono)", textAlign: align,
+      boxShadow: "var(--inset-well)", fontFamily: "var(--font-data)", textAlign: align,
       alignItems: align === "center" ? "center" : align === "right" ? "flex-end" : "flex-start", ...style,
     }}>
       {label && (
-        <span style={{ fontSize: "var(--fs-10)", color: "var(--fg-2)", letterSpacing: "var(--label-tracking-wide)", textTransform: "uppercase", whiteSpace: "nowrap" }}>{label}</span>
+        <span style={{ fontFamily: "var(--font-label)", fontSize: "var(--fs-10)", color: "var(--fg-2)", letterSpacing: "var(--label-tracking-wide)", textTransform: "uppercase", whiteSpace: "nowrap" }}>{label}</span>
       )}
       <span style={{ display: "flex", alignItems: "baseline", gap: 4, minWidth: 0 }}>
-        <span style={{ fontSize: s.value, fontWeight: "var(--fw-bold)", color: "var(--fg-1)", lineHeight: "var(--lh-tight)", fontFeatureSettings: "var(--numeric-features)" }}>{value}</span>
-        {unit && <span style={{ fontSize: "var(--fs-10)", color: "var(--fg-3)", letterSpacing: "var(--label-tracking)" }}>{unit}</span>}
+        <span style={{ fontFamily: "var(--font-data)", fontSize: s.value, fontWeight: "var(--fw-bold)", color: "var(--fg-1)", lineHeight: "var(--lh-tight)", fontFeatureSettings: "var(--numeric-features)" }}>{value}</span>
+        {unit && <span style={{ fontFamily: "var(--font-label)", fontSize: "var(--fs-10)", color: "var(--fg-3)", letterSpacing: "var(--label-tracking)" }}>{unit}</span>}
         {hasDelta && (
-          <span style={{ fontSize: "var(--fs-10)", color: DELTA_COLORS[deltaKind] || DELTA_COLORS.neutral, fontWeight: "var(--fw-semi)", fontFeatureSettings: "var(--numeric-features)", whiteSpace: "nowrap" }}>
+          <span style={{ fontFamily: "var(--font-data)", fontSize: "var(--fs-10)", color: DELTA_COLORS[deltaKind] || DELTA_COLORS.neutral, fontWeight: "var(--fw-semi)", fontFeatureSettings: "var(--numeric-features)", whiteSpace: "nowrap" }}>
             {arrow} {Math.abs(delta!)}{deltaUnit}
           </span>
         )}
       </span>
-      {caption && <span style={{ fontSize: "var(--fs-10)", color: "var(--fg-3)", whiteSpace: "nowrap" }}>{caption}</span>}
+      {caption && <span style={{ fontFamily: "var(--font-label)", fontSize: "var(--fs-10)", color: "var(--fg-3)", whiteSpace: "nowrap" }}>{caption}</span>}
     </div>
   );
 }

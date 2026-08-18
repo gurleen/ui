@@ -159,7 +159,7 @@ export function StrikeZonePlot({
         : [];
 
   return (
-    <div style={{ width, fontFamily: "var(--font-mono)", ...style }}>
+    <div style={{ width, fontFamily: "var(--font-data)", ...style }}>
       <ScatterPlot
         points={points}
         xDomain={xDomain}

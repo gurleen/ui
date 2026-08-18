@@ -29,8 +29,8 @@ export function App() {
       <div style={{ display: "flex", flexDirection: "column", height: "100vh", background: "var(--bg-1)" }}>
         <div style={{ padding: "10px 12px 0", flexShrink: 0 }}>
           <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginBottom: 8 }}>
-            <span style={{ fontFamily: "var(--font-mono)", fontWeight: 700, letterSpacing: "0.1em", fontSize: 13, color: "var(--fg-1)" }}>@GURLEEN-UI</span>
-            <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--fg-3)" }}>playground</span>
+            <span style={{ fontFamily: "var(--font-ui)", fontWeight: 700, letterSpacing: "0.1em", fontSize: 13, color: "var(--fg-1)" }}>@GURLEEN-UI</span>
+            <span style={{ fontFamily: "var(--font-ui)", fontSize: 10, color: "var(--fg-3)" }}>playground</span>
           </div>
           <Tabs tabs={PAGES.map((p) => p.label)} active={tab} onChange={setTab} />
         </div>

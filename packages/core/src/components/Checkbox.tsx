@@ -23,7 +23,7 @@ export function Checkbox({ checked, defaultChecked = false, onChange, label, dis
   return (
     <span onClick={toggle} style={{
       display: "inline-flex", alignItems: "center", gap: 6, cursor: disabled ? "not-allowed" : "pointer",
-      opacity: disabled ? 0.5 : 1, fontFamily: "var(--font-mono)", userSelect: "none", ...style,
+      opacity: disabled ? 0.5 : 1, fontFamily: "var(--font-ui)", userSelect: "none", ...style,
     }}>
       <span style={{
         width: 14, height: 14, display: "inline-flex", alignItems: "center", justifyContent: "center",

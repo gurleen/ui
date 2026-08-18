@@ -1,6 +1,6 @@
 # PlayByPlay
 
-Scrolling, clock-ordered feed of game events with team attribution and a running score. Auto-follows the tail like `LogConsole`, but adds the team color bar and score column a game feed needs.
+Scrolling, clock-ordered feed of game events with team attribution and a running score. Auto-follows the tail like `LogConsole`, but adds the team color bar and score column a game feed needs. Descriptions use `--font-copy`; clock and score use `--font-data`; period markers use `--font-label`.
 
 ```jsx
 <PlayByPlay

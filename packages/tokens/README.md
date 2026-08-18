@@ -30,11 +30,28 @@ There is **no light theme** — this is a dark-only, high-density "tactile hardw
 - **Semantic aliases**: `--surface-app`, `--surface-panel`, `--surface-raised`, `--surface-input`, `--text-body`, `--text-label`, `--text-muted`.
 
 ### Typography (`typography.css`, `fonts.css`)
-- `--font-mono` (IBM Plex Mono — used everywhere by default) and `--font-sans` (IBM Plex Sans — reserved for rare long-form prose).
-- Scale: `--fs-10` … `--fs-28` (10/11/12/13/16/20/28px). Body/control default is `--fs-11`.
+- **Faces:** `--font-mono` (IBM Plex Mono) and `--font-sans` (IBM Plex Sans — reserved for rare long-form prose). Components never reference these directly.
+- **Roles** (what components actually set). Each aliases `--font-mono` by default, so the look is unchanged until you remap one:
+  - `--font-ui` — chrome: buttons, tabs, inputs, nav, badges, panel chrome
+  - `--font-data` — numerals, grids, clocks, SVG tick/value labels
+  - `--font-copy` — names, sentences, play descriptions (the mix-in point)
+  - `--font-label` — uppercase tracked captions
+- Scale: `--fs-10` … `--fs-28` (10/11/12/13/16/20/28px). Body/control default is `--fs-11`. `body` uses `--font-ui`.
 - `--label-tracking` (0.08em) / `--label-tracking-wide` (0.14em) for uppercase tracked labels.
 - `--numeric-features` — apply via `font-feature-settings` for tabular figures on any numeric readout.
 - `fonts.css` loads IBM Plex via a Google Fonts `@import`; swap this file if you need to self-host fonts.
+
+To mix a grotesque on language and keep mono on scores/chrome, re-point a face and a role — no per-component `style` hacks:
+
+```css
+:root {
+  --font-sans: "Univers Next Pro", "IBM Plex Sans", system-ui, sans-serif;
+  --font-copy: var(--font-sans);
+  /* optional: --font-ui: var(--font-sans); if they want chrome in sans too */
+}
+```
+
+If you add more faces later (condensed, display), add another face token and point a role at it. Do not add per-component font props.
 
 ### Spacing (`spacing.css`)
 - `--sp-1` … `--sp-7` (2px → 24px, 4px base grid).

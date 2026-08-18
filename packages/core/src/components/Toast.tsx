@@ -72,7 +72,7 @@ const LEVELS: Record<ToastLevel, { color: string; tag: string }> = {
 function ToastViewport({ toasts, onDismiss }: { toasts: ToastItem[]; onDismiss: (id: string) => void }) {
   if (toasts.length === 0) return null;
   return (
-    <div style={{ position: "fixed", right: 12, bottom: 12, zIndex: 1000, display: "flex", flexDirection: "column", gap: 6, fontFamily: "var(--font-mono)" }}>
+    <div style={{ position: "fixed", right: 12, bottom: 12, zIndex: 1000, display: "flex", flexDirection: "column", gap: 6, fontFamily: "var(--font-ui)" }}>
       {toasts.map((t) => {
         const lv = LEVELS[t.level];
         return (

@@ -126,7 +126,7 @@ export function ShotZoneChart({
   const shapes = zoneShapes(league);
 
   return (
-    <div style={{ width, fontFamily: "var(--font-mono)", ...style }}>
+    <div style={{ width, ...style }}>
       <svg
         viewBox={`${-c.courtWidth / 2} 0 ${c.courtWidth} ${top - base}`}
         width={width}
@@ -172,10 +172,10 @@ export function ShotZoneChart({
             const py = top - zy;
             return (
               <g key={`l-${s.id}`} style={{ pointerEvents: "none" }}>
-                <text x={px} y={py - 0.3} textAnchor="middle" fill="var(--fg-1)" style={{ fontSize: 2, fontWeight: 700, fontFamily: "var(--font-mono)" }}>
+                <text x={px} y={py - 0.3} textAnchor="middle" fill="var(--fg-1)" style={{ fontSize: 2, fontWeight: 700, fontFamily: "var(--font-data)" }}>
                   {Math.round((z.made / z.attempted) * 100)}%
                 </text>
-                <text x={px} y={py + 1.9} textAnchor="middle" fill="var(--fg-3)" style={{ fontSize: 1.5, fontFamily: "var(--font-mono)" }}>
+                <text x={px} y={py + 1.9} textAnchor="middle" fill="var(--fg-3)" style={{ fontSize: 1.5, fontFamily: "var(--font-data)" }}>
                   {z.made}-{z.attempted}
                 </text>
               </g>
@@ -183,7 +183,7 @@ export function ShotZoneChart({
           })}
       </svg>
 
-      <div style={{ display: "flex", alignItems: "center", gap: 8, paddingTop: 5, fontSize: 9, color: "var(--fg-3)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, paddingTop: 5, fontFamily: "var(--font-label)", fontSize: 9, color: "var(--fg-3)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase" }}>
         <span style={{ display: "inline-flex", alignItems: "center", gap: 4 }}>
           <span style={{ width: 8, height: 8, background: belowColor, opacity: 0.7 }} />Below
         </span>

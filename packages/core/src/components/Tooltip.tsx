@@ -43,7 +43,7 @@ export function Tooltip({ content, children, placement = "top", style }: Tooltip
             position: "absolute", ...posStyle, zIndex: 300, whiteSpace: "nowrap",
             background: "var(--bg-0)", color: "var(--fg-1)", border: "1px solid var(--line-3)",
             borderRadius: "var(--radius-1)", boxShadow: "var(--shadow-overlay)",
-            padding: "4px 6px", fontSize: 10, fontFamily: "var(--font-mono)", pointerEvents: "none",
+            padding: "4px 6px", fontSize: 10, fontFamily: "var(--font-ui)", pointerEvents: "none",
           }}
         >{content}</span>
       )}

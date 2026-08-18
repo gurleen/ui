@@ -39,7 +39,7 @@ export function BaseState({
   ];
 
   return (
-    <span style={{ display: "inline-flex", flexDirection: "column", alignItems: "center", gap: 3, fontFamily: "var(--font-mono)", ...style }}>
+    <span style={{ display: "inline-flex", flexDirection: "column", alignItems: "center", gap: 3, fontFamily: "var(--font-data)", ...style }}>
       <svg width={px} height={px} viewBox="0 0 100 100" aria-hidden style={{ display: "block" }}>
         {bases.map((b) => (
           <rect

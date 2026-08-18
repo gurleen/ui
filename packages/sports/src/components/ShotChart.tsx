@@ -62,7 +62,7 @@ export function ShotChart({
   const made = shots.reduce((n, s) => n + (s.made ? 1 : 0), 0);
 
   return (
-    <div style={{ width, fontFamily: "var(--font-mono)", ...style }}>
+    <div style={{ width, fontFamily: "var(--font-data)", ...style }}>
       <ScatterPlot
         points={points}
         xDomain={xDomain}

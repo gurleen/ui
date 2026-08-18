@@ -66,7 +66,7 @@ export function Timecode({ value = "00:00:00:00", label, color = "amber", size =
       display: "inline-flex", flexDirection: "column", alignItems: "stretch",
       background: "#030405", border: "1px solid #000", borderRadius: "var(--radius-1)",
       boxShadow: "var(--inset-well)", padding: size === "sm" ? "2px 8px" : "4px 12px",
-      fontFamily: "var(--font-mono)", ...style,
+      fontFamily: "var(--font-data)", ...style,
     }}>
       {label && <span style={{ fontSize: 9, letterSpacing: "0.14em", color: "var(--fg-3)", textTransform: "uppercase" }}>{label}</span>}
       <span style={{ fontSize: fs, fontWeight: 500, letterSpacing: "0.04em", lineHeight: 1.2, color: k.c, textShadow: k.glow, fontFeatureSettings: '"tnum" 1, "zero" 1', whiteSpace: "nowrap" }}>

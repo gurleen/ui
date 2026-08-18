@@ -62,10 +62,10 @@ export function RotationChart({
   const marginPeak = margin && margin.length > 0 ? Math.max(4, ...margin.map((p) => Math.abs(p.y))) : 0;
 
   return (
-    <div style={{ width, fontFamily: "var(--font-mono)", ...style }}>
+    <div style={{ width, ...style }}>
       {margin && margin.length > 1 && (
         <div style={{ display: "flex", alignItems: "stretch", gap: 8 }}>
-          <span style={{ width: labelWidth, flexShrink: 0, alignSelf: "center", fontSize: 9, color: "var(--fg-2)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase" }}>Margin</span>
+          <span style={{ width: labelWidth, flexShrink: 0, alignSelf: "center", fontFamily: "var(--font-label)", fontSize: 9, color: "var(--fg-2)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase" }}>Margin</span>
           <svg
             viewBox={`0 0 ${duration} ${marginPeak * 2}`}
             preserveAspectRatio="none"
@@ -100,8 +100,8 @@ export function RotationChart({
       {players.map((p, pi) => (
         <div key={pi} style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 2 }}>
           <span style={{ width: labelWidth, flexShrink: 0, display: "flex", alignItems: "baseline", gap: 5, minWidth: 0 }}>
-            {p.number !== undefined && <span style={{ fontSize: 9, color: "var(--fg-3)", fontFeatureSettings: "var(--numeric-features)" }}>{p.number}</span>}
-            <span style={{ fontSize: "var(--fs-10)", color: "var(--fg-1)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{p.name}</span>
+            {p.number !== undefined && <span style={{ fontFamily: "var(--font-data)", fontSize: 9, color: "var(--fg-3)", fontFeatureSettings: "var(--numeric-features)" }}>{p.number}</span>}
+            <span style={{ fontFamily: "var(--font-copy)", fontSize: "var(--fs-10)", color: "var(--fg-1)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{p.name}</span>
           </span>
 
           <span style={{ position: "relative", flex: 1, minWidth: 40, height: rowHeight, background: "#0a0d10", boxShadow: "var(--inset-well)", borderRadius: "var(--radius-1)" }}>
@@ -123,7 +123,7 @@ export function RotationChart({
           </span>
 
           {showTotals && (
-            <span style={{ width: 40, flexShrink: 0, textAlign: "right", fontSize: "var(--fs-10)", color: "var(--fg-2)", fontFeatureSettings: "var(--numeric-features)" }}>
+            <span style={{ width: 40, flexShrink: 0, textAlign: "right", fontFamily: "var(--font-data)", fontSize: "var(--fs-10)", color: "var(--fg-2)", fontFeatureSettings: "var(--numeric-features)" }}>
               {Math.round((p.stints ?? []).reduce((sum, s) => sum + Math.max(0, Math.min(duration, s.end) - Math.max(0, s.start)), 0))}′
             </span>
           )}
@@ -136,7 +136,7 @@ export function RotationChart({
           {[0, ...periodMarks, duration].map((m, i) => (
             <span key={i} style={{
               position: "absolute", left: pct(m), transform: i === 0 ? "none" : m === duration ? "translateX(-100%)" : "translateX(-50%)",
-              fontSize: 9, color: "var(--fg-3)", fontFeatureSettings: "var(--numeric-features)",
+              fontFamily: "var(--font-data)", fontSize: 9, color: "var(--fg-3)", fontFeatureSettings: "var(--numeric-features)",
             }}>{m}′</span>
           ))}
         </span>

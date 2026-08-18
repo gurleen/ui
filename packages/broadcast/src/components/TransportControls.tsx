@@ -33,7 +33,7 @@ export function TransportControls({ state = "stopped", onCommand, size = "lg", c
         return (
           <Button key={k.cmd} size={size} title={k.title} active={active}
             onClick={() => onCommand && onCommand(k.cmd)}
-            style={{ minWidth: size === "lg" ? 40 : 30, fontFamily: "var(--font-mono)", color: live ? "var(--tally-pvw)" : undefined, textShadow: live ? "var(--led-glow-green)" : undefined }}
+            style={{ minWidth: size === "lg" ? 40 : 30, fontFamily: "var(--font-ui)", color: live ? "var(--tally-pvw)" : undefined, textShadow: live ? "var(--led-glow-green)" : undefined }}
             label={k.glyph} />
         );
       })}

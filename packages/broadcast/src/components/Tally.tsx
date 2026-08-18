@@ -30,7 +30,7 @@ export function Tally({ state = "off", label, sublabel, size = "md", style }: Ta
       minWidth: dims.h * 1.8, padding: "0 10px", background: s.bg, color: s.color,
       border: `1px solid ${s.border}`, borderRadius: "var(--radius-1)",
       boxShadow: state === "off" ? "var(--inset-input)" : `var(--bevel-bus), ${s.glow}`,
-      fontFamily: "var(--font-mono)", textTransform: "uppercase", ...style,
+      fontFamily: "var(--font-ui)", textTransform: "uppercase", ...style,
     }}>
       {sublabel && <span style={{ fontSize: dims.sub, letterSpacing: "0.12em", opacity: 0.75 }}>{sublabel}</span>}
       <span style={{ fontSize: dims.fs, fontWeight: 700, letterSpacing: "0.06em", textShadow: state === "pgm" ? "0 0 8px #f23a3088" : "none" }}>{label}</span>

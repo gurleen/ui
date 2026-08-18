@@ -27,7 +27,7 @@ export function Badge({ label, children, kind = "neutral", dot = false, style }:
       display: "inline-flex", alignItems: "center", gap: 5, height: 16, padding: "0 6px",
       background: k.bg, color: k.color, border: `1px solid ${k.border}`, borderRadius: "var(--radius-1)",
       fontSize: 9, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase",
-      fontFamily: "var(--font-mono)", whiteSpace: "nowrap", ...style,
+      fontFamily: "var(--font-ui)", whiteSpace: "nowrap", ...style,
     }}>
       {dot && <span style={{ width: 5, height: 5, borderRadius: "50%", background: "currentColor" }}></span>}
       {label || children}

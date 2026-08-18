@@ -129,7 +129,7 @@ export function FieldDiagram({
             y={yDomain[1] - y - 8}
             textAnchor="middle"
             fill="var(--fg-3)"
-            style={{ fontSize: 16, fontFamily: "var(--font-mono)" }}
+            style={{ fontSize: 16, fontFamily: "var(--font-data)" }}
           >
             {d}
           </text>

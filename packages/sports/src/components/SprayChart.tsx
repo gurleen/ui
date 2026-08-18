@@ -87,7 +87,7 @@ export function SprayChart({
   const used = (Object.keys(palette) as BattedBallResult[]).filter((r) => battedBalls.some((b) => (b.result ?? "out") === r));
 
   return (
-    <div style={{ width, fontFamily: "var(--font-mono)", ...style }}>
+    <div style={{ width, fontFamily: "var(--font-data)", ...style }}>
       <ScatterPlot
         points={points}
         xDomain={xDomain}

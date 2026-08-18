@@ -18,7 +18,7 @@ export function FieldRow({ label, children, divided = true, style }: FieldRowPro
         alignItems: "center",
         minHeight: 26,
         gap: 8,
-        fontFamily: "var(--font-mono)",
+        fontFamily: "var(--font-ui)",
         padding: "6px 0",
         ...(divided ? { borderBottom: "1px solid var(--line-1)" } : null),
         ...style,

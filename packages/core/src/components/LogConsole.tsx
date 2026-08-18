@@ -34,7 +34,7 @@ export function LogConsole({ lines = [], height = 140, follow = true, style }: L
     <div ref={ref} style={{
       height, overflowY: "auto", background: "#030405", border: "1px solid #000",
       borderRadius: "var(--radius-1)", boxShadow: "var(--inset-well)", padding: "4px 6px",
-      fontFamily: "var(--font-mono)", fontSize: 10, lineHeight: 1.6, ...style,
+      fontFamily: "var(--font-data)", fontSize: 10, lineHeight: 1.6, ...style,
     }}>
       {lines.map((ln, i) => {
         const lv = LEVELS[ln.level || "info"] || LEVELS.info;

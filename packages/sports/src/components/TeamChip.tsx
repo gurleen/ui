@@ -30,17 +30,17 @@ export function TeamChip({ abbr, name, color = "var(--ch-1)", record, logo, size
 
   return (
     <span style={{
-      display: "inline-flex", alignItems: "center", gap: s.gap, fontFamily: "var(--font-mono)", minWidth: 0,
+      display: "inline-flex", alignItems: "center", gap: s.gap, fontFamily: "var(--font-ui)", minWidth: 0,
       flexDirection: align === "right" ? "row-reverse" : "row", ...style,
     }}>
       {bar}
       {logo}
       <span style={{ display: "inline-flex", flexDirection: "column", minWidth: 0, alignItems: align === "right" ? "flex-end" : "flex-start" }}>
         <span style={{ display: "inline-flex", alignItems: "baseline", gap: 5, minWidth: 0 }}>
-          <span style={{ fontSize: s.abbr, fontWeight: "var(--fw-bold)", letterSpacing: "var(--label-tracking)", color: "var(--fg-1)", textTransform: "uppercase" }}>{abbr}</span>
-          {name && <span style={{ fontSize: s.name, color: "var(--fg-2)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{name}</span>}
+          <span style={{ fontFamily: "var(--font-data)", fontSize: s.abbr, fontWeight: "var(--fw-bold)", letterSpacing: "var(--label-tracking)", color: "var(--fg-1)", textTransform: "uppercase" }}>{abbr}</span>
+          {name && <span style={{ fontFamily: "var(--font-copy)", fontSize: s.name, color: "var(--fg-2)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{name}</span>}
         </span>
-        {record && <span style={{ fontSize: 9, color: "var(--fg-3)", fontFeatureSettings: "var(--numeric-features)" }}>{record}</span>}
+        {record && <span style={{ fontFamily: "var(--font-data)", fontSize: 9, color: "var(--fg-3)", fontFeatureSettings: "var(--numeric-features)" }}>{record}</span>}
       </span>
     </span>
   );

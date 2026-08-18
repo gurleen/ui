@@ -20,7 +20,7 @@ export interface DialogProps {
 export function Dialog({ open = true, title = "CONFIRM", message, detail, confirmLabel = "OK", confirmVariant = "accent", cancelLabel = "CANCEL", onConfirm, onCancel, width = 360, children }: DialogProps) {
   if (!open) return null;
   return (
-    <div style={{ position: "absolute", inset: 0, background: "#04050699", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 100, fontFamily: "var(--font-mono)" }}>
+    <div style={{ position: "absolute", inset: 0, background: "#04050699", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 100, fontFamily: "var(--font-ui)" }}>
       <div style={{ width, background: "var(--grad-panel)", border: "1px solid var(--line-3)", borderRadius: "var(--radius-1)", boxShadow: "var(--shadow-overlay)" }}>
         <div style={{ height: 24, display: "flex", alignItems: "center", padding: "0 8px", borderBottom: "1px solid var(--line-1)", fontSize: 10, letterSpacing: "var(--label-tracking-wide)", textTransform: "uppercase", color: confirmVariant === "take" ? "var(--tally-pgm)" : "var(--fg-2)", fontWeight: 600 }}>{title}</div>
         <div style={{ padding: 12 }}>

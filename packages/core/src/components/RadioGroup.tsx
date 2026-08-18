@@ -29,7 +29,7 @@ export function RadioGroup({ options = [], value, defaultValue, onChange, label,
     onChange?.(v);
   };
   return (
-    <span style={{ display: "inline-flex", flexDirection: "column", gap: 6, fontFamily: "var(--font-mono)", ...style }}>
+    <span style={{ display: "inline-flex", flexDirection: "column", gap: 6, fontFamily: "var(--font-ui)", ...style }}>
       {label && <span style={{ fontSize: 10, color: "var(--fg-2)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase" }}>{label}</span>}
       <span style={{ display: "flex", flexDirection: direction, gap: direction === "row" ? 14 : 6 }}>
         {options.map((o) => {

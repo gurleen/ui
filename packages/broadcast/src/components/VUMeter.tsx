@@ -38,7 +38,7 @@ export function VUMeter({ levels = [-18, -20], height = 120, label, showScale = 
   const MIN = -60;
   const marks = [0, -6, -12, -20, -30, -40, -60];
   return (
-    <div style={{ display: "inline-flex", flexDirection: "column", alignItems: "center", gap: 3, fontFamily: "var(--font-mono)", ...style }}>
+    <div style={{ display: "inline-flex", flexDirection: "column", alignItems: "center", gap: 3, fontFamily: "var(--font-data)", ...style }}>
       <div style={{ display: "flex", gap: 3, alignItems: "stretch", background: "#030405", border: "1px solid #000", borderRadius: "var(--radius-1)", boxShadow: "var(--inset-well)", padding: 4, height }}>
         {lv.map((v, ch) => (
           <div key={ch} style={{ display: "flex", flexDirection: "column-reverse", gap: 1, width: 10 }}>

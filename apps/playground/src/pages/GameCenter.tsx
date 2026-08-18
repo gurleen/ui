@@ -166,7 +166,7 @@ export function GameCenter() {
           ) : (
             <ShotZoneChart zones={zones} average={0.45} />
           )}
-          <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--fg-3)", paddingTop: 6, minHeight: 14 }}>
+          <div style={{ fontFamily: "var(--font-data)", fontSize: 10, color: "var(--fg-3)", paddingTop: 6, minHeight: 14 }}>
             {selectedShot ? selectedShot.label : "Click a shot for detail"}
           </div>
         </Panel>

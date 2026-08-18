@@ -113,12 +113,12 @@ export function DataGrid({
   return (
     <div
       onMouseLeave={onRowHover ? () => onRowHover(null, null) : undefined}
-      style={{ fontFamily: "var(--font-mono)", fontSize: 11, overflow: height ? "auto" : "visible", height, background: "#0a0d10", boxShadow: "var(--inset-input)", border: "1px solid var(--line-1)", ...style }}
+      style={{ fontFamily: "var(--font-data)", fontSize: 11, overflow: height ? "auto" : "visible", height, background: "#0a0d10", boxShadow: "var(--inset-input)", border: "1px solid var(--line-1)", ...style }}
     >
       {showHeader && (
         <div style={{ display: "grid", gridTemplateColumns: template, position: "sticky", top: 0, background: "var(--bg-3)", borderBottom: "1px solid var(--line-2)", zIndex: 1 }}>
           {cols.map((c, i) => (
-            <span key={i} style={{ padding: "3px 6px", fontSize: 9, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--fg-2)", textAlign: c.align || "left", whiteSpace: "nowrap", overflow: "hidden" }}>{c.label}</span>
+            <span key={i} style={{ padding: "3px 6px", fontFamily: "var(--font-label)", fontSize: 9, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--fg-2)", textAlign: c.align || "left", whiteSpace: "nowrap", overflow: "hidden" }}>{c.label}</span>
           ))}
         </div>
       )}
@@ -165,7 +165,7 @@ export function DataGrid({
             {columns.map((c, ci) => (
               <span key={ci} style={{
                 padding: "0 6px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
-                textAlign: c.align || "left", fontFeatureSettings: '"tnum" 1, "zero" 1',
+                textAlign: c.align || "left", fontFamily: "var(--font-data)", fontFeatureSettings: '"tnum" 1, "zero" 1',
                 color: c.dim && !st ? "var(--fg-3)" : "inherit", fontWeight: row._state === "onair" && !c.dim ? 600 : 400,
               }}>{c.render ? c.render(row[c.key], row, ri) : row[c.key]}</span>
             ))}

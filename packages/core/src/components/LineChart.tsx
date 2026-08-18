@@ -73,7 +73,7 @@ export function LineChart({
   const baseY = sy(referenceLine !== undefined ? referenceLine : Math.max(yd[0], Math.min(0, yd[1])));
 
   return (
-    <div ref={ref} style={{ width, fontFamily: "var(--font-mono)", ...style }}>
+    <div ref={ref} style={{ width, fontFamily: "var(--font-data)", ...style }}>
       <svg width={w} height={height} viewBox={`0 0 ${w} ${height}`} style={{ display: "block", overflow: "visible" }}>
         <rect x={padL} y={padT} width={plotW} height={plotH} fill="#0a0d10" stroke="var(--line-1)" strokeWidth={1} />
 
@@ -108,17 +108,17 @@ export function LineChart({
         })}
 
         {yt.map((t, i) => (
-          <text key={`ty${i}`} x={padL - 5} y={sy(t)} textAnchor="end" dominantBaseline="middle" fill="var(--fg-3)" style={{ fontSize: 9, fontFeatureSettings: "var(--numeric-features)" }}>{yFormat(t)}</text>
+          <text key={`ty${i}`} x={padL - 5} y={sy(t)} textAnchor="end" dominantBaseline="middle" fill="var(--fg-3)" style={{ fontSize: 9, fontFamily: "var(--font-data)", fontFeatureSettings: "var(--numeric-features)" }}>{yFormat(t)}</text>
         ))}
         {xt.map((t, i) => (
-          <text key={`tx${i}`} x={sx(t)} y={padT + plotH + 11} textAnchor="middle" fill="var(--fg-3)" style={{ fontSize: 9, fontFeatureSettings: "var(--numeric-features)" }}>{xFormat(t)}</text>
+          <text key={`tx${i}`} x={sx(t)} y={padT + plotH + 11} textAnchor="middle" fill="var(--fg-3)" style={{ fontSize: 9, fontFamily: "var(--font-data)", fontFeatureSettings: "var(--numeric-features)" }}>{xFormat(t)}</text>
         ))}
       </svg>
 
       {legend && (
         <div style={{ display: "flex", flexWrap: "wrap", gap: 10, paddingTop: 4 }}>
           {series.map((s, si) => (
-            <span key={si} style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: "var(--fs-10)", color: "var(--fg-2)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase" }}>
+            <span key={si} style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: "var(--fs-10)", fontFamily: "var(--font-label)", color: "var(--fg-2)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase" }}>
               <span style={{ width: 10, height: 2, background: s.color ?? CHANNEL_COLORS[si % CHANNEL_COLORS.length]! }} />
               {s.label ?? `SERIES ${si + 1}`}
             </span>

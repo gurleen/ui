@@ -53,7 +53,7 @@ export function SideNav({ items = [], active, defaultActive, onChange, collapsed
               height: 32, padding: collapsed ? 0 : "0 var(--sp-5)",
               display: "flex", alignItems: "center", justifyContent: collapsed ? "center" : "flex-start",
               gap: 10,
-              fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.06em", textTransform: "uppercase",
+              fontFamily: "var(--font-ui)", fontSize: 11, letterSpacing: "0.06em", textTransform: "uppercase",
               background: on ? "var(--grad-btn)" : "transparent", color: on ? "var(--fg-1)" : "var(--fg-2)",
               fontWeight: on ? 600 : 400, border: "none", borderRadius: "var(--radius-1)",
               cursor: disabled ? "not-allowed" : "pointer", opacity: disabled ? 0.4 : 1,

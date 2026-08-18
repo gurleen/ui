@@ -43,7 +43,7 @@ export function MacroKey({ index, label, hotkey, state = "ready", channel, onCli
         alignItems: "flex-start", justifyContent: "space-between", padding: 5,
         background: hov && state === "ready" ? "var(--grad-btn-hover)" : s.bg,
         border: `1px solid ${s.border}`, borderBottomColor: prs ? s.border : (isEmpty ? "var(--line-1)" : "var(--btn-border-bottom)"),
-        borderRadius: "var(--radius-1)", fontFamily: "var(--font-mono)",
+        borderRadius: "var(--radius-1)", fontFamily: "var(--font-ui)",
         boxShadow: isEmpty ? "none" : prs ? "var(--bevel-pressed)" : "var(--bevel-raised)",
         transform: prs ? "translateY(1px)" : "none", cursor: isEmpty ? "default" : "pointer",
         color: state === "running" ? "var(--tally-pvw)" : state === "armed" ? "var(--warn)" : "var(--fg-1)", ...style,

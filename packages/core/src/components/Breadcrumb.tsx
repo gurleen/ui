@@ -23,7 +23,7 @@ export function Breadcrumb({ items = [], separator = "›", onNavigate, style }:
   return (
     <nav aria-label="Breadcrumb" style={{
       display: "flex", alignItems: "center", flexWrap: "wrap", gap: "2px 4px",
-      fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.04em",
+      fontFamily: "var(--font-ui)", fontSize: 11, letterSpacing: "0.04em",
       textTransform: "uppercase", lineHeight: 1,
       ...style,
     }}>

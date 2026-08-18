@@ -63,11 +63,11 @@ export function HeatGrid({
   const hasRowLabels = rowLabels.length > 0;
 
   return (
-    <div style={{ display: "inline-flex", flexDirection: "column", gap: 4, fontFamily: "var(--font-mono)", ...style }}>
+    <div style={{ display: "inline-flex", flexDirection: "column", gap: 4, ...style }}>
       {colLabels.length > 0 && (
         <div style={{ display: "flex", gap, marginLeft: hasRowLabels ? 76 : 0 }}>
           {colLabels.map((c, i) => (
-            <span key={i} style={{ width: cellSize, textAlign: "center", fontSize: 9, color: "var(--fg-3)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase", overflow: "hidden", whiteSpace: "nowrap" }}>{c}</span>
+            <span key={i} style={{ width: cellSize, textAlign: "center", fontFamily: "var(--font-label)", fontSize: 9, color: "var(--fg-3)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase", overflow: "hidden", whiteSpace: "nowrap" }}>{c}</span>
           ))}
         </div>
       )}
@@ -75,7 +75,7 @@ export function HeatGrid({
       {data.map((row, ri) => (
         <div key={ri} style={{ display: "flex", gap, alignItems: "center" }}>
           {hasRowLabels && (
-            <span style={{ width: 72, marginRight: 4, textAlign: "right", fontSize: "var(--fs-10)", color: "var(--fg-2)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{rowLabels[ri] ?? ""}</span>
+            <span style={{ width: 72, marginRight: 4, textAlign: "right", fontFamily: "var(--font-label)", fontSize: "var(--fs-10)", color: "var(--fg-2)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{rowLabels[ri] ?? ""}</span>
           )}
           {row.map((v, ci) => {
             const empty = v === null || v === undefined || Number.isNaN(v);
@@ -91,7 +91,7 @@ export function HeatGrid({
               >
                 {c && <span style={{ position: "absolute", inset: 0, background: c.fill, opacity: c.opacity }} />}
                 {showValues && !empty && (
-                  <span style={{ position: "relative", fontSize: 9, fontWeight: "var(--fw-semi)", color: "var(--fg-1)", fontFeatureSettings: "var(--numeric-features)" }}>{valueFormat(v as number)}</span>
+                  <span style={{ position: "relative", fontFamily: "var(--font-data)", fontSize: 9, fontWeight: "var(--fw-semi)", color: "var(--fg-1)", fontFeatureSettings: "var(--numeric-features)" }}>{valueFormat(v as number)}</span>
                 )}
               </span>
             );
@@ -101,7 +101,7 @@ export function HeatGrid({
 
       {legend && (
         <div style={{ display: "flex", alignItems: "center", gap: 6, marginLeft: hasRowLabels ? 76 : 0, paddingTop: 2 }}>
-          <span style={{ fontSize: 9, color: "var(--fg-3)", fontFeatureSettings: "var(--numeric-features)" }}>{valueFormat(lo)}</span>
+          <span style={{ fontFamily: "var(--font-data)", fontSize: 9, color: "var(--fg-3)", fontFeatureSettings: "var(--numeric-features)" }}>{valueFormat(lo)}</span>
           <span style={{ display: "flex", height: 6, width: 96, borderRadius: "var(--radius-1)", overflow: "hidden", boxShadow: "var(--inset-well)" }}>
             {Array.from({ length: 12 }, (_, i) => {
               const v = lo + ((hi - lo) * i) / 11;
@@ -109,7 +109,7 @@ export function HeatGrid({
               return <span key={i} style={{ flex: 1, background: c.fill, opacity: c.opacity }} />;
             })}
           </span>
-          <span style={{ fontSize: 9, color: "var(--fg-3)", fontFeatureSettings: "var(--numeric-features)" }}>{valueFormat(hi)}</span>
+          <span style={{ fontFamily: "var(--font-data)", fontSize: 9, color: "var(--fg-3)", fontFeatureSettings: "var(--numeric-features)" }}>{valueFormat(hi)}</span>
         </div>
       )}
     </div>

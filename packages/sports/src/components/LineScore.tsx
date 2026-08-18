@@ -45,7 +45,7 @@ export function LineScore({ away, home, innings = 9, currentInning, dense = fals
     <div style={{ display: "grid", gridTemplateColumns: template, borderTop: "1px solid #ffffff08" }}>
       <span style={{ display: "flex", alignItems: "center", gap: 5, height: rowH, paddingLeft: 6, minWidth: 0 }}>
         <span style={{ width: 3, height: 12, background: team.color ?? (isHome ? "var(--ch-1)" : "var(--ch-2)"), flexShrink: 0 }} />
-        <span style={{ fontSize: "var(--fs-11)", fontWeight: "var(--fw-semi)", color: "var(--fg-1)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase", overflow: "hidden", textOverflow: "ellipsis" }}>{team.abbr}</span>
+        <span style={{ fontFamily: "var(--font-data)", fontSize: "var(--fs-11)", fontWeight: "var(--fw-semi)", color: "var(--fg-1)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase", overflow: "hidden", textOverflow: "ellipsis" }}>{team.abbr}</span>
       </span>
       {Array.from({ length: count }, (_, i) => {
         const v = team.innings?.[i];
@@ -62,7 +62,7 @@ export function LineScore({ away, home, innings = 9, currentInning, dense = fals
 
   return (
     <div style={{
-      fontFamily: "var(--font-mono)", fontSize: "var(--fs-11)", background: "#0a0d10",
+      fontFamily: "var(--font-data)", fontSize: "var(--fs-11)", background: "#0a0d10",
       border: "1px solid var(--line-1)", borderRadius: "var(--radius-1)", boxShadow: "var(--inset-input)", overflowX: "auto", ...style,
     }}>
       <div style={{ display: "grid", gridTemplateColumns: template, background: "var(--bg-3)", borderBottom: "1px solid var(--line-2)" }}>
@@ -75,7 +75,7 @@ export function LineScore({ away, home, innings = 9, currentInning, dense = fals
         ))}
         <span />
         {["R", "H", "E"].map((h) => (
-          <span key={h} style={{ height: rowH, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 9, fontWeight: "var(--fw-semi)", letterSpacing: "0.1em", color: "var(--fg-2)" }}>{h}</span>
+          <span key={h} style={{ height: rowH, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-label)", fontSize: 9, fontWeight: "var(--fw-semi)", letterSpacing: "0.1em", color: "var(--fg-2)" }}>{h}</span>
         ))}
       </div>
       {teamRow(away, false)}

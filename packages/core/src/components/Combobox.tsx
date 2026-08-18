@@ -157,7 +157,7 @@ export function Combobox({
   const hiId = hiIdx >= 0 ? `${listId}-opt-${hiIdx}` : undefined;
 
   return (
-    <div style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: "var(--font-mono)", ...(isPercent ? { width, minWidth: 0 } : {}) }}>
+    <div style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: "var(--font-ui)", ...(isPercent ? { width, minWidth: 0 } : {}) }}>
       {label && (
         <label htmlFor={listId + "-input"} style={{ fontSize: 10, color: "var(--fg-2)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase", whiteSpace: "nowrap" }}>
           {label}
@@ -206,7 +206,7 @@ export function Combobox({
             style={{
               flex: 1, minWidth: 0, height: "100%", padding: `0 ${showClear ? 36 : 22}px 0 6px`,
               background: "transparent", border: "none", outline: "none",
-              fontSize: 11, fontFamily: "var(--font-mono)", color: "var(--fg-1)",
+              fontSize: 11, fontFamily: "var(--font-ui)", color: "var(--fg-1)",
               cursor: disabled ? "not-allowed" : "text",
             }}
           />
@@ -220,7 +220,7 @@ export function Combobox({
               style={{
                 position: "absolute", right: 18, top: "50%", transform: "translateY(-50%)",
                 width: 14, height: 14, padding: 0, border: "none", background: "transparent",
-                color: "var(--fg-2)", fontSize: 11, lineHeight: 1, cursor: "pointer", fontFamily: "var(--font-mono)",
+                color: "var(--fg-2)", fontSize: 11, lineHeight: 1, cursor: "pointer", fontFamily: "var(--font-ui)",
               }}
             >×</button>
           )}
@@ -236,7 +236,7 @@ export function Combobox({
               position: "absolute", top: "calc(100% + 4px)", left: 0, right: 0, zIndex: 200,
               maxHeight: 180, overflowY: "auto",
               background: "var(--grad-panel)", border: "1px solid var(--line-3)", borderRadius: "var(--radius-1)",
-              boxShadow: "var(--shadow-overlay)", padding: 4, fontFamily: "var(--font-mono)",
+              boxShadow: "var(--shadow-overlay)", padding: 4, fontFamily: "var(--font-ui)",
             }}
           >
             {filtered.length === 0 && (

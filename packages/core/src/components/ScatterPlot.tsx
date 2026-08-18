@@ -102,7 +102,7 @@ function Marker({
           textAnchor="middle"
           dominantBaseline="central"
           fill={p.labelColor ?? (p.shape === "ring" || p.shape === "cross" ? color : "var(--fg-inverse)")}
-          style={{ fontSize: Math.max(7, r * 1.1), fontWeight: 700, fontFamily: "var(--font-mono)", pointerEvents: "none" }}
+          style={{ fontSize: Math.max(7, r * 1.1), fontWeight: 700, fontFamily: "var(--font-data)", pointerEvents: "none" }}
         >
           {p.label}
         </text>
@@ -158,7 +158,7 @@ export function ScatterPlot({
   const yt = Array.isArray(yTicks) ? yTicks : niceTicks(yd[0], yd[1], yTicks);
 
   return (
-    <div ref={ref} style={{ width, fontFamily: "var(--font-mono)", ...style }}>
+    <div ref={ref} style={{ width, fontFamily: "var(--font-data)", ...style }}>
       <svg
         width={w}
         height={svgH}
@@ -187,10 +187,10 @@ export function ScatterPlot({
         ))}
 
         {axes && yt.map((t, i) => (
-          <text key={`ty${i}`} x={padL - 5} y={sy(t)} textAnchor="end" dominantBaseline="middle" fill="var(--fg-3)" style={{ fontSize: 9, fontFeatureSettings: "var(--numeric-features)" }}>{yFormat(t)}</text>
+          <text key={`ty${i}`} x={padL - 5} y={sy(t)} textAnchor="end" dominantBaseline="middle" fill="var(--fg-3)" style={{ fontSize: 9, fontFamily: "var(--font-data)", fontFeatureSettings: "var(--numeric-features)" }}>{yFormat(t)}</text>
         ))}
         {axes && xt.map((t, i) => (
-          <text key={`tx${i}`} x={sx(t)} y={padT + plotH + 11} textAnchor="middle" fill="var(--fg-3)" style={{ fontSize: 9, fontFeatureSettings: "var(--numeric-features)" }}>{xFormat(t)}</text>
+          <text key={`tx${i}`} x={sx(t)} y={padT + plotH + 11} textAnchor="middle" fill="var(--fg-3)" style={{ fontSize: 9, fontFamily: "var(--font-data)", fontFeatureSettings: "var(--numeric-features)" }}>{xFormat(t)}</text>
         ))}
       </svg>
     </div>

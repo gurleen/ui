@@ -64,7 +64,7 @@ export function LauncherTile({
         transform: pressed ? "translateY(1px)" : "none",
         cursor: disabled ? "not-allowed" : "pointer",
         opacity: disabled ? 0.5 : 1,
-        fontFamily: "var(--font-mono)",
+        fontFamily: "var(--font-ui)",
         ...style,
       }}
     >

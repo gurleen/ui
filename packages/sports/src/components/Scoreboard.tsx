@@ -58,7 +58,7 @@ function Score({ value, size }: { value: number; size: "md" | "lg" }) {
   return (
     <span style={{
       fontSize: size === "lg" ? "var(--fs-28)" : "var(--fs-20)", fontWeight: "var(--fw-bold)", color: "var(--fg-1)",
-      fontFeatureSettings: "var(--numeric-features)", lineHeight: "var(--lh-tight)",
+      fontFamily: "var(--font-data)", fontFeatureSettings: "var(--numeric-features)", lineHeight: "var(--lh-tight)",
     }}>{value}</span>
   );
 }
@@ -76,7 +76,7 @@ export function Scoreboard({ away, home, period, clock, status = "live", detail,
     <div style={{
       display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, padding: size === "lg" ? "10px 14px" : "8px 10px",
       background: "var(--grad-panel)", border: "1px solid var(--line-2)", borderRadius: "var(--radius-1)",
-      boxShadow: "var(--shadow-panel)", fontFamily: "var(--font-mono)", ...style,
+      boxShadow: "var(--shadow-panel)", fontFamily: "var(--font-ui)", ...style,
     }}>
       <div style={{ display: "flex", alignItems: "center", gap: 10, flex: 1, minWidth: 0 }}>
         {dot("away")}
@@ -85,16 +85,16 @@ export function Scoreboard({ away, home, period, clock, status = "live", detail,
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2, flexShrink: 0, minWidth: 92 }}>
-        <span style={{ fontSize: 9, fontWeight: "var(--fw-semi)", letterSpacing: "var(--label-tracking-wide)", color: st.color, textTransform: "uppercase" }}>{st.label}</span>
-        {period && <span style={{ fontSize: "var(--fs-11)", color: "var(--fg-2)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase" }}>{period}</span>}
+        <span style={{ fontFamily: "var(--font-label)", fontSize: 9, fontWeight: "var(--fw-semi)", letterSpacing: "var(--label-tracking-wide)", color: st.color, textTransform: "uppercase" }}>{st.label}</span>
+        {period && <span style={{ fontFamily: "var(--font-label)", fontSize: "var(--fs-11)", color: "var(--fg-2)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase" }}>{period}</span>}
         {clock && (
           <span style={{
             padding: "1px 6px", background: "#04050699", border: "1px solid var(--line-1)", borderRadius: "var(--radius-1)",
             boxShadow: "var(--inset-well)", color: "var(--led-amber)", textShadow: "var(--led-glow-amber)",
-            fontSize: size === "lg" ? "var(--fs-16)" : "var(--fs-13)", fontWeight: "var(--fw-semi)", fontFeatureSettings: "var(--numeric-features)",
+            fontFamily: "var(--font-data)", fontSize: size === "lg" ? "var(--fs-16)" : "var(--fs-13)", fontWeight: "var(--fw-semi)", fontFeatureSettings: "var(--numeric-features)",
           }}>{clock}</span>
         )}
-        {detail && <span style={{ fontSize: 9, color: "var(--fg-3)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase", whiteSpace: "nowrap" }}>{detail}</span>}
+        {detail && <span style={{ fontFamily: "var(--font-label)", fontSize: 9, color: "var(--fg-3)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase", whiteSpace: "nowrap" }}>{detail}</span>}
         {children}
       </div>
 

@@ -1,6 +1,6 @@
 # TeamChip
 
-Team identity in one line: a color bar, the abbreviation, and optionally the nickname and record. The identity primitive `Scoreboard`, `PlayerCard` and `StandingsTable` all embed.
+Team identity in one line: a color bar, the abbreviation, and optionally the nickname and record. The identity primitive `Scoreboard`, `PlayerCard` and `StandingsTable` all embed. The name uses `--font-copy`; abbreviation and record use `--font-data`.
 
 ```jsx
 <TeamChip abbr="BOS" name="Celtics" color="#007a33" record="48-22" />

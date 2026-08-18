@@ -96,9 +96,9 @@ export function BoxScore({
     width: nameWidth,
     render: (value, row: BoxScoreRow) => (
       <span style={{ display: "inline-flex", alignItems: "baseline", gap: 5, minWidth: 0 }}>
-        <span style={{ overflow: "hidden", textOverflow: "ellipsis" }}>{value}</span>
+        <span style={{ fontFamily: "var(--font-copy)", overflow: "hidden", textOverflow: "ellipsis" }}>{value}</span>
         {row.starter && row.position && (
-          <span style={{ fontSize: 9, color: "var(--fg-3)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase" }}>{row.position}</span>
+          <span style={{ fontFamily: "var(--font-label)", fontSize: 9, color: "var(--fg-3)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase" }}>{row.position}</span>
         )}
       </span>
     ),
@@ -110,7 +110,7 @@ export function BoxScore({
   const template = cols.map((c) => c.width || "1fr").join(" ");
 
   return (
-    <div style={{ fontFamily: "var(--font-mono)", ...style }}>
+    <div style={{ ...style }}>
       <DataGrid
         columns={cols}
         rows={rows}
@@ -128,6 +128,7 @@ export function BoxScore({
           {cols.map((c, i) => (
             <span key={i} style={{
               padding: "0 6px", textAlign: c.align || "left", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+              fontFamily: i === 0 ? "var(--font-label)" : "var(--font-data)",
               fontFeatureSettings: '"tnum" 1, "zero" 1',
               letterSpacing: i === 0 ? "var(--label-tracking)" : undefined,
             }}>{i === 0 ? totalsLabel : totals[c.key]}</span>

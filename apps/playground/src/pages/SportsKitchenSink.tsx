@@ -23,6 +23,7 @@ import {
   formatClock,
   ordinalPeriod,
   slashLine,
+  statcastPitchPath,
 } from "@hydra-tv/sports";
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
@@ -35,6 +36,19 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 const BOS = "#007a33";
 const DEN = "#4a7fc1";
+
+const FF_PATH = statcastPitchPath({
+  x0: 1.791,
+  y0: 50.002,
+  z0: 5.871,
+  vx0: -8.44,
+  vy0: -136.646,
+  vz0: -7.235,
+  ax: 19.496,
+  ay: 28.042,
+  az: -26.794,
+  plateTime: 0.4,
+});
 
 // Deterministic pseudo-random shots, so the page looks the same every reload.
 const SHOTS = Array.from({ length: 90 }, (_, i) => {
@@ -281,7 +295,7 @@ export function SportsKitchenSink() {
             focused={hovered}
             onFocus={(i) => setHovered(i)}
             pitches={[
-              { x: -0.21, z: 2.44, type: "FF", result: "called", number: 1, label: "FF 96.2 — called strike" },
+              { x: 0.003, z: 1.367, type: "FF", result: "called", number: 1, path: FF_PATH, label: "FF 94.0 — called strike" },
               { x: 0.88, z: 1.42, type: "SL", result: "swinging", number: 2, label: "SL 87.4 — swinging strike" },
               { x: -1.12, z: 3.71, type: "FF", result: "ball", number: 3, label: "FF 96.8 — ball" },
               { x: 0.42, z: 3.15, type: "CU", result: "foul", number: 4 },
@@ -300,7 +314,7 @@ export function SportsKitchenSink() {
             focused={hovered}
             onFocus={(i) => setHovered(i)}
             pitches={[
-              { count: "0-0", type: "FF", velocity: 96.2, spin: 2418, hb: -7.2, ivb: 16.4, result: "CALLED STRIKE", kind: "strike", x: -0.21, z: 2.44 },
+              { count: "0-0", type: "FF", velocity: 94.0, spin: 2418, hb: -7.2, ivb: 16.4, result: "CALLED STRIKE", kind: "strike", x: 0.003, z: 1.367 },
               { count: "0-1", type: "SL", velocity: 87.4, spin: 2611, hb: 14.1, ivb: 2.8, result: "SWINGING STRIKE", kind: "strike", x: 0.88, z: 1.42 },
               { count: "0-2", type: "FF", velocity: 96.8, spin: 2402, hb: -6.8, ivb: 15.9, result: "BALL", kind: "ball", x: -1.12, z: 3.71 },
               { count: "1-2", type: "CU", velocity: 81.0, spin: 2790, hb: 9.4, ivb: -12.6, result: "FOUL", kind: "foul", x: 0.42, z: 3.15 },

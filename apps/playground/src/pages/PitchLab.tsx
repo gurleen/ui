@@ -12,6 +12,7 @@ import {
   formatCount,
   inningLabel,
   slashLine,
+  statcastPitchPath,
   type BattedBall,
   type Pitch,
 } from "@hydra-tv/sports";
@@ -23,7 +24,7 @@ const ZONE_TOP = 3.42;
 const ZONE_BOTTOM = 1.61;
 
 const AT_BAT = [
-  { count: "0-0", type: "FF", velocity: 96.2, spin: 2418, hb: -7.2, ivb: 16.4, result: "CALLED STRIKE", kind: "strike" as const, x: -0.21, z: 2.44 },
+  { count: "0-0", type: "FF", velocity: 94.0, spin: 2418, hb: -7.2, ivb: 16.4, result: "CALLED STRIKE", kind: "strike" as const, x: 0.003, z: 1.367 },
   { count: "0-1", type: "SL", velocity: 87.4, spin: 2611, hb: 14.1, ivb: 2.8, result: "SWINGING STRIKE", kind: "strike" as const, x: 0.88, z: 1.42 },
   { count: "0-2", type: "FF", velocity: 96.8, spin: 2402, hb: -6.8, ivb: 15.9, result: "BALL", kind: "ball" as const, x: -1.12, z: 3.71 },
   { count: "1-2", type: "CU", velocity: 81.0, spin: 2790, hb: 9.4, ivb: -12.6, result: "FOUL", kind: "foul" as const, x: 0.42, z: 3.15 },
@@ -39,6 +40,19 @@ const RESULT_KIND: Record<string, Pitch["result"]> = {
   FOUL: "foul",
 };
 
+const FF_PATH = statcastPitchPath({
+  x0: 1.791,
+  y0: 50.002,
+  z0: 5.871,
+  vx0: -8.44,
+  vy0: -136.646,
+  vz0: -7.235,
+  ax: 19.496,
+  ay: 28.042,
+  az: -26.794,
+  plateTime: 0.4,
+});
+
 const PITCHES: Pitch[] = AT_BAT.map((p, i) => ({
   x: p.x,
   z: p.z,
@@ -46,6 +60,7 @@ const PITCHES: Pitch[] = AT_BAT.map((p, i) => ({
   result: RESULT_KIND[p.result] ?? "inplay",
   number: i + 1,
   label: `${p.type} ${p.velocity.toFixed(1)} — ${p.result}`,
+  ...(i === 0 ? { path: FF_PATH } : {}),
 }));
 
 /** Deterministic batted-ball spread for the season view. */

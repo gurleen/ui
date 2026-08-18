@@ -6,5 +6,5 @@ export default defineConfig({
   dts: true,
   sourcemap: true,
   clean: true,
-  external: ["react", "react-dom", "@hydra-tv/ui"],
+  external: ["react", "react-dom", "@hydra-tv/ui", "three", /^three\//],
 });

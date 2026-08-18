@@ -44,7 +44,7 @@ import { Scoreboard, ShotChart } from "@hydra-tv/sports";
 |---|---|
 | [`FieldDiagram`](src/components/FieldDiagram.md) | Field markings. Exports `fieldDomain()` / `sprayToXY()`. |
 | [`SprayChart`](src/components/SprayChart.md) | Batted balls plotted on the field. |
-| [`StrikeZonePlot`](src/components/StrikeZonePlot.md) | Pitch locations against the rule-book zone. |
+| [`StrikeZonePlot`](src/components/StrikeZonePlot.md) | Pitch locations against the rule-book zone. 2D/3D toggle. Exports `statcastPitchPath()`. |
 | [`PitchSequence`](src/components/PitchSequence.md) | At-bat pitch log with location thumbnails. |
 | [`CountDisplay`](src/components/CountDisplay.md) | Balls/strikes/outs lamp rows. Exports `formatCount()`. |
 | [`BaseState`](src/components/BaseState.md) | Occupied-base diamond with out pips. |

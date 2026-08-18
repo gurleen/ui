@@ -1,5 +1,6 @@
-import { useState, type CSSProperties } from "react";
+import { useId, useState, type CSSProperties } from "react";
 import { ScatterPlot, type ScatterPoint } from "@hydra-tv/ui";
+import { StrikeZone3D } from "../internal/StrikeZone3D";
 
 export type PitchResult = "ball" | "called" | "swinging" | "foul" | "inplay" | "hbp";
 
@@ -16,6 +17,82 @@ export interface Pitch {
   number?: string | number;
   /** Native hover tooltip */
   label?: string;
+  /** Catcher's-view samples in feet, release → plate. Same x/z as the marker. `y` is distance from the plate (Statcast); needed for the 3D flight path. */
+  path?: { x: number; y?: number; z: number }[];
+}
+
+/** Statcast 9-parameter constant-acceleration model plus time-to-plate. Feet and seconds. */
+export interface StatcastPitchKinematics {
+  x0: number;
+  y0: number;
+  z0: number;
+  vx0: number;
+  vy0: number;
+  vz0: number;
+  ax: number;
+  ay: number;
+  az: number;
+  /** Upper bound on sample time, seconds from the 50-ft mark. */
+  plateTime: number;
+}
+
+/** Front of the plate, in feet from Statcast's origin at the back point. */
+const PLATE_FRONT_Y = 17 / 12;
+
+function at(p0: number, v0: number, a: number, t: number): number {
+  return p0 + v0 * t + 0.5 * a * t * t;
+}
+
+/**
+ * Time when `y(t)` reaches the front of the plate (`y ≈ 1.417`), capped by `plateTime`.
+ * Falls back to `plateTime` if the quadratic has no root in `(0, plateTime]`.
+ */
+function timeToPlate(k: StatcastPitchKinematics): number {
+  const cap = k.plateTime;
+  if (!(cap > 0)) return 0;
+  // ½ ay t² + vy0 t + (y0 − y_plate) = 0
+  const a = 0.5 * k.ay;
+  const b = k.vy0;
+  const c = k.y0 - PLATE_FRONT_Y;
+  const inRange = (t: number) => t > 0 && t <= cap + 1e-9;
+
+  if (Math.abs(a) < 1e-12) {
+    if (Math.abs(b) < 1e-12) return cap;
+    const t = -c / b;
+    return inRange(t) ? Math.min(t, cap) : cap;
+  }
+
+  const disc = b * b - 4 * a * c;
+  if (disc < 0) return cap;
+  const sqrt = Math.sqrt(disc);
+  const t1 = (-b - sqrt) / (2 * a);
+  const t2 = (-b + sqrt) / (2 * a);
+  const candidates = [t1, t2].filter(inRange);
+  if (candidates.length === 0) return cap;
+  return Math.min(Math.min(...candidates), cap);
+}
+
+/**
+ * Samples Statcast's 9-parameter model from the 50-ft mark (`t = 0`, `y0 ≈ 50`) to the
+ * front of the plate. Catcher's-view overlay uses `{ x, z }` per sample; `y` is kept so
+ * a side view can reuse the same polyline later.
+ */
+export function statcastPitchPath(
+  k: StatcastPitchKinematics,
+  samples = 32,
+): { x: number; y: number; z: number }[] {
+  const n = Math.max(2, Math.floor(samples));
+  const tEnd = timeToPlate(k);
+  const out: { x: number; y: number; z: number }[] = [];
+  for (let i = 0; i < n; i++) {
+    const t = tEnd * (i / (n - 1));
+    out.push({
+      x: at(k.x0, k.vx0, k.ax, t),
+      y: at(k.y0, k.vy0, k.ay, t),
+      z: at(k.z0, k.vz0, k.az, t),
+    });
+  }
+  return out;
 }
 
 /** Pitch locations against the rule-book strike zone, from the catcher's view. */
@@ -24,7 +101,7 @@ export interface StrikeZonePlotProps {
   /** Top of the zone in feet; varies with the batter's stance */
   zoneTop?: number;
   zoneBottom?: number;
-  /** "pitcher" mirrors the x axis to read from the mound */
+  /** "pitcher" mirrors x in 2D; in 3D it places the camera on the mound */
   view?: "catcher" | "pitcher";
   colorBy?: "type" | "result" | "none";
   /** Colors per pitch-type code; codes not listed fall back to the data-viz palette in order */
@@ -44,6 +121,13 @@ export interface StrikeZonePlotProps {
    */
   focused?: number | null;
   onFocus?: (index: number | null, pitch: Pitch | null) => void;
+  /**
+   * Controlled 2D / 3D display. Omit for an uncontrolled toggle at the
+   * base of the plot (defaults to 2D). 3D uses the same catcher/pitcher
+   * `view`, zoomed out so release height is in frame.
+   */
+  mode?: "2d" | "3d";
+  onModeChange?: (mode: "2d" | "3d") => void;
   style?: CSSProperties;
 }
 
@@ -90,10 +174,20 @@ export function StrikeZonePlot({
   onPitchClick,
   focused,
   onFocus,
+  mode,
+  onModeChange,
   style,
 }: StrikeZonePlotProps) {
+  const rawId = useId();
+  const clipId = `hz-sz-path-${rawId.replace(/[^a-zA-Z0-9]/g, "")}`;
   const [internal, setInternal] = useState<number | null>(null);
+  const [internalMode, setInternalMode] = useState<"2d" | "3d">("2d");
   const active = focused !== undefined ? focused : internal;
+  const displayMode = mode !== undefined ? mode : internalMode;
+  const setDisplayMode = (next: "2d" | "3d") => {
+    if (mode === undefined) setInternalMode(next);
+    onModeChange?.(next);
+  };
   const report = (index: number | null) => {
     if (focused === undefined) setInternal(index);
     onFocus?.(index, index == null ? null : pitches[index] ?? null);
@@ -130,6 +224,20 @@ export function StrikeZonePlot({
   const stroke = { fill: "none", stroke: "var(--line-3)", strokeWidth: 1, vectorEffect: "non-scaling-stroke" as const };
   const zh = zoneTop - zoneBottom;
 
+  const focusedPitch = active != null ? pitches[active] : undefined;
+  const pathPts = focusedPitch?.path;
+  const pathPoints =
+    pathPts && pathPts.length >= 2 && focusedPitch
+      ? pathPts
+          .map((pt, i) => {
+            const x = i === pathPts.length - 1 ? focusedPitch.x : pt.x;
+            const z = i === pathPts.length - 1 ? focusedPitch.z : pt.z;
+            return `${x * flip},${z}`;
+          })
+          .join(" ")
+      : null;
+  const pathColor = focusedPitch ? colorFor(focusedPitch) : undefined;
+
   const background = (
     <g>
       {showShadowZone && (
@@ -146,6 +254,36 @@ export function StrikeZonePlot({
       )}
       {/* Plate, drawn in perspective at the foot of the zone */}
       <polygon points={`${-ZONE_HALF_WIDTH},0.34 ${-ZONE_HALF_WIDTH},0.2 0,0.06 ${ZONE_HALF_WIDTH},0.2 ${ZONE_HALF_WIDTH},0.34`} {...stroke} />
+      {pathPoints && pathColor && (
+        <g>
+          <defs>
+            <clipPath id={clipId}>
+              <rect x={xDomain[0]} y={yDomain[0]} width={xDomain[1] - xDomain[0]} height={yDomain[1] - yDomain[0]} />
+            </clipPath>
+          </defs>
+          <g clipPath={`url(#${clipId})`}>
+            <polyline
+              points={pathPoints}
+              fill="none"
+              stroke={pathColor}
+              strokeWidth={3}
+              strokeOpacity={0.25}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              vectorEffect="non-scaling-stroke"
+            />
+            <polyline
+              points={pathPoints}
+              fill="none"
+              stroke={pathColor}
+              strokeWidth={1.25}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              vectorEffect="non-scaling-stroke"
+            />
+          </g>
+        </g>
+      )}
     </g>
   );
 
@@ -160,19 +298,35 @@ export function StrikeZonePlot({
 
   return (
     <div style={{ width, fontFamily: "var(--font-data)", ...style }}>
-      <ScatterPlot
-        points={points}
-        xDomain={xDomain}
-        yDomain={yDomain}
-        aspect={(xDomain[1] - xDomain[0]) / (yDomain[1] - yDomain[0])}
-        width={width}
-        height={height}
-        axes={false}
-        pointSize={markerSize}
-        background={background}
-        onPointClick={onPitchClick ? (_p, i) => onPitchClick(pitches[i]!, i) : undefined}
-        onPointHover={(_p, i) => report(i)}
-      />
+      {displayMode === "3d" ? (
+        <StrikeZone3D
+          pitches={pitches.map((p) => ({ x: p.x, z: p.z, color: colorFor(p), path: p.path, number: p.number, label: p.label }))}
+          zoneTop={zoneTop}
+          zoneBottom={zoneBottom}
+          view={view}
+          showShadowZone={showShadowZone}
+          showGrid={showGrid}
+          width={width}
+          height={height}
+          focused={active}
+          onFocus={report}
+          onPitchClick={onPitchClick ? (i) => onPitchClick(pitches[i]!, i) : undefined}
+        />
+      ) : (
+        <ScatterPlot
+          points={points}
+          xDomain={xDomain}
+          yDomain={yDomain}
+          aspect={(xDomain[1] - xDomain[0]) / (yDomain[1] - yDomain[0])}
+          width={width}
+          height={height}
+          axes={false}
+          pointSize={markerSize}
+          background={background}
+          onPointClick={onPitchClick ? (_p, i) => onPitchClick(pitches[i]!, i) : undefined}
+          onPointHover={(_p, i) => report(i)}
+        />
+      )}
       <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 10, paddingTop: 5, fontSize: 9, color: "var(--fg-2)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase" }}>
         {legend &&
           legendItems.map((it) => (
@@ -181,7 +335,30 @@ export function StrikeZonePlot({
               {it.label}
             </span>
           ))}
-        <span style={{ marginLeft: "auto", color: "var(--fg-3)" }}>{view === "catcher" ? "Catcher's view" : "Pitcher's view"}</span>
+        <span style={{ marginLeft: "auto", display: "inline-flex", alignItems: "center", gap: 10 }}>
+          <span style={{ display: "inline-flex", gap: 6 }}>
+            {(["2d", "3d"] as const).map((m) => (
+              <button
+                key={m}
+                type="button"
+                onClick={() => setDisplayMode(m)}
+                style={{
+                  background: "none",
+                  border: "none",
+                  padding: 0,
+                  cursor: "pointer",
+                  font: "inherit",
+                  letterSpacing: "inherit",
+                  textTransform: "inherit",
+                  color: displayMode === m ? "var(--fg-1)" : "var(--fg-3)",
+                }}
+              >
+                {m.toUpperCase()}
+              </button>
+            ))}
+          </span>
+          <span style={{ color: "var(--fg-3)" }}>{view === "catcher" ? "Catcher's view" : "Pitcher's view"}</span>
+        </span>
       </div>
     </div>
   );

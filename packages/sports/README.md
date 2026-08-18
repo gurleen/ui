@@ -7,7 +7,7 @@ Nothing here is useful outside sports, by design — that's why it's a separate 
 ## Install & setup
 
 ```json
-{ "dependencies": { "@hydra-tv/sports": "0.2.0", "@hydra-tv/tokens": "0.2.0" } }
+{ "dependencies": { "@hydra-tv/sports": "0.3.0", "@hydra-tv/tokens": "0.2.0" } }
 ```
 
 ```tsx

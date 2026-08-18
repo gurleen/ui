@@ -7,7 +7,7 @@ If your app isn't a broadcast/production-control tool, you almost certainly want
 ## Install & setup
 
 ```json
-{ "dependencies": { "@hydra-tv/broadcast": "0.2.0", "@hydra-tv/tokens": "0.2.0" } }
+{ "dependencies": { "@hydra-tv/broadcast": "0.3.0", "@hydra-tv/tokens": "0.2.0" } }
 ```
 
 ```tsx

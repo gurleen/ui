@@ -141,7 +141,7 @@ export function PitchLab() {
           />
         </Panel>
 
-        <Panel title="Sequence" padded={false} style={{ flex: "1 1 400px", minWidth: 360 }}>
+        <Panel title="Sequence" padded={false} style={{ flex: "1 1 500px", minWidth: 460 }}>
           <PitchSequence
             pitches={AT_BAT.slice(0, pitchIndex + 1)}
             zoneTop={ZONE_TOP}

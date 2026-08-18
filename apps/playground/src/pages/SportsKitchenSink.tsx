@@ -289,7 +289,7 @@ export function SportsKitchenSink() {
             ]}
           />
         </div>
-        <div style={{ flex: "1 1 340px", minWidth: 300 }}>
+        <div style={{ flex: "1 1 440px", minWidth: 400 }}>
           <PitchSequence
             zoneTop={3.42}
             zoneBottom={1.61}

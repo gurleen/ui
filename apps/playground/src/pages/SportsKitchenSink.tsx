@@ -308,6 +308,18 @@ export function SportsKitchenSink() {
             ]}
           />
         </div>
+        <div style={{ flex: "0 0 200px" }}>
+          <div style={{ fontFamily: "var(--font-label)", fontSize: 9, color: "var(--fg-3)", letterSpacing: "0.08em", textTransform: "uppercase", paddingBottom: 5 }}>
+            Empty at-bat (showEmpty)
+          </div>
+          <StrikeZonePlot zoneTop={3.42} zoneBottom={1.61} showEmpty pitches={[]} />
+        </div>
+        <div style={{ flex: "1 1 320px", minWidth: 280 }}>
+          <div style={{ fontFamily: "var(--font-label)", fontSize: 9, color: "var(--fg-3)", letterSpacing: "0.08em", textTransform: "uppercase", paddingBottom: 5 }}>
+            Empty sequence (showEmpty)
+          </div>
+          <PitchSequence zoneTop={3.42} zoneBottom={1.61} showEmpty showLocation pitches={[]} />
+        </div>
         <div style={{ flex: "1 1 300px", minWidth: 260 }}>
           <SprayChart battedBalls={BATTED} grassColor="#101a15" dirtColor="#1b1712" />
         </div>

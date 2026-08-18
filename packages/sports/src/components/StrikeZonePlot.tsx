@@ -37,6 +37,8 @@ export interface StrikeZonePlotProps {
   height?: number;
   markerSize?: number;
   legend?: boolean;
+  /** Keep the zone diagram at full size even when `pitches` is empty. */
+  showEmpty?: boolean;
   onPitchClick?: (pitch: Pitch, index: number) => void;
   /**
    * Controlled focused pitch index. Omit for uncontrolled hover-to-focus
@@ -74,6 +76,9 @@ const PALETTE = ["var(--ch-1)", "var(--ch-2)", "var(--ch-3)", "var(--ch-4)", "va
 
 const DIM = 0.22;
 
+/** Default plot height when `showEmpty` and no explicit `height` — keeps the 4×5 ft window stable. */
+const EMPTY_PLOT_HEIGHT = 250;
+
 export function StrikeZonePlot({
   pitches = [],
   zoneTop = 3.4,
@@ -87,6 +92,7 @@ export function StrikeZonePlot({
   height,
   markerSize = 6,
   legend = true,
+  showEmpty = false,
   onPitchClick,
   focused,
   onFocus,
@@ -100,6 +106,8 @@ export function StrikeZonePlot({
   };
   const xDomain: [number, number] = [-2, 2];
   const yDomain: [number, number] = [0, 5];
+  const aspect = (xDomain[1] - xDomain[0]) / (yDomain[1] - yDomain[0]);
+  const plotHeight = height ?? (showEmpty ? EMPTY_PLOT_HEIGHT : undefined);
   const flip = view === "pitcher" ? -1 : 1;
 
   const types = Array.from(new Set(pitches.map((p) => p.type).filter((t): t is string => Boolean(t))));
@@ -164,9 +172,9 @@ export function StrikeZonePlot({
         points={points}
         xDomain={xDomain}
         yDomain={yDomain}
-        aspect={(xDomain[1] - xDomain[0]) / (yDomain[1] - yDomain[0])}
+        aspect={aspect}
         width={width}
-        height={height}
+        height={plotHeight}
         axes={false}
         pointSize={markerSize}
         background={background}

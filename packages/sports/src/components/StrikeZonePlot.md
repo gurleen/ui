@@ -35,6 +35,7 @@ Statcast's own: `x` is `plate_x` in feet from the center of the plate (positive 
 | `height` | `number` | — | Omit it: the height keeps the 4×5 ft window square-scaled. |
 | `markerSize` | `number` | `6` | Marker radius in px. Large by default so `number` fits. |
 | `legend` | `boolean` | `true` | Follows `colorBy`. |
+| `showEmpty` | `boolean` | `false` | Keep the zone diagram at full size even when `pitches` is empty. Sets a default plot height so the frame does not collapse. |
 | `onPitchClick` | `(pitch, index) => void` | — | |
 | `focused` / `onFocus` | `number \| null` / `(index, pitch) => void` | — | Hovering a pitch fades the others. Omit `focused` for uncontrolled hover; pass the same index to `PitchSequence` to keep the two views in lockstep. |
 

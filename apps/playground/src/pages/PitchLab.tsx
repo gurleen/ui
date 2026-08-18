@@ -136,6 +136,7 @@ export function PitchLab() {
             zoneBottom={ZONE_BOTTOM}
             view={view}
             colorBy="result"
+            showEmpty
             focused={hovered != null && hovered <= pitchIndex ? hovered : null}
             onFocus={(i) => setHovered(i)}
           />
@@ -149,6 +150,8 @@ export function PitchLab() {
             view={view}
             showSpin
             showBreak
+            showEmpty
+            minRows={AT_BAT.length}
             selected={pitchIndex}
             onSelect={(i) => setPitchIndex(i)}
             focused={hovered != null && hovered <= pitchIndex ? hovered : null}

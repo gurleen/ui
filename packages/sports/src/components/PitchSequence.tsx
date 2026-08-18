@@ -36,6 +36,10 @@ export interface PitchSequenceProps {
   /** Horizontal and induced-vertical break columns (inches) */
   showBreak?: boolean;
   height?: number | string;
+  /** Keep the grid shell visible with blank rows when `pitches` is empty or shorter than `minRows`. */
+  showEmpty?: boolean;
+  /** Minimum row slots when `showEmpty` is set. Empty slots render as blank rows. */
+  minRows?: number;
   dense?: boolean;
   selected?: number;
   onSelect?: (index: number, pitch: SequencePitch) => void;
@@ -94,6 +98,8 @@ export function PitchSequence({
   showSpin = false,
   showBreak = false,
   height,
+  showEmpty = false,
+  minRows = 5,
   dense = false,
   selected,
   onSelect,
@@ -152,18 +158,36 @@ export function PitchSequence({
   ];
 
   const rows = pitches.map((p, i) => ({ ...p, _no: i + 1 }));
-  const handleSelect = onSelect ? (i: number, row: DataGridRow) => onSelect(i, row as SequencePitch) : undefined;
+  const padded =
+    showEmpty && rows.length < minRows
+      ? [
+          ...rows,
+          ...Array.from({ length: minRows - rows.length }, (_, i) => ({
+            _no: rows.length + i + 1,
+            _placeholder: true,
+          })),
+        ]
+      : rows;
+  const handleSelect = onSelect
+    ? (i: number, row: DataGridRow) => {
+        if ((row as { _placeholder?: boolean })._placeholder) return;
+        onSelect(i, row as SequencePitch);
+      }
+    : undefined;
 
   return (
     <DataGrid
       columns={columns}
-      rows={rows}
+      rows={padded}
       height={height}
       dense={dense}
       selected={selected}
       onSelect={handleSelect}
       focused={active}
-      onRowHover={(i) => report(i)}
+      onRowHover={(i, row) => {
+        if ((row as { _placeholder?: boolean })._placeholder) return;
+        report(i);
+      }}
       style={style}
     />
   );

@@ -25,6 +25,8 @@ Ordered pitch log for an at-bat: count, type, velocity, result, and a thumbnail 
 | `showSpin` | `boolean` | `false` | Adds an RPM column. |
 | `showBreak` | `boolean` | `false` | Adds HB / IVB columns (inches, signed, one decimal). |
 | `height` | `number \| string` | — | Scrolls internally with a sticky header when set. |
+| `showEmpty` | `boolean` | `false` | Keep the grid shell visible with blank rows when `pitches` is empty or shorter than `minRows`. |
+| `minRows` | `number` | `5` | Minimum row slots when `showEmpty` is set. Extra slots render as blank rows. |
 | `dense` | `boolean` | `false` | Shrinks the thumbnails to match the shorter rows. |
 | `selected` / `onSelect` | `number` / `(index, pitch) => void` | — | Click selection. Distinct from hover focus. |
 | `focused` / `onFocus` | `number \| null` / `(index, pitch) => void` | — | Hovering a row fades the others. Omit `focused` for uncontrolled hover; pass the same index to `StrikeZonePlot` to keep the two views in lockstep. |

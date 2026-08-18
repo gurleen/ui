@@ -1,6 +1,6 @@
 {
   "name": "@hydra-tv/tokens",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Design tokens (CSS custom properties) shared by @hydra-tv/ui and @hydra-tv/broadcast.",
   "license": "MIT",
   "type": "module",

@@ -1,6 +1,6 @@
 {
   "name": "@hydra-tv/sports",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Sports analytics components (scoreboards, box scores, shot charts, strike zones, spray charts) for basketball and baseball, built on @hydra-tv/ui and @hydra-tv/tokens.",
   "license": "MIT",
   "type": "module",
@@ -30,7 +30,7 @@
     "react-dom": ">=18"
   },
   "dependencies": {
-    "@hydra-tv/ui": "0.2.0",
+    "@hydra-tv/ui": "0.3.0",
     "@hydra-tv/tokens": "0.2.0"
   },
   "devDependencies": {

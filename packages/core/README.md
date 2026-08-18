@@ -9,7 +9,7 @@ Visual language: dense, dark-only, "tactile hardware" — beveled controls, rece
 Within this monorepo, add it as a workspace dependency:
 
 ```json
-{ "dependencies": { "@hydra-tv/ui": "0.2.0", "@hydra-tv/tokens": "0.2.0" } }
+{ "dependencies": { "@hydra-tv/ui": "0.3.0", "@hydra-tv/tokens": "0.2.0" } }
 ```
 
 In another repo, point at this one (path/version depend on how you're consuming it — see the root README's "Using this in another app" section), then in your app:

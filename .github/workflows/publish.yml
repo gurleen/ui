@@ -51,6 +51,9 @@ jobs:
       - name: Typecheck
         run: npm run typecheck
 
+      - name: Verify cross-package dependencies
+        run: node scripts/verify-cross-package-deps.mjs
+
       - name: Publish unpublished packages
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -42,7 +42,7 @@ import { Scoreboard, ShotChart } from "@hydra-tv/sports";
 ### Baseball
 | Component | What it is |
 |---|---|
-| [`FieldDiagram`](src/components/FieldDiagram.md) | Field markings. Exports `fieldDomain()` / `sprayToXY()`. |
+| [`FieldDiagram`](src/components/FieldDiagram.md) | Field markings. Optional `park` tricode for MLB walls. Exports `fieldDomain()` / `sprayToXY()`. |
 | [`SprayChart`](src/components/SprayChart.md) | Batted balls plotted on the field. |
 | [`StrikeZonePlot`](src/components/StrikeZonePlot.md) | Pitch locations against the rule-book zone. |
 | [`PitchSequence`](src/components/PitchSequence.md) | At-bat pitch log with location thumbnails. |
@@ -64,7 +64,7 @@ Don't work around this by passing tally tokens into the color props — they exi
 
 ## What this package deliberately doesn't do
 
-- **No league data.** No team colors, no logos, no headshots, no park dimensions. Every one of those is a prop: `color`, `logo`, `photo`, `fence`. Bundling them would mean shipping trademarked marks and a table that goes stale every season.
+- **No league data** (except park outlines). No team colors, no logos, no headshots. Those stay props: `color`, `logo`, `photo`. `SprayChart` / `FieldDiagram` do ship MLB wall geometry behind a `park` tricode (`BOS`, `NYY`, …), because a spray chart without Fenway's wall isn't Fenway — `fence` is still there for everything else, and the table will still go stale when a club moves.
 - **No stat math.** Components render numbers you have already computed. The only arithmetic in the whole package is formatting-level: win percentage in `StandingsTable`, made/attempted tallies in the chart legends, minutes summed in `RotationChart`, and the `formatIp`/`slashLine`/`formatCount` helpers. Rate stats, park factors and win-probability models are the app's business.
 - **No data fetching.** Nothing here knows about an API.
 

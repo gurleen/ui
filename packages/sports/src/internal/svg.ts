@@ -33,6 +33,18 @@ export function ringSectorCenter(cx: number, cy: number, r0: number, r1: number,
   return [cx + r * Math.cos(a), cy + r * Math.sin(a)];
 }
 
+/** Closed polygon from a ring of `[x, y]` points. */
+export function polyPath(pts: [number, number][]): string {
+  if (pts.length === 0) return "";
+  const [x0, y0] = pts[0]!;
+  let d = `M${x0},${y0}`;
+  for (let i = 1; i < pts.length; i++) {
+    const [x, y] = pts[i]!;
+    d += `L${x},${y}`;
+  }
+  return `${d}Z`;
+}
+
 /** Polyline through a radius function of angle — used for the outfield fence. */
 export function radialPath(cx: number, cy: number, fromDeg: number, toDeg: number, radiusAt: (deg: number) => number, steps = 64): string {
   const pts: string[] = [];

@@ -5,6 +5,7 @@ Baseball field markings — foul lines, outfield fence, infield dirt, base paths
 ```jsx
 <FieldDiagram grassColor="#0f1a14" dirtColor="#1c1712" showDistances style={{ maxWidth: 420 }} />
 <FieldDiagram fence={{ left: 310, center: 420, right: 302 }} />
+<FieldDiagram park="BOS" grassColor="#0f1a14" dirtColor="#1c1712" />
 ```
 
 ## Coordinates
@@ -16,10 +17,11 @@ Statcast's `hc_x`/`hc_y` are in a different, park-relative pixel space — conve
 ## Props
 | Prop | Type | Default | Notes |
 |---|---|---|---|
-| `fence` | `{ left, center, right }` | `{ 330, 400, 330 }` | Fence distances in feet. Intermediate distances are interpolated with a symmetric bulge through center, which produces realistic power alleys without per-park geometry. |
+| `fence` | `{ left, center, right }` | `{ 330, 400, 330 }` | Fence distances in feet. Intermediate distances are interpolated with a symmetric bulge through center, which produces realistic power alleys without per-park geometry. Ignored when `park` resolves. |
+| `park` | `MlbPark \| string` | — | MLB home-park tricode (`BOS`, `NYY`, …). Draws that ballpark's wall instead of the interpolated fence. Aliases (`ARI`→`AZ`, `OAK`→`ATH`, …) are accepted. Unknown values fall back to `fence`. |
 | `asLayer` | `boolean` | `false` | Render bare `<g>` markings for `ScatterPlot`'s `background` slot. `SprayChart` does this for you. |
 | `lineColor` | `string` | `"var(--line-3)"` | |
-| `grassColor` / `dirtColor` | `string` | — | Fair-territory and infield fills. Omit both for a wireframe field. |
+| `grassColor` / `dirtColor` | `string` | — | Playing-surface and infield fills. Omit both for a wireframe field. With `park`, grass fills the wall outline, including foul territory. |
 | `lineWidth` | `number` | `1` | In px; strokes use `non-scaling-stroke`. |
 | `showDistances` | `boolean` | `false` | Prints the fence distances at the poles and in center. Standalone mode only. |
 | `width` / `height` | `number \| string` | `"100%"` / — | Standalone mode only. |

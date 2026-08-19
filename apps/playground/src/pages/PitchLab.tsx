@@ -203,7 +203,7 @@ export function PitchLab() {
 
       <div style={{ display: "flex", gap: 10, alignItems: "flex-start", flexWrap: "wrap" }}>
         <Panel title="Batted balls against" meta="SEASON" style={{ flex: "1 1 380px", minWidth: 320 }}>
-          <SprayChart battedBalls={SEASON_BATTED} grassColor="#101a15" dirtColor="#1b1712" fence={{ left: 315, center: 409, right: 326 }} />
+          <SprayChart battedBalls={SEASON_BATTED} grassColor="#101a15" dirtColor="#1b1712" park="HOU" />
         </Panel>
 
         <Panel title="Line score" style={{ flex: "1 1 380px", minWidth: 340 }}>

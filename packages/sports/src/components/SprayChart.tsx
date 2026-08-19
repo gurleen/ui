@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import { ScatterPlot, type ScatterPoint } from "@hydra-tv/ui";
 import { FieldDiagram } from "./FieldDiagram";
 import { DEFAULT_FENCE, fieldDomain, sprayToXY, type FenceSpec } from "../internal/field";
+import { outlineRadius, parkOutline, type MlbPark } from "../internal/mlbParks";
 
 export type BattedBallResult = "single" | "double" | "triple" | "homer" | "out";
 
@@ -23,6 +24,11 @@ export interface BattedBall {
 export interface SprayChartProps {
   battedBalls?: BattedBall[];
   fence?: FenceSpec;
+  /**
+   * MLB home-park tricode (`BOS`, `NYY`, …). Replaces the interpolated `fence`
+   * outline with that ballpark's wall. Unknown values fall back to `fence`.
+   */
+  park?: MlbPark | string;
   /** Overrides the per-result palette */
   colors?: Partial<Record<BattedBallResult, string>>;
   width?: number | string;
@@ -56,6 +62,7 @@ const RESULT_LABELS: Record<BattedBallResult, string> = {
 export function SprayChart({
   battedBalls = [],
   fence = DEFAULT_FENCE,
+  park,
   colors,
   width = "100%",
   height,
@@ -68,7 +75,9 @@ export function SprayChart({
   style,
 }: SprayChartProps) {
   const palette = { ...RESULT_COLORS, ...colors };
-  const { xDomain, yDomain, aspect } = fieldDomain(Math.max(fence.left, fence.center, fence.right) * 1.05);
+  const outline = park ? parkOutline(park) : undefined;
+  const depth = outline ? outlineRadius(outline) : Math.max(fence.left, fence.center, fence.right);
+  const { xDomain, yDomain, aspect } = fieldDomain(depth * 1.05);
 
   const points: ScatterPoint[] = battedBalls.map((b) => {
     const [x, y] = b.distance !== undefined ? sprayToXY(b.angle ?? 0, b.distance) : [b.x ?? 0, b.y ?? 0];
@@ -97,7 +106,7 @@ export function SprayChart({
         height={height}
         axes={false}
         pointSize={markerSize}
-        background={<FieldDiagram fence={fence} asLayer lineColor={lineColor} grassColor={grassColor} dirtColor={dirtColor} />}
+        background={<FieldDiagram fence={fence} park={park} asLayer lineColor={lineColor} grassColor={grassColor} dirtColor={dirtColor} />}
         onPointClick={onBallClick ? (_p, i) => onBallClick(battedBalls[i]!, i) : undefined}
       />
       {legend && used.length > 0 && (

@@ -1,7 +1,7 @@
 import { useId } from "react";
 import type { CSSProperties } from "react";
 import { DEFAULT_FENCE, FIELD, basePositions, fenceRadius, fieldDomain, type FenceSpec } from "../internal/field";
-import { outlineDistanceAt, outlineRadius, parkOutline, type MlbPark, type ParkOutline } from "../internal/mlbParks";
+import { outlineDistanceAt, outlineDomain, outlineRadius, parkOutline, type MlbPark, type ParkOutline } from "../internal/mlbParks";
 import { arcPath, polyPath, radialPath } from "../internal/svg";
 
 /** Baseball field markings in feet, origin at home plate. */
@@ -181,7 +181,9 @@ export function FieldDiagram({
   if (asLayer) return markings;
 
   const depth = outline ? outlineRadius(outline) : Math.max(fence.left, fence.center, fence.right);
-  const { xDomain, yDomain } = fieldDomain(depth * 1.05);
+  const { xDomain, yDomain } = outline
+    ? outlineDomain(outline)
+    : fieldDomain(depth * 1.05);
   const w = xDomain[1] - xDomain[0];
   const h = yDomain[1] - yDomain[0];
   const labels = distanceLabels(fence, outline);

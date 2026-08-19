@@ -329,6 +329,12 @@ export function SportsKitchenSink() {
             Fenway (park="BOS")
           </div>
         </div>
+        <div style={{ flex: "1 1 300px", minWidth: 260 }}>
+          <SprayChart battedBalls={BATTED} park="TB" grassColor="#101a15" dirtColor="#1b1712" />
+          <div style={{ fontFamily: "var(--font-label)", fontSize: 9, color: "var(--fg-3)", letterSpacing: "0.08em", textTransform: "uppercase", paddingTop: 5 }}>
+            Tropicana (park="TB")
+          </div>
+        </div>
         <div style={{ flex: "1 1 240px", minWidth: 220 }}>
           <FieldDiagram fence={{ left: 310, center: 420, right: 302 }} showDistances />
           <div style={{ fontFamily: "var(--font-label)", fontSize: 9, color: "var(--fg-3)", letterSpacing: "0.08em", textTransform: "uppercase", paddingTop: 5 }}>

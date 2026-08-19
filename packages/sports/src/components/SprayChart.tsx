@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 import { ScatterPlot, type ScatterPoint } from "@hydra-tv/ui";
 import { FieldDiagram } from "./FieldDiagram";
 import { DEFAULT_FENCE, fieldDomain, sprayToXY, type FenceSpec } from "../internal/field";
-import { outlineRadius, parkOutline, type MlbPark } from "../internal/mlbParks";
+import { outlineDomain, outlineRadius, parkOutline, type MlbPark } from "../internal/mlbParks";
 
 export type BattedBallResult = "single" | "double" | "triple" | "homer" | "out";
 
@@ -77,7 +77,9 @@ export function SprayChart({
   const palette = { ...RESULT_COLORS, ...colors };
   const outline = park ? parkOutline(park) : undefined;
   const depth = outline ? outlineRadius(outline) : Math.max(fence.left, fence.center, fence.right);
-  const { xDomain, yDomain, aspect } = fieldDomain(depth * 1.05);
+  const { xDomain, yDomain, aspect } = outline
+    ? outlineDomain(outline)
+    : fieldDomain(depth * 1.05);
 
   const points: ScatterPoint[] = battedBalls.map((b) => {
     const [x, y] = b.distance !== undefined ? sprayToXY(b.angle ?? 0, b.distance) : [b.x ?? 0, b.y ?? 0];

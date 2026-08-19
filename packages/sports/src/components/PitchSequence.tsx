@@ -170,7 +170,7 @@ export function PitchSequence({
       : rows;
   const handleSelect = onSelect
     ? (i: number, row: DataGridRow) => {
-        if ((row as { _placeholder?: boolean })._placeholder) return;
+        if (row?._placeholder) return;
         onSelect(i, row as SequencePitch);
       }
     : undefined;
@@ -185,7 +185,7 @@ export function PitchSequence({
       onSelect={handleSelect}
       focused={active}
       onRowHover={(i, row) => {
-        if ((row as { _placeholder?: boolean })._placeholder) return;
+        if (row?._placeholder) return;
         report(i);
       }}
       style={style}

@@ -26,7 +26,7 @@ Cartesian input works too — pass `x`/`y` in feet from home plate instead of `a
 |---|---|---|---|
 | `battedBalls` | `BattedBall[]` | `[]` | `{ x?, y?, angle?, distance?, result?, color?, label? }`. `distance` + `angle` wins over `x`/`y`. `label` becomes a hover tooltip. |
 | `fence` | `{ left, center, right }` | `{ 330, 400, 330 }` | Also sizes the plot domain. Ignored when `park` resolves. |
-| `park` | `MlbPark \| string` | — | MLB home-park tricode (`BOS`, `NYY`, …). Replaces the interpolated fence with that ballpark's outline. Unknown values fall back to `fence`. |
+| `park` | `MlbPark \| string` | — | MLB home-park tricode (`BOS`, `NYY`, …). Replaces the interpolated fence with that ballpark's outline and sizes the plot from the outline's bounding box (including stadium behind home). Unknown values fall back to `fence`. |
 | `colors` | `Partial<Record<BattedBallResult, string>>` | — | Overrides individual entries in the result palette. |
 | `width` | `number \| string` | `"100%"` | |
 | `height` | `number` | — | Omit it: the height comes from the field's own proportions. |

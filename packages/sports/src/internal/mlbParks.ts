@@ -64,7 +64,7 @@ export function parkOutline(tricode: string): ParkOutline | undefined {
   return MLB_PARKS[id];
 }
 
-/** Farthest point from home on any ring — used to size the plot domain. */
+/** Farthest point from home on any ring — used for foul-line reach. */
 export function outlineRadius(outline: ParkOutline): number {
   let m = 0;
   for (const ring of [outline.fence, outline.stadium, outline.dirt, outline.dirtInner]) {
@@ -75,6 +75,29 @@ export function outlineRadius(outline: ParkOutline): number {
     }
   }
   return m;
+}
+
+/** Axis-aligned plot domain covering every park ring, with a fractional pad. */
+export function outlineDomain(outline: ParkOutline, pad = 0.03) {
+  let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+  for (const ring of [outline.fence, outline.stadium, outline.dirt, outline.dirtInner]) {
+    if (!ring) continue;
+    for (const [x, y] of ring) {
+      if (x < minX) minX = x;
+      if (x > maxX) maxX = x;
+      if (y < minY) minY = y;
+      if (y > maxY) maxY = y;
+    }
+  }
+  const px = (maxX - minX) * pad;
+  const py = (maxY - minY) * pad;
+  const xDomain: [number, number] = [minX - px, maxX + px];
+  const yDomain: [number, number] = [minY - py, maxY + py];
+  return {
+    xDomain,
+    yDomain,
+    aspect: (xDomain[1] - xDomain[0]) / (yDomain[1] - yDomain[0]),
+  };
 }
 
 /** Distance from home to the ring at a spray angle (0 = CF, −45 = LF, +45 = RF). */

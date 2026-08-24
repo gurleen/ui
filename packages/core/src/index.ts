@@ -35,3 +35,4 @@ export * from "./components/LineChart";
 export * from "./components/ScatterPlot";
 export * from "./components/HeatGrid";
 export * from "./components/PercentileBar";
+export * from "./components/Theme";

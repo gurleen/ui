@@ -70,7 +70,7 @@ export function RotationChart({
             viewBox={`0 0 ${duration} ${marginPeak * 2}`}
             preserveAspectRatio="none"
             height={marginHeight}
-            style={{ flex: 1, minWidth: 0, background: "#0a0d10", border: "1px solid var(--line-1)", borderRadius: "var(--radius-1)" }}
+            style={{ flex: 1, minWidth: 0, background: "var(--bg-well)", border: "1px solid var(--line-1)", borderRadius: "var(--radius-1)" }}
           >
             <defs>
               {/* One polygon, drawn twice and clipped, so the two halves can't drift apart. */}
@@ -104,7 +104,7 @@ export function RotationChart({
             <span style={{ fontFamily: "var(--font-copy)", fontSize: "var(--fs-10)", color: "var(--fg-1)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{p.name}</span>
           </span>
 
-          <span style={{ position: "relative", flex: 1, minWidth: 40, height: rowHeight, background: "#0a0d10", boxShadow: "var(--inset-well)", borderRadius: "var(--radius-1)" }}>
+          <span style={{ position: "relative", flex: 1, minWidth: 40, height: rowHeight, background: "var(--bg-well)", boxShadow: "var(--inset-well)", borderRadius: "var(--radius-1)" }}>
             {periodMarks.map((m, i) => (
               <span key={i} style={{ position: "absolute", left: pct(m), top: 0, bottom: 0, width: 1, background: "var(--line-2)" }} />
             ))}

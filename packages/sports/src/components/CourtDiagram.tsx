@@ -106,7 +106,7 @@ export function CourtDiagram({
       width={width}
       height={height}
       preserveAspectRatio="xMidYMid meet"
-      style={{ display: "block", background: "#0a0d10", border: "1px solid var(--line-1)", borderRadius: "var(--radius-1)", ...style }}
+      style={{ display: "block", background: "var(--bg-well)", border: "1px solid var(--line-1)", borderRadius: "var(--radius-1)", ...style }}
     >
       {/* Flip to a y-up system so the markings can be written in court coordinates. */}
       <g transform={`translate(0 ${farBase}) scale(1 -1)`}>{markings}</g>

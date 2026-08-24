@@ -166,7 +166,7 @@ export function ScatterPlot({
         style={{ display: "block", overflow: "visible" }}
         onMouseLeave={onPointHover ? () => onPointHover(null, null) : undefined}
       >
-        <rect x={padL} y={padT} width={plotW} height={plotH} fill="#0a0d10" stroke="var(--line-1)" strokeWidth={1} />
+        <rect x={padL} y={padT} width={plotW} height={plotH} fill="var(--bg-well)" stroke="var(--line-1)" strokeWidth={1} />
 
         {background && <g transform={bgTransform}>{background}</g>}
 

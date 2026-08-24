@@ -15,8 +15,8 @@ const KINDS = {
   neutral: { bg: "var(--bg-3)", color: "var(--fg-2)", border: "var(--line-2)" },
   pgm: { bg: "var(--tally-pgm-bg)", color: "var(--tally-pgm)", border: "var(--tally-pgm-dim)" },
   pvw: { bg: "var(--tally-pvw-bg)", color: "var(--tally-pvw)", border: "var(--tally-pvw-dim)" },
-  warn: { bg: "var(--warn-bg)", color: "var(--warn)", border: "#6b4e10" },
-  info: { bg: "var(--info-bg)", color: "var(--info)", border: "#2a5a8a" },
+  warn: { bg: "var(--warn-bg)", color: "var(--warn)", border: "var(--armed-border)" },
+  info: { bg: "var(--info-bg)", color: "var(--info)", border: "var(--accent-border)" },
   err: { bg: "var(--tally-pgm-bg)", color: "var(--err)", border: "var(--tally-pgm-dim)" },
 } as const;
 

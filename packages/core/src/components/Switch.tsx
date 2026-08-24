@@ -30,7 +30,7 @@ export function Switch({ checked, defaultChecked = false, onChange, label, label
       {label && <span style={{ fontSize: 10, color: "var(--fg-2)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase" }}>{label}</span>}
       <span style={{
         display: "inline-grid", gridTemplateColumns: "1fr 1fr", height: 18, minWidth: 58,
-        background: "#0a0d10", border: "1px solid var(--line-2)", borderRadius: "var(--radius-1)",
+        background: "var(--bg-well)", border: "1px solid var(--line-2)", borderRadius: "var(--radius-1)",
         boxShadow: "var(--inset-input)", overflow: "hidden",
       }}>
         {[0, 1].map((i) => {
@@ -39,8 +39,8 @@ export function Switch({ checked, defaultChecked = false, onChange, label, label
             <span key={i} style={{
               display: "flex", alignItems: "center", justifyContent: "center", padding: "0 6px",
               fontSize: 9, letterSpacing: "0.08em", fontWeight: active ? 700 : 400,
-              background: active ? (isOn ? "linear-gradient(#173a5c,#102941)" : "var(--grad-btn)") : "transparent",
-              color: active ? (isOn ? "#9fd0fb" : "var(--fg-1)") : "var(--fg-3)",
+              background: active ? (isOn ? "var(--accent-bg)" : "var(--grad-btn)") : "transparent",
+              color: active ? (isOn ? "var(--accent-fg)" : "var(--fg-1)") : "var(--fg-well-dim)",
               boxShadow: active ? "var(--bevel-raised)" : "none",
               border: active ? "1px solid var(--btn-border)" : "1px solid transparent",
               margin: -1, borderRadius: "var(--radius-1)",

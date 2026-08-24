@@ -75,7 +75,7 @@ export function LineChart({
   return (
     <div ref={ref} style={{ width, fontFamily: "var(--font-data)", ...style }}>
       <svg width={w} height={height} viewBox={`0 0 ${w} ${height}`} style={{ display: "block", overflow: "visible" }}>
-        <rect x={padL} y={padT} width={plotW} height={plotH} fill="#0a0d10" stroke="var(--line-1)" strokeWidth={1} />
+        <rect x={padL} y={padT} width={plotW} height={plotH} fill="var(--bg-well)" stroke="var(--line-1)" strokeWidth={1} />
 
         {band && (
           <rect x={padL} y={Math.min(sy(band[0]), sy(band[1]))} width={plotW} height={Math.abs(sy(band[1]) - sy(band[0]))} fill="var(--info)" opacity={0.09} />

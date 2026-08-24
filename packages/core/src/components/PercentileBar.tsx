@@ -42,7 +42,7 @@ export function PercentileBar({
         {label && labelWidth > 0 && (
           <span style={{ width: labelWidth, flexShrink: 0, fontFamily: "var(--font-label)", fontSize: "var(--fs-10)", color: "var(--fg-2)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{label}</span>
         )}
-        <span style={{ position: "relative", flex: 1, minWidth: 40, height, background: "#0a0d10", borderRadius: "var(--radius-1)", boxShadow: "var(--inset-well)" }}>
+        <span style={{ position: "relative", flex: 1, minWidth: 40, height, background: "var(--bg-well)", borderRadius: "var(--radius-1)", boxShadow: "var(--inset-well)" }}>
           <span style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${pct}%`, background: color, opacity: 0.55, borderRadius: "var(--radius-1)" }} />
           <span style={{ position: "absolute", left: `${avg}%`, top: -1, bottom: -1, width: 1, background: "var(--line-3)" }} />
           <span style={{

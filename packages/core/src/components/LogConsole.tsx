@@ -18,11 +18,11 @@ export interface LogConsoleProps {
 }
 
 const LEVELS = {
-  ok: { color: "var(--ok-text)", tag: "OK" },
-  info: { color: "var(--fg-2)", tag: "INF" },
-  warn: { color: "var(--warn)", tag: "WRN" },
-  err: { color: "var(--err)", tag: "ERR" },
-  cmd: { color: "var(--accent-hi)", tag: "CMD" },
+  ok: { color: "var(--fg-well-ok)", tag: "OK" },
+  info: { color: "var(--fg-well-dim)", tag: "INF" },
+  warn: { color: "var(--led-amber)", tag: "WRN" },
+  err: { color: "var(--led-red)", tag: "ERR" },
+  cmd: { color: "var(--fg-well-accent)", tag: "CMD" },
 } as const;
 
 export function LogConsole({ lines = [], height = 140, follow = true, style }: LogConsoleProps) {
@@ -32,7 +32,7 @@ export function LogConsole({ lines = [], height = 140, follow = true, style }: L
   }, [lines, follow]);
   return (
     <div ref={ref} style={{
-      height, overflowY: "auto", background: "#030405", border: "1px solid #000",
+      height, overflowY: "auto", background: "var(--bg-well)", border: "1px solid #000",
       borderRadius: "var(--radius-1)", boxShadow: "var(--inset-well)", padding: "4px 6px",
       fontFamily: "var(--font-data)", fontSize: 10, lineHeight: 1.6, ...style,
     }}>
@@ -40,9 +40,9 @@ export function LogConsole({ lines = [], height = 140, follow = true, style }: L
         const lv = LEVELS[ln.level || "info"] || LEVELS.info;
         return (
           <div key={i} style={{ display: "flex", gap: 8, whiteSpace: "pre-wrap" }}>
-            <span style={{ color: "var(--fg-3)", flexShrink: 0, fontFeatureSettings: '"tnum" 1' }}>{ln.time}</span>
+            <span style={{ color: "var(--fg-well-dim)", flexShrink: 0, fontFeatureSettings: '"tnum" 1' }}>{ln.time}</span>
             <span style={{ color: lv.color, flexShrink: 0, fontWeight: 600, width: 24 }}>{lv.tag}</span>
-            <span style={{ color: ln.level === "err" ? lv.color : "var(--fg-1)" }}>{ln.text}</span>
+            <span style={{ color: ln.level === "err" ? lv.color : "var(--fg-well)" }}>{ln.text}</span>
           </div>
         );
       })}

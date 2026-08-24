@@ -46,7 +46,7 @@ const ROWSTATES = {
   onair: { bg: "var(--tally-pgm-bg)", color: "var(--tally-pgm)", bar: "var(--tally-pgm)" },
   cued: { bg: "var(--tally-pvw-bg)", color: "var(--tally-pvw)", bar: "var(--tally-pvw)" },
   selected: { bg: "var(--info-bg)", color: "var(--accent-hi)", bar: "var(--info)" },
-  disabled: { bg: "transparent", color: "var(--fg-3)", bar: "transparent" },
+  disabled: { bg: "transparent", color: "var(--fg-well-dim)", bar: "transparent" },
 } as const;
 
 const HANDLE_COL: DataGridColumn = { key: "_handle", label: "", width: "20px" };
@@ -113,7 +113,7 @@ export function DataGrid({
   return (
     <div
       onMouseLeave={onRowHover ? () => onRowHover(null, null) : undefined}
-      style={{ fontFamily: "var(--font-data)", fontSize: 11, overflow: height ? "auto" : "visible", height, background: "#0a0d10", boxShadow: "var(--inset-input)", border: "1px solid var(--line-1)", ...style }}
+      style={{ fontFamily: "var(--font-data)", fontSize: 11, overflow: height ? "auto" : "visible", height, background: "var(--bg-well)", boxShadow: "var(--inset-input)", border: "1px solid var(--line-1)", ...style }}
     >
       {showHeader && (
         <div style={{ display: "grid", gridTemplateColumns: template, position: "sticky", top: 0, background: "var(--bg-3)", borderBottom: "1px solid var(--line-2)", zIndex: 1 }}>
@@ -136,8 +136,8 @@ export function DataGrid({
             onDrop={reorderable ? (e) => handleDrop(e, ri) : undefined}
             style={{
               display: "grid", gridTemplateColumns: template, height: rowH, alignItems: "center",
-              background: st ? st.bg : zebra && ri % 2 === 1 ? "#ffffff05" : "transparent",
-              color: st ? st.color : "var(--fg-1)",
+              background: st ? st.bg : zebra && ri % 2 === 1 ? "var(--row-alt-bg)" : "transparent",
+              color: st ? st.color : "var(--fg-well)",
               boxShadow: isDropTarget
                 ? "inset 0 2px 0 var(--accent-hi)"
                 : st && st.bar !== "transparent"
@@ -145,7 +145,7 @@ export function DataGrid({
                   : "none",
               opacity: isDragging ? 0.4 : dimmed ? 0.28 : 1,
               transition: "opacity 120ms",
-              cursor: onSelect || onRowHover ? "pointer" : "default", borderBottom: "1px solid #ffffff06",
+              cursor: onSelect || onRowHover ? "pointer" : "default", borderBottom: "1px solid var(--row-divider)",
             }}
           >
             {reorderable && (
@@ -156,7 +156,7 @@ export function DataGrid({
                 onClick={(e) => e.stopPropagation()}
                 style={{
                   display: "flex", alignItems: "center", justifyContent: "center",
-                  cursor: "grab", color: "var(--fg-3)", height: "100%",
+                  cursor: "grab", color: "var(--fg-well-dim)", height: "100%",
                 }}
               >
                 <DragHandle />
@@ -166,7 +166,7 @@ export function DataGrid({
               <span key={ci} style={{
                 padding: "0 6px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
                 textAlign: c.align || "left", fontFamily: "var(--font-data)", fontFeatureSettings: '"tnum" 1, "zero" 1',
-                color: c.dim && !st ? "var(--fg-3)" : "inherit", fontWeight: row._state === "onair" && !c.dim ? 600 : 400,
+                color: c.dim && !st ? "var(--fg-well-dim)" : "inherit", fontWeight: row._state === "onair" && !c.dim ? 600 : 400,
               }}>{c.render ? c.render(row[c.key], row, ri) : row[c.key]}</span>
             ))}
           </div>

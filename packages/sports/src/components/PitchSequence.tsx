@@ -53,10 +53,10 @@ export interface PitchSequenceProps {
 }
 
 const KIND_COLORS = {
-  ball: "var(--fg-2)",
-  strike: "var(--ch-1)",
-  foul: "var(--ch-3)",
-  inplay: "var(--warn)",
+  ball: "var(--fg-well-dim)",
+  strike: "var(--fg-well-accent)",
+  foul: "var(--fg-well-teal)",
+  inplay: "var(--led-amber)",
 } as const;
 
 const ZONE_HALF_WIDTH = 0.708;
@@ -74,7 +74,7 @@ function MiniZone({ x, z, zoneTop, zoneBottom, flip, color, height }: { x?: numb
   const py = (fz: number) => H - (fz / 5) * H;
 
   return (
-    <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} style={{ display: "block", background: "#0a0d10", border: "1px solid var(--line-1)" }}>
+    <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} style={{ display: "block", background: "var(--bg-well)", border: "1px solid var(--line-1)" }}>
       <rect
         x={px(-ZONE_HALF_WIDTH)}
         y={py(zoneTop)}

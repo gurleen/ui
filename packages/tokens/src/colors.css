@@ -1,6 +1,7 @@
-/* @hydra-tv/tokens — color tokens. Dark-only, control-room standard.
-   Tally conventions are STRICT: red = program/on-air, green = preview.
-   Never use red or green decoratively. */
+/* @hydra-tv/tokens — color tokens. Control-room standard, dark by default,
+   with a light theme available via [data-theme="light"] (see the bottom of
+   this file). Tally conventions are STRICT: red = program/on-air, green =
+   preview. Never use red or green decoratively. */
 :root {
   /* Base surfaces (cool near-black, stepped) */
   --bg-0: #07090b;          /* app chrome / deepest wells */
@@ -20,6 +21,16 @@
   --fg-2: #97a3b1;          /* secondary / labels */
   --fg-3: #5d6873;          /* muted / disabled / units */
   --fg-inverse: #0b0d10;    /* text on bright fills */
+
+  /* Text drawn directly on --bg-well (or another fixed-dark well surface):
+     --fg-1/2/3 flip to dark-on-light in light mode and would go invisible
+     on a well that stays dark on purpose, so well content uses these
+     instead. Fixed in both themes — same values as dark mode's --fg-1/--fg-2. */
+  --fg-well: #dde4ec;
+  --fg-well-dim: #97a3b1;
+  --fg-well-ok: #7fdda0;
+  --fg-well-accent: #7cc0fa;
+  --fg-well-teal: #2ec4b6;
 
   /* Tally / bus — strict hardware semantics */
   --tally-pgm: #f23a30;     /* PROGRAM: on-air. Red. Nothing else is this red. */
@@ -47,6 +58,30 @@
   --ch-3: #2ec4b6;
   --ch-4: #f2789f;
 
+  /* Text selection tint */
+  --selection-bg: #3fa2f755;
+
+  /* Very subtle row overlays (DataGrid zebra stripe / hairline divider) */
+  --row-alt-bg: #ffffff05;
+  --row-divider: #ffffff06;
+
+  /* Button/Switch "raised control" variant fills — accent = blue interactive,
+     take = red ON-AIR actions ONLY, armed = amber caution. Kept as tokens
+     (not inline hex in components) so they can flip per theme. */
+  --accent-bg: linear-gradient(#173a5c, #102941);
+  --accent-bg-hover: linear-gradient(#1c4a75, #143350);
+  --accent-border: #2a5a8a;
+  --accent-fg: #9fd0fb;
+
+  --take-bg: linear-gradient(#4a1410, #2a0d0b);
+  --take-bg-hover: linear-gradient(#5c1813, #35100d);
+  --take-border: #6b1d17;
+  --take-fg: #ff6f66;
+
+  --armed-bg: linear-gradient(#3d2c07, #241a04);
+  --armed-bg-hover: linear-gradient(#4d3809, #2e2105);
+  --armed-border: #6b4e10;
+
   /* Semantic aliases */
   --surface-app: var(--bg-1);
   --surface-panel: var(--bg-2);
@@ -55,4 +90,76 @@
   --text-body: var(--fg-1);
   --text-label: var(--fg-2);
   --text-muted: var(--fg-3);
+}
+
+/* Light theme — opt in via <html data-theme="light">, e.g. through
+   @hydra-tv/ui's <ThemeProvider>. Redefines the same custom properties;
+   components never need to know which theme is active.
+
+   "LED/backlit readout" tokens (--bg-well and the bus-fill/glow tokens in
+   effects.css) are deliberately near-invariant here — they represent
+   physically dark instrument wells (meters, timecode, log, tally lamps)
+   that stay dark and legible under any theme, the same way a real hardware
+   LED display doesn't turn light-colored in a bright room. --bg-well itself
+   IS redefined below, but only to stay the same visual near-black — its
+   dark-mode value is semi-transparent (so it reads as "a bit darker than
+   whatever panel it sits on"), which composites to a washed-out mid-gray
+   over the light surfaces below instead of black, so light mode pins it to
+   an opaque near-black directly. */
+:root[data-theme="light"] {
+  --bg-0: #e8eaed;
+  --bg-1: #f1f2f5;
+  --bg-2: #f7f8fa;
+  --bg-3: #fcfcfd;
+  --bg-4: #ffffff;
+  --bg-well: #0a0d10;
+
+  --line-1: #dde1e6;
+  --line-2: #c7ccd3;
+  --line-3: #a8afb8;
+
+  --fg-1: #14181d;
+  --fg-2: #4b5560;
+  --fg-3: #78828c;
+  --fg-inverse: #f7f9fb;
+
+  --tally-pgm: #c81e14;
+  --tally-pgm-dim: #e8a29c;
+  --tally-pgm-bg: #fbe0dd;
+  --tally-pvw: #178a44;
+  --tally-pvw-dim: #96d9ae;
+  --tally-pvw-bg: #dff3e6;
+
+  --warn: #a15c00;
+  --warn-bg: #fbedd4;
+  --info: #1465c2;
+  --info-bg: #e2edfa;
+  --err: #c81e14;
+  --ok-text: #147a3d;
+
+  --accent-hi: #0d5aa8;
+
+  --ch-1: #1465c2;
+  --ch-2: #7a4fd1;
+  --ch-3: #0f8a7e;
+  --ch-4: #c93f6d;
+
+  --selection-bg: #1465c233;
+
+  --row-alt-bg: #00000006;
+  --row-divider: #00000008;
+
+  --accent-bg: linear-gradient(#dceafd, #c7dcf9);
+  --accent-bg-hover: linear-gradient(#e8f2fe, #d6e8fc);
+  --accent-border: #8fb9e8;
+  --accent-fg: #0d4d8f;
+
+  --take-bg: linear-gradient(#fbdedb, #f7c8c3);
+  --take-bg-hover: linear-gradient(#fce8e6, #fad4d0);
+  --take-border: #e8a29c;
+  --take-fg: #a3201a;
+
+  --armed-bg: linear-gradient(#fbedd4, #f7dfb0);
+  --armed-bg-hover: linear-gradient(#fcf2e0, #f9e6c0);
+  --armed-border: #d9ae5c;
 }

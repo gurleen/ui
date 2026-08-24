@@ -25,7 +25,14 @@
   --bevel-bus: inset 0 1px 0 #ffffff14, inset 0 -2px 4px #00000066;
 
   /* LED readout glows */
+  --led-off: #161b21;         /* unlit segment (VU meter) — fixed, part of the LED bezel */
   --led-amber: #ffb020;
+  /* Fixed red/green LED readout colors — for text/glyphs drawn directly on a
+     fixed-dark well or bus-fill surface. --tally-pgm/--tally-pvw flip to
+     darker, AA-on-white values in light mode and would lose contrast on a
+     surface that stays dark on purpose (see colors.css); these don't. */
+  --led-red: #f23a30;
+  --led-green: #2fd05f;
   --led-glow-amber: 0 0 6px #ffb02044;
   --led-glow-red: 0 0 8px #f23a3066;
   --led-glow-green: 0 0 6px #2fd05f44;
@@ -38,4 +45,20 @@
   --t-fast: 60ms linear;
   --t-med: 120ms ease-out;
   /* Press feedback: translateY(1px) + --bevel-pressed */
+}
+
+/* Light theme overrides for general chrome (panels, raised buttons). Bus
+   fills, LED glows and inset-well/inset-input shadows are intentionally
+   left dark in both themes — see the note in colors.css. */
+:root[data-theme="light"] {
+  --grad-panel: linear-gradient(#ffffff, #f7f8fa);
+  --shadow-panel: 0 1px 0 #ffffffcc inset, 0 2px 6px #00000022;
+  --shadow-overlay: 0 8px 32px #00000033, 0 1px 0 #ffffffcc inset;
+
+  --grad-btn: linear-gradient(#ffffff, #eef0f3);
+  --grad-btn-hover: linear-gradient(#ffffff, #e4e8ed);
+  --bevel-raised: inset 0 1px 0 #ffffff, 0 1px 2px #00000024;
+  --bevel-pressed: inset 0 2px 4px #00000030;
+  --btn-border: #c7ccd3;
+  --btn-border-bottom: #a8afb8;
 }

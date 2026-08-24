@@ -32,7 +32,7 @@ export function formatCount(balls: number, strikes: number): string {
 function LampRow({ label, on, total, color, size }: { label: string; on: number; total: number; color: string; size: (typeof SIZES)[keyof typeof SIZES] }) {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: size.gap + 2 }}>
-      <span style={{ width: 10, fontFamily: "var(--font-label)", fontSize: size.font, fontWeight: "var(--fw-bold)", color: "var(--fg-2)", letterSpacing: "var(--label-tracking)" }}>{label}</span>
+      <span style={{ width: 10, fontFamily: "var(--font-label)", fontSize: size.font, fontWeight: "var(--fw-bold)", color: "var(--fg-well-dim)", letterSpacing: "var(--label-tracking)" }}>{label}</span>
       <span style={{ display: "flex", gap: size.gap }}>
         {Array.from({ length: total }, (_, i) => {
           const lit = i < on;
@@ -41,7 +41,7 @@ function LampRow({ label, on, total, color, size }: { label: string; on: number;
               key={i}
               style={{
                 width: size.lamp, height: size.lamp, borderRadius: "50%",
-                background: lit ? color : "#0a0d10",
+                background: lit ? color : "var(--bg-well)",
                 border: `1px solid ${lit ? color : "var(--line-2)"}`,
                 boxShadow: lit ? `0 0 6px ${color}` : "var(--inset-input)",
               }}
@@ -59,7 +59,7 @@ export function CountDisplay({
   outs = 0,
   showOuts = true,
   numeric = false,
-  ballColor = "var(--info)",
+  ballColor = "var(--fg-well-accent)",
   strikeColor = "var(--led-amber)",
   outColor = "var(--led-amber)",
   size = "md",
@@ -71,7 +71,7 @@ export function CountDisplay({
   return (
     <div style={{
       display: "inline-flex", flexDirection: horizontal ? "row" : "column", gap: horizontal ? s.gap * 3 : s.gap,
-      padding: "5px 8px", background: "#04050699", border: "1px solid var(--line-1)", borderRadius: "var(--radius-1)",
+      padding: "5px 8px", background: "var(--bg-well)", border: "1px solid var(--line-1)", borderRadius: "var(--radius-1)",
       boxShadow: "var(--inset-well)", fontFamily: "var(--font-data)", ...style,
     }}>
       {numeric ? (
@@ -80,7 +80,7 @@ export function CountDisplay({
             {formatCount(balls, strikes)}
           </span>
           {showOuts && (
-            <span style={{ fontFamily: "var(--font-label)", fontSize: s.font, color: "var(--fg-2)", letterSpacing: "var(--label-tracking)" }}>
+            <span style={{ fontFamily: "var(--font-label)", fontSize: s.font, color: "var(--fg-well-dim)", letterSpacing: "var(--label-tracking)" }}>
               {outs} OUT{outs === 1 ? "" : "S"}
             </span>
           )}

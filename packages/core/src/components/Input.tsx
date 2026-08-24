@@ -32,7 +32,7 @@ export function Input({ value, defaultValue, onChange, placeholder, label, unit,
       {label && <span style={{ fontSize: 10, color: "var(--fg-2)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase", whiteSpace: "nowrap" }}>{label}</span>}
       <span style={{
         display: "inline-flex", alignItems: "center", width: isPercent ? "100%" : width, height: "var(--ctl-h)",
-        minWidth: 0, background: "#0a0d10", border: `1px solid ${foc ? "var(--info)" : "var(--line-2)"}`,
+        minWidth: 0, background: "var(--bg-well)", border: `1px solid ${foc ? "var(--info)" : "var(--line-2)"}`,
         borderRadius: "var(--radius-1)", boxShadow: "var(--inset-input)", opacity: disabled ? 0.5 : 1,
       }}>
         <input
@@ -42,11 +42,11 @@ export function Input({ value, defaultValue, onChange, placeholder, label, unit,
           style={{
             flex: 1, minWidth: 0, height: "100%", padding: "0 6px", background: "transparent",
             border: "none", outline: "none", fontSize: 11, textAlign: align,
-            fontFeatureSettings: '"tnum" 1, "zero" 1', color: "var(--fg-1)",
+            fontFeatureSettings: '"tnum" 1, "zero" 1', color: "var(--fg-well)",
             ...style,
           }}
         />
-        {unit && <span style={{ fontSize: 10, color: "var(--fg-3)", padding: "0 6px", borderLeft: "1px solid var(--line-1)", alignSelf: "stretch", display: "flex", alignItems: "center" }}>{unit}</span>}
+        {unit && <span style={{ fontSize: 10, color: "var(--fg-well-dim)", padding: "0 6px", borderLeft: "1px solid var(--line-1)", alignSelf: "stretch", display: "flex", alignItems: "center" }}>{unit}</span>}
       </span>
     </label>
   );

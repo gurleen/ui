@@ -89,7 +89,7 @@ export function Scoreboard({ away, home, period, clock, status = "live", detail,
         {period && <span style={{ fontFamily: "var(--font-label)", fontSize: "var(--fs-11)", color: "var(--fg-2)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase" }}>{period}</span>}
         {clock && (
           <span style={{
-            padding: "1px 6px", background: "#04050699", border: "1px solid var(--line-1)", borderRadius: "var(--radius-1)",
+            padding: "1px 6px", background: "var(--bg-well)", border: "1px solid var(--line-1)", borderRadius: "var(--radius-1)",
             boxShadow: "var(--inset-well)", color: "var(--led-amber)", textShadow: "var(--led-glow-amber)",
             fontFamily: "var(--font-data)", fontSize: size === "lg" ? "var(--fs-16)" : "var(--fs-13)", fontWeight: "var(--fw-semi)", fontFeatureSettings: "var(--numeric-features)",
           }}>{clock}</span>

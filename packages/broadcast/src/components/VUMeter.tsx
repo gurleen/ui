@@ -16,9 +16,9 @@ export interface VUMeterProps {
 }
 
 function segColor(db: number) {
-  if (db > -9) return "var(--tally-pgm)";
-  if (db > -20) return "var(--warn)";
-  return "var(--tally-pvw)";
+  if (db > -9) return "var(--led-red)";
+  if (db > -20) return "var(--led-amber)";
+  return "var(--led-green)";
 }
 
 export function VUMeter({ levels = [-18, -20], height = 120, label, showScale = true, demo = false, style }: VUMeterProps) {
@@ -39,7 +39,7 @@ export function VUMeter({ levels = [-18, -20], height = 120, label, showScale = 
   const marks = [0, -6, -12, -20, -30, -40, -60];
   return (
     <div style={{ display: "inline-flex", flexDirection: "column", alignItems: "center", gap: 3, fontFamily: "var(--font-data)", ...style }}>
-      <div style={{ display: "flex", gap: 3, alignItems: "stretch", background: "#030405", border: "1px solid #000", borderRadius: "var(--radius-1)", boxShadow: "var(--inset-well)", padding: 4, height }}>
+      <div style={{ display: "flex", gap: 3, alignItems: "stretch", background: "var(--bg-well)", border: "1px solid #000", borderRadius: "var(--radius-1)", boxShadow: "var(--inset-well)", padding: 4, height }}>
         {lv.map((v, ch) => (
           <div key={ch} style={{ display: "flex", flexDirection: "column-reverse", gap: 1, width: 10 }}>
             {Array.from({ length: SEGS }, (_, i) => {
@@ -47,14 +47,14 @@ export function VUMeter({ levels = [-18, -20], height = 120, label, showScale = 
               const on = v >= segDb;
               const isPeak = Math.abs(peaks.current[ch] - segDb) < -MIN / SEGS;
               const c = segColor(segDb);
-              return <div key={i} style={{ flex: 1, background: on || isPeak ? c : "#161b21", opacity: on ? 1 : isPeak ? 0.9 : 1, boxShadow: on && segDb > -9 ? "var(--led-glow-red)" : "none" }}></div>;
+              return <div key={i} style={{ flex: 1, background: on || isPeak ? c : "var(--led-off)", opacity: on ? 1 : isPeak ? 0.9 : 1, boxShadow: on && segDb > -9 ? "var(--led-glow-red)" : "none" }}></div>;
             })}
           </div>
         ))}
         {showScale && (
           <div style={{ position: "relative", width: 22 }}>
             {marks.map((m) => (
-              <span key={m} style={{ position: "absolute", top: `${(m / MIN) * 100}%`, transform: "translateY(-50%)", fontSize: 8, color: "var(--fg-3)", right: 0 }}>{m === 0 ? "0" : m}</span>
+              <span key={m} style={{ position: "absolute", top: `${(m / MIN) * 100}%`, transform: "translateY(-50%)", fontSize: 8, color: "var(--fg-well-dim)", right: 0 }}>{m === 0 ? "0" : m}</span>
             ))}
           </div>
         )}

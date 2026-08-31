@@ -49,7 +49,7 @@ export function PlayByPlay({
 
   return (
     <div ref={ref} style={{
-      height, overflowY: "auto", background: "var(--bg-well)", border: "1px solid #000", borderRadius: "var(--radius-1)",
+      height, overflowY: "auto", background: "var(--bg-well)", border: "1px solid var(--line-1)", borderRadius: "var(--radius-1)",
       boxShadow: "var(--inset-well)", fontFamily: "var(--font-ui)", fontSize: "var(--fs-11)", ...style,
     }}>
       {ordered.map((ev, i) => {

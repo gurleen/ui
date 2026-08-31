@@ -1,6 +1,6 @@
 {
   "name": "@hydra-tv/ui",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Generic, domain-agnostic React components for the @hydra-tv design system (buttons, inputs, dialogs, data grids, etc.). No broadcast-specific semantics — see @hydra-tv/broadcast for those.",
   "license": "MIT",
   "type": "module",

@@ -150,9 +150,9 @@ export function ShotZoneChart({
             return (
               <g key={s.id} clipPath={s.clip ? `url(#${clipId})` : undefined}>
                 {d ? (
-                  <path d={d} fill={sh ? sh.fill : "#ffffff"} opacity={sh ? sh.opacity : 0.03} onClick={z && onZoneClick ? () => onZoneClick(z) : undefined} style={{ cursor: z && onZoneClick ? "pointer" : "default" }} />
+                  <path d={d} fill={sh ? sh.fill : "var(--fg-well)"} opacity={sh ? sh.opacity : 0.03} onClick={z && onZoneClick ? () => onZoneClick(z) : undefined} style={{ cursor: z && onZoneClick ? "pointer" : "default" }} />
                 ) : (
-                  <rect x={s.rect![0]} y={s.rect![1]} width={s.rect![2]} height={s.rect![3]} fill={sh ? sh.fill : "#ffffff"} opacity={sh ? sh.opacity : 0.03} onClick={z && onZoneClick ? () => onZoneClick(z) : undefined} style={{ cursor: z && onZoneClick ? "pointer" : "default" }} />
+                  <rect x={s.rect![0]} y={s.rect![1]} width={s.rect![2]} height={s.rect![3]} fill={sh ? sh.fill : "var(--fg-well)"} opacity={sh ? sh.opacity : 0.03} onClick={z && onZoneClick ? () => onZoneClick(z) : undefined} style={{ cursor: z && onZoneClick ? "pointer" : "default" }} />
                 )}
               </g>
             );

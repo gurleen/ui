@@ -2,7 +2,7 @@
 
 A reusable React component library monorepo, originally distilled from a broadcast-TV design handoff ("HYDRA") into a generic-first library — with each set of domain-specific pieces kept in its own sub-package, so apps aren't forced to depend on a domain they don't work in.
 
-Visual language across all packages: dense, dark-only, "tactile hardware" (beveled controls, recessed LED-style readouts, IBM Plex Mono). See [`packages/tokens`](packages/tokens) for the full token catalog.
+Visual language across all packages: dense, "tactile hardware" (beveled controls, recessed LED-style readouts, IBM Plex Mono), with both a dark and a light theme. See [`packages/tokens`](packages/tokens) for the full token catalog and [`@hydra-tv/ui`'s `Theme.md`](packages/core/src/components/Theme.md) for switching between them.
 
 ## Packages
 

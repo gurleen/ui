@@ -22,8 +22,8 @@ export interface MacroKeyProps {
 const CH: Record<number, string> = { 1: "var(--ch-1)", 2: "var(--ch-2)", 3: "var(--ch-3)", 4: "var(--ch-4)" };
 const STATES = {
   ready: { border: "var(--btn-border)", bg: "var(--grad-btn)" },
-  armed: { border: "#6b4e10", bg: "linear-gradient(#3d2c07,#241a04)" },
-  running: { border: "#14602c", bg: "var(--grad-pvw)" },
+  armed: { border: "var(--armed-border)", bg: "var(--armed-bg)" },
+  running: { border: "var(--tally-pvw-dim)", bg: "var(--grad-pvw)" },
   empty: { border: "var(--line-1)", bg: "transparent" },
 } as const;
 
@@ -46,7 +46,7 @@ export function MacroKey({ index, label, hotkey, state = "ready", channel, onCli
         borderRadius: "var(--radius-1)", fontFamily: "var(--font-ui)",
         boxShadow: isEmpty ? "none" : prs ? "var(--bevel-pressed)" : "var(--bevel-raised)",
         transform: prs ? "translateY(1px)" : "none", cursor: isEmpty ? "default" : "pointer",
-        color: state === "running" ? "var(--tally-pvw)" : state === "armed" ? "var(--warn)" : "var(--fg-1)", ...style,
+        color: state === "running" ? "var(--led-green)" : state === "armed" ? "var(--warn)" : "var(--fg-1)", ...style,
       }}
     >
       {channelColor && <span style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: channelColor }}></span>}

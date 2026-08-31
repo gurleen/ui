@@ -16,7 +16,13 @@ That pulls in all six token files in a safe load order (`fonts` → `colors` →
 import "@hydra-tv/tokens/colors.css";
 ```
 
-There is **no light theme** — this is a dark-only, high-density "tactile hardware" system (beveled controls, recessed LED-style readouts). See `effects.css` for the bevel/glow vocabulary.
+This is a dense, "tactile hardware" system (beveled controls, recessed LED-style readouts). See `effects.css` for the bevel/glow vocabulary.
+
+## Light theme
+
+Dark is the default (no markup needed — existing apps are unaffected). To opt into the light palette, set `data-theme="light"` on `<html>` — every token below is redefined under a `[data-theme="light"]` selector, so components never need to know which theme is active. The easiest way to drive this is `@hydra-tv/ui`'s `<ThemeProvider>` / `<ThemeToggle>` (see its `Theme.md`), which also persists the choice and defaults to `prefers-color-scheme`.
+
+Not every token changes between themes. Tokens that represent a physically dark, backlit instrument well — `--bg-well`, `--inset-well`, `--inset-input`, the tally bus-fill gradients (`--grad-pgm`/`--grad-pvw`/`--bevel-bus`), and every `--led-*`/`--glow-*` token — stay dark in both themes on purpose: a real hardware LED readout doesn't turn light-colored in a bright room, and every "recessed" surface in this system (inputs, checkboxes, chart plot areas, log consoles, meters) is drawn as one of these wells. Surfaces, borders, text, status colors, channel colors, and general button/panel chrome all flip normally.
 
 ## Token catalog
 
@@ -70,4 +76,4 @@ Minimal element resets (`box-sizing`, scrollbar styling, link colors, body font)
 
 ## Design notes for consumers
 - This is a **dense** system (target ~11px body text, 24px controls) — it will look cramped in a typical spacious SaaS layout. That's intentional; it's tuned for information-dense, professional-tool UIs, not marketing pages.
-- Everything is a CSS custom property, so you can override any token per-app or per-subtree by redefining it on a wrapping element — no build-time theming step required.
+- Everything is a CSS custom property, so you can override any token per-app or per-subtree by redefining it on a wrapping element — no build-time theming step required. This is also how the light theme itself works — see above.

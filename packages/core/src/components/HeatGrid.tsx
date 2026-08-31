@@ -86,12 +86,12 @@ export function HeatGrid({
                 title={empty ? undefined : `${rowLabels[ri] ?? ri}${colLabels[ci] ? ` · ${colLabels[ci]}` : ""}: ${valueFormat(v as number)}`}
                 style={{
                   position: "relative", width: cellSize, height: cellSize, display: "flex", alignItems: "center", justifyContent: "center",
-                  background: "#0a0d10", border: "1px solid var(--line-1)", borderRadius: "var(--radius-1)", overflow: "hidden",
+                  background: "var(--bg-well)", border: "1px solid var(--line-1)", borderRadius: "var(--radius-1)", overflow: "hidden",
                 }}
               >
                 {c && <span style={{ position: "absolute", inset: 0, background: c.fill, opacity: c.opacity }} />}
                 {showValues && !empty && (
-                  <span style={{ position: "relative", fontFamily: "var(--font-data)", fontSize: 9, fontWeight: "var(--fw-semi)", color: "var(--fg-1)", fontFeatureSettings: "var(--numeric-features)" }}>{valueFormat(v as number)}</span>
+                  <span style={{ position: "relative", fontFamily: "var(--font-data)", fontSize: 9, fontWeight: "var(--fw-semi)", color: "var(--fg-well)", fontFeatureSettings: "var(--numeric-features)" }}>{valueFormat(v as number)}</span>
                 )}
               </span>
             );

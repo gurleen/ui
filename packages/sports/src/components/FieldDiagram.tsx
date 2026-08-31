@@ -194,7 +194,7 @@ export function FieldDiagram({
       width={width}
       height={height}
       preserveAspectRatio="xMidYMid meet"
-      style={{ display: "block", background: "#0a0d10", border: "1px solid var(--line-1)", borderRadius: "var(--radius-1)", ...style }}
+      style={{ display: "block", background: "var(--bg-well)", border: "1px solid var(--line-1)", borderRadius: "var(--radius-1)", ...style }}
     >
       {/* Flip to a y-up system so the markings can be written in field coordinates. */}
       <g transform={`translate(0 ${yDomain[1]}) scale(1 -1)`}>{markings}</g>
@@ -205,7 +205,7 @@ export function FieldDiagram({
             x={x}
             y={yDomain[1] - y - 8}
             textAnchor="middle"
-            fill="var(--fg-3)"
+            fill="var(--fg-well-dim)"
             style={{ fontSize: 16, fontFamily: "var(--font-data)" }}
           >
             {d}

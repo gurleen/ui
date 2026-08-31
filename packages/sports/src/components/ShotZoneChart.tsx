@@ -132,7 +132,7 @@ export function ShotZoneChart({
         width={width}
         height={height}
         preserveAspectRatio="xMidYMid meet"
-        style={{ display: "block", background: "#0a0d10", border: "1px solid var(--line-1)", borderRadius: "var(--radius-1)" }}
+        style={{ display: "block", background: "var(--bg-well)", border: "1px solid var(--line-1)", borderRadius: "var(--radius-1)" }}
       >
         <defs>
           {/* Mid-range is bounded by the corner-three line, not just the arc. */}
@@ -172,10 +172,10 @@ export function ShotZoneChart({
             const py = top - zy;
             return (
               <g key={`l-${s.id}`} style={{ pointerEvents: "none" }}>
-                <text x={px} y={py - 0.3} textAnchor="middle" fill="var(--fg-1)" style={{ fontSize: 2, fontWeight: 700, fontFamily: "var(--font-data)" }}>
+                <text x={px} y={py - 0.3} textAnchor="middle" fill="var(--fg-well)" style={{ fontSize: 2, fontWeight: 700, fontFamily: "var(--font-data)" }}>
                   {Math.round((z.made / z.attempted) * 100)}%
                 </text>
-                <text x={px} y={py + 1.9} textAnchor="middle" fill="var(--fg-3)" style={{ fontSize: 1.5, fontFamily: "var(--font-data)" }}>
+                <text x={px} y={py + 1.9} textAnchor="middle" fill="var(--fg-well-dim)" style={{ fontSize: 1.5, fontFamily: "var(--font-data)" }}>
                   {z.made}-{z.attempted}
                 </text>
               </g>

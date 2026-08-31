@@ -49,7 +49,7 @@ export function BaseState({
             width={(bag / px) * 100}
             height={(bag / px) * 100}
             transform={`rotate(45 ${b.cx} ${b.cy})`}
-            fill={b.on ? occupiedColor : "#0a0d10"}
+            fill={b.on ? occupiedColor : "var(--bg-well)"}
             stroke={b.on ? occupiedColor : "var(--line-2)"}
             strokeWidth={2}
             vectorEffect="non-scaling-stroke"
@@ -64,7 +64,7 @@ export function BaseState({
               key={i}
               style={{
                 width: pip, height: pip, borderRadius: "50%",
-                background: i < outs ? outColor : "#0a0d10",
+                background: i < outs ? outColor : "var(--bg-well)",
                 border: `1px solid ${i < outs ? outColor : "var(--line-2)"}`,
                 boxShadow: i < outs ? `0 0 5px ${outColor}` : "var(--inset-input)",
               }}

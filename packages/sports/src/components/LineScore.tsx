@@ -35,17 +35,23 @@ export function LineScore({ away, home, innings = 9, currentInning, dense = fals
   const cell = (content: ReactNode, opts: { dim?: boolean; strong?: boolean; highlight?: boolean } = {}) => (
     <span style={{
       display: "flex", alignItems: "center", justifyContent: "center", height: rowH,
-      color: opts.dim ? "var(--fg-3)" : "var(--fg-1)", fontWeight: opts.strong ? "var(--fw-bold)" : "var(--fw-reg)",
+      // Non-highlighted cells sit directly on the grid's fixed-dark --bg-well
+      // (see below), so they need the fixed --fg-well family, not --fg-1/-3
+      // which flip to dark-on-light and would go invisible there. The
+      // highlighted cell gets its own flipping --info-bg background, so it
+      // pairs with the flipping --fg-1/-3 instead.
+      color: opts.highlight ? (opts.dim ? "var(--fg-3)" : "var(--fg-1)") : (opts.dim ? "var(--fg-well-dim)" : "var(--fg-well)"),
+      fontWeight: opts.strong ? "var(--fw-bold)" : "var(--fw-reg)",
       background: opts.highlight ? "var(--info-bg)" : "transparent",
       fontFeatureSettings: "var(--numeric-features)",
     }}>{content}</span>
   );
 
   const teamRow = (team: LineScoreTeam, isHome: boolean) => (
-    <div style={{ display: "grid", gridTemplateColumns: template, borderTop: "1px solid #ffffff08" }}>
+    <div style={{ display: "grid", gridTemplateColumns: template, borderTop: "1px solid var(--row-divider)" }}>
       <span style={{ display: "flex", alignItems: "center", gap: 5, height: rowH, paddingLeft: 6, minWidth: 0 }}>
         <span style={{ width: 3, height: 12, background: team.color ?? (isHome ? "var(--ch-1)" : "var(--ch-2)"), flexShrink: 0 }} />
-        <span style={{ fontFamily: "var(--font-data)", fontSize: "var(--fs-11)", fontWeight: "var(--fw-semi)", color: "var(--fg-1)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase", overflow: "hidden", textOverflow: "ellipsis" }}>{team.abbr}</span>
+        <span style={{ fontFamily: "var(--font-data)", fontSize: "var(--fs-11)", fontWeight: "var(--fw-semi)", color: "var(--fg-well)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase", overflow: "hidden", textOverflow: "ellipsis" }}>{team.abbr}</span>
       </span>
       {Array.from({ length: count }, (_, i) => {
         const v = team.innings?.[i];
@@ -62,7 +68,7 @@ export function LineScore({ away, home, innings = 9, currentInning, dense = fals
 
   return (
     <div style={{
-      fontFamily: "var(--font-data)", fontSize: "var(--fs-11)", background: "#0a0d10",
+      fontFamily: "var(--font-data)", fontSize: "var(--fs-11)", background: "var(--bg-well)",
       border: "1px solid var(--line-1)", borderRadius: "var(--radius-1)", boxShadow: "var(--inset-input)", overflowX: "auto", ...style,
     }}>
       <div style={{ display: "grid", gridTemplateColumns: template, background: "var(--bg-3)", borderBottom: "1px solid var(--line-2)" }}>

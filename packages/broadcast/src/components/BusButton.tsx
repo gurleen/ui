@@ -18,8 +18,8 @@ export interface BusButtonProps {
 
 const LOOKS = {
   off: { bg: "var(--grad-btn)", color: "var(--fg-1)", border: "var(--btn-border)", glow: "" },
-  pgm: { bg: "var(--grad-pgm)", color: "var(--tally-pgm)", border: "#6b1d17", glow: ", var(--glow-pgm)" },
-  pvw: { bg: "var(--grad-pvw)", color: "var(--tally-pvw)", border: "#14602c", glow: ", var(--glow-pvw)" },
+  pgm: { bg: "var(--grad-pgm)", color: "var(--led-red)", border: "var(--take-border)", glow: ", var(--glow-pgm)" },
+  pvw: { bg: "var(--grad-pvw)", color: "var(--led-green)", border: "var(--tally-pvw-dim)", glow: ", var(--glow-pvw)" },
 } as const;
 
 export function BusButton({ label, index, state = "off", width = 72, height = 44, onClick, disabled = false, style }: BusButtonProps) {
@@ -42,7 +42,7 @@ export function BusButton({ label, index, state = "off", width = 72, height = 44
       }}
     >
       {index !== undefined && <span style={{ fontSize: 9, letterSpacing: "0.1em", opacity: 0.6 }}>{index}</span>}
-      <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase", textShadow: state === "pgm" ? "0 0 8px #f23a3088" : "none" }}>{label}</span>
+      <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase", textShadow: state === "pgm" ? "var(--glow-pgm)" : "none" }}>{label}</span>
     </button>
   );
 }

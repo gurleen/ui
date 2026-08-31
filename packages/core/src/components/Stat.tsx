@@ -28,9 +28,9 @@ const SIZES = {
 } as const;
 
 const DELTA_COLORS = {
-  good: "var(--ok-text)",
-  bad: "var(--warn)",
-  neutral: "var(--fg-3)",
+  good: "var(--fg-well-ok)",
+  bad: "var(--led-amber)",
+  neutral: "var(--fg-well-dim)",
 } as const;
 
 export function Stat({ value, label, unit, delta, deltaKind = "neutral", deltaUnit = "", caption, size = "md", align = "left", style }: StatProps) {
@@ -46,18 +46,18 @@ export function Stat({ value, label, unit, delta, deltaKind = "neutral", deltaUn
       alignItems: align === "center" ? "center" : align === "right" ? "flex-end" : "flex-start", ...style,
     }}>
       {label && (
-        <span style={{ fontFamily: "var(--font-label)", fontSize: "var(--fs-10)", color: "var(--fg-2)", letterSpacing: "var(--label-tracking-wide)", textTransform: "uppercase", whiteSpace: "nowrap" }}>{label}</span>
+        <span style={{ fontFamily: "var(--font-label)", fontSize: "var(--fs-10)", color: "var(--fg-well-dim)", letterSpacing: "var(--label-tracking-wide)", textTransform: "uppercase", whiteSpace: "nowrap" }}>{label}</span>
       )}
       <span style={{ display: "flex", alignItems: "baseline", gap: 4, minWidth: 0 }}>
-        <span style={{ fontFamily: "var(--font-data)", fontSize: s.value, fontWeight: "var(--fw-bold)", color: "var(--fg-1)", lineHeight: "var(--lh-tight)", fontFeatureSettings: "var(--numeric-features)" }}>{value}</span>
-        {unit && <span style={{ fontFamily: "var(--font-label)", fontSize: "var(--fs-10)", color: "var(--fg-3)", letterSpacing: "var(--label-tracking)" }}>{unit}</span>}
+        <span style={{ fontFamily: "var(--font-data)", fontSize: s.value, fontWeight: "var(--fw-bold)", color: "var(--fg-well)", lineHeight: "var(--lh-tight)", fontFeatureSettings: "var(--numeric-features)" }}>{value}</span>
+        {unit && <span style={{ fontFamily: "var(--font-label)", fontSize: "var(--fs-10)", color: "var(--fg-well-dim)", letterSpacing: "var(--label-tracking)" }}>{unit}</span>}
         {hasDelta && (
           <span style={{ fontFamily: "var(--font-data)", fontSize: "var(--fs-10)", color: DELTA_COLORS[deltaKind] || DELTA_COLORS.neutral, fontWeight: "var(--fw-semi)", fontFeatureSettings: "var(--numeric-features)", whiteSpace: "nowrap" }}>
             {arrow} {Math.abs(delta!)}{deltaUnit}
           </span>
         )}
       </span>
-      {caption && <span style={{ fontFamily: "var(--font-label)", fontSize: "var(--fs-10)", color: "var(--fg-3)", whiteSpace: "nowrap" }}>{caption}</span>}
+      {caption && <span style={{ fontFamily: "var(--font-label)", fontSize: "var(--fs-10)", color: "var(--fg-well-dim)", whiteSpace: "nowrap" }}>{caption}</span>}
     </div>
   );
 }

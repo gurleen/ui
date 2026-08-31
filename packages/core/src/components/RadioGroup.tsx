@@ -44,9 +44,9 @@ export function RadioGroup({ options = [], value, defaultValue, onChange, label,
             >
               <span style={{
                 width: 14, height: 14, borderRadius: "50%", display: "inline-flex", alignItems: "center", justifyContent: "center",
-                background: "#0a0d10", border: `1px solid ${isOn ? "var(--info)" : "var(--line-2)"}`, boxShadow: "var(--inset-input)",
+                background: "var(--bg-well)", border: `1px solid ${isOn ? "var(--info)" : "var(--line-2)"}`, boxShadow: "var(--inset-input)",
               }}>
-                {isOn && <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--accent-hi)" }} />}
+                {isOn && <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--fg-well-accent)" }} />}
               </span>
               <span style={{ fontSize: 11, color: "var(--fg-1)" }}>{opt.label}</span>
             </span>

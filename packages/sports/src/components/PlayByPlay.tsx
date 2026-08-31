@@ -49,7 +49,7 @@ export function PlayByPlay({
 
   return (
     <div ref={ref} style={{
-      height, overflowY: "auto", background: "#030405", border: "1px solid #000", borderRadius: "var(--radius-1)",
+      height, overflowY: "auto", background: "var(--bg-well)", border: "1px solid #000", borderRadius: "var(--radius-1)",
       boxShadow: "var(--inset-well)", fontFamily: "var(--font-ui)", fontSize: "var(--fs-11)", ...style,
     }}>
       {ordered.map((ev, i) => {
@@ -67,19 +67,19 @@ export function PlayByPlay({
         return (
           <div key={i} style={{
             display: "flex", alignItems: "baseline", gap: 8, padding: "3px 8px",
-            borderBottom: "1px solid #ffffff06", boxShadow: `inset 2px 0 0 ${bar}`,
-            background: scoring ? "#ffffff06" : "transparent",
+            borderBottom: "1px solid var(--row-divider)", boxShadow: `inset 2px 0 0 ${bar}`,
+            background: scoring ? "var(--row-alt-bg)" : "transparent",
           }}>
-            <span style={{ width: 40, flexShrink: 0, fontFamily: "var(--font-data)", color: "var(--fg-3)", fontSize: "var(--fs-10)", fontFeatureSettings: "var(--numeric-features)" }}>
+            <span style={{ width: 40, flexShrink: 0, fontFamily: "var(--font-data)", color: "var(--fg-well-dim)", fontSize: "var(--fs-10)", fontFeatureSettings: "var(--numeric-features)" }}>
               {ev.clock ?? ev.period ?? ""}
             </span>
             <span style={{
-              flex: 1, minWidth: 0, fontFamily: "var(--font-copy)", color: ev.kind === "turnover" ? "var(--warn)" : "var(--fg-1)",
+              flex: 1, minWidth: 0, fontFamily: "var(--font-copy)", color: ev.kind === "turnover" ? "var(--led-amber)" : "var(--fg-well)",
               fontWeight: scoring ? "var(--fw-semi)" : "var(--fw-reg)", lineHeight: "var(--lh-body)",
             }}>{ev.text}</span>
             {ev.score && (
               <span style={{
-                flexShrink: 0, fontFamily: "var(--font-data)", color: scoring ? "var(--fg-1)" : "var(--fg-3)", fontWeight: scoring ? "var(--fw-bold)" : "var(--fw-reg)",
+                flexShrink: 0, fontFamily: "var(--font-data)", color: scoring ? "var(--fg-well)" : "var(--fg-well-dim)", fontWeight: scoring ? "var(--fw-bold)" : "var(--fw-reg)",
                 fontFeatureSettings: "var(--numeric-features)", fontSize: "var(--fs-10)",
               }}>{ev.score}</span>
             )}

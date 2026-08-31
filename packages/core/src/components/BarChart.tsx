@@ -66,7 +66,7 @@ export function BarChart({
           return (
             <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 3, flex: "1 1 0", minWidth: 0 }}>
               {showValues && <span style={{ fontFamily: "var(--font-data)", fontSize: "var(--fs-10)", color: "var(--fg-2)", fontFeatureSettings: "var(--numeric-features)" }}>{valueFormat(sum)}</span>}
-              <div style={{ position: "relative", width: barSize, height, background: "#0a0d10", boxShadow: "var(--inset-well)", borderRadius: "var(--radius-1)", display: "flex", flexDirection: "column-reverse", overflow: "hidden" }}>
+              <div style={{ position: "relative", width: barSize, height, background: "var(--bg-well)", boxShadow: "var(--inset-well)", borderRadius: "var(--radius-1)", display: "flex", flexDirection: "column-reverse", overflow: "hidden" }}>
                 {segments(bar, i, colors).map((seg, si) => (
                   <span key={si} title={`${bar.label}: ${valueFormat(seg.value)}`} style={{ height: `${(seg.value / domainMax) * 100}%`, background: seg.color, transition: "height var(--t-med)" }} />
                 ))}
@@ -88,7 +88,7 @@ export function BarChart({
             {labelWidth > 0 && (
               <span style={{ width: labelWidth, flexShrink: 0, fontFamily: "var(--font-label)", fontSize: "var(--fs-10)", color: "var(--fg-2)", letterSpacing: "var(--label-tracking)", textTransform: "uppercase", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{bar.label}</span>
             )}
-            <span style={{ position: "relative", flex: 1, minWidth: 40, height: barSize, background: "#0a0d10", boxShadow: "var(--inset-well)", borderRadius: "var(--radius-1)", display: "flex", overflow: "hidden" }}>
+            <span style={{ position: "relative", flex: 1, minWidth: 40, height: barSize, background: "var(--bg-well)", boxShadow: "var(--inset-well)", borderRadius: "var(--radius-1)", display: "flex", overflow: "hidden" }}>
               {segments(bar, i, colors).map((seg, si) => (
                 <span key={si} title={`${bar.label}: ${valueFormat(seg.value)}`} style={{ width: `${(seg.value / domainMax) * 100}%`, background: seg.color, transition: "width var(--t-med)" }} />
               ))}

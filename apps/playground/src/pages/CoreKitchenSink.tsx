@@ -32,7 +32,9 @@ import {
   Stat,
   Switch,
   Tabs,
+  ThemeToggle,
   Tooltip,
+  useTheme,
   useToast,
 } from "@hydra-tv/ui";
 
@@ -46,6 +48,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 export function CoreKitchenSink() {
   const { show } = useToast();
+  const { theme } = useTheme();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [tab, setTab] = useState(0);
   const [checked, setChecked] = useState(true);
@@ -63,6 +66,11 @@ export function CoreKitchenSink() {
 
   return (
     <div style={{ position: "relative", maxWidth: 900 }}>
+      <Section title="Theme">
+        <ThemeToggle />
+        <span style={{ fontFamily: "var(--font-data)", fontSize: 11, color: "var(--fg-2)" }}>Active theme: {theme}</span>
+      </Section>
+
       <Section title="Buttons">
         <Button label="Default" />
         <Button label="Accent" variant="accent" />

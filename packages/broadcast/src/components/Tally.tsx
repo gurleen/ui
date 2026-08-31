@@ -16,9 +16,9 @@ export interface TallyProps {
 }
 
 const STATES = {
-  off: { bg: "#0a0d10", color: "var(--fg-3)", border: "var(--line-2)", glow: "none" },
-  pgm: { bg: "var(--grad-pgm)", color: "var(--tally-pgm)", border: "var(--tally-pgm-dim)", glow: "var(--glow-pgm)" },
-  pvw: { bg: "var(--grad-pvw)", color: "var(--tally-pvw)", border: "var(--tally-pvw-dim)", glow: "var(--glow-pvw)" },
+  off: { bg: "var(--bg-well)", color: "var(--fg-well-dim)", border: "var(--line-2)", glow: "none" },
+  pgm: { bg: "var(--grad-pgm)", color: "var(--led-red)", border: "var(--tally-pgm-dim)", glow: "var(--glow-pgm)" },
+  pvw: { bg: "var(--grad-pvw)", color: "var(--led-green)", border: "var(--tally-pvw-dim)", glow: "var(--glow-pvw)" },
 } as const;
 
 export function Tally({ state = "off", label, sublabel, size = "md", style }: TallyProps) {
@@ -33,7 +33,7 @@ export function Tally({ state = "off", label, sublabel, size = "md", style }: Ta
       fontFamily: "var(--font-ui)", textTransform: "uppercase", ...style,
     }}>
       {sublabel && <span style={{ fontSize: dims.sub, letterSpacing: "0.12em", opacity: 0.75 }}>{sublabel}</span>}
-      <span style={{ fontSize: dims.fs, fontWeight: 700, letterSpacing: "0.06em", textShadow: state === "pgm" ? "0 0 8px #f23a3088" : "none" }}>{label}</span>
+      <span style={{ fontSize: dims.fs, fontWeight: 700, letterSpacing: "0.06em", textShadow: state === "pgm" ? "var(--glow-pgm)" : "none" }}>{label}</span>
     </div>
   );
 }

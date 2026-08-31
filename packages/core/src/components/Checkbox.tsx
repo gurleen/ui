@@ -27,9 +27,9 @@ export function Checkbox({ checked, defaultChecked = false, onChange, label, dis
     }}>
       <span style={{
         width: 14, height: 14, display: "inline-flex", alignItems: "center", justifyContent: "center",
-        background: "#0a0d10", border: `1px solid ${isOn ? "var(--info)" : "var(--line-2)"}`,
+        background: "var(--bg-well)", border: `1px solid ${isOn ? "var(--info)" : "var(--line-2)"}`,
         borderRadius: "var(--radius-1)", boxShadow: "var(--inset-input)",
-        color: "var(--accent-hi)", fontSize: 10, fontWeight: 700, lineHeight: 1,
+        color: "var(--fg-well-accent)", fontSize: 10, fontWeight: 700, lineHeight: 1,
       }}>{isOn ? "✕" : ""}</span>
       {label && <span style={{ fontSize: 11, color: "var(--fg-1)" }}>{label}</span>}
     </span>

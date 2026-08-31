@@ -29,7 +29,7 @@ export function Tabs({ tabs = [], active, defaultActive = 0, onChange, style }: 
               border: on ? "1px solid var(--btn-border)" : "1px solid transparent",
               borderBottom: on ? "1px solid var(--bg-2)" : "1px solid transparent",
               borderRadius: "2px 2px 0 0", marginBottom: -1,
-              boxShadow: on ? "inset 0 1px 0 #ffffff1a" : "none",
+              boxShadow: on ? "var(--bevel-raised)" : "none",
             }}>{t}</button>
         );
       })}

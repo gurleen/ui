@@ -39,7 +39,7 @@ export function PlayerCard({ name, number, position, team, photo, stats, meta, s
     >
       {photo !== undefined && (
         <span style={{
-          width: photoSize, height: photoSize, flexShrink: 0, overflow: "hidden", background: "#0a0d10",
+          width: photoSize, height: photoSize, flexShrink: 0, overflow: "hidden", background: "var(--bg-well)",
           border: "1px solid var(--line-1)", borderRadius: "var(--radius-1)", boxShadow: "var(--inset-well)",
           display: "flex", alignItems: "center", justifyContent: "center",
         }}>
@@ -50,7 +50,7 @@ export function PlayerCard({ name, number, position, team, photo, stats, meta, s
       {number !== undefined && (
         <span style={{
           minWidth: 30, padding: "2px 5px", flexShrink: 0, textAlign: "center",
-          background: "#04050699", border: "1px solid var(--line-1)", borderRadius: "var(--radius-1)", boxShadow: "var(--inset-well)",
+          background: "var(--bg-well)", border: "1px solid var(--line-1)", borderRadius: "var(--radius-1)", boxShadow: "var(--inset-well)",
           color: "var(--led-amber)", textShadow: "var(--led-glow-amber)",
           fontFamily: "var(--font-data)", fontSize: size === "sm" ? "var(--fs-12)" : "var(--fs-16)", fontWeight: "var(--fw-bold)", fontFeatureSettings: "var(--numeric-features)",
         }}>{number}</span>

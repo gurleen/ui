@@ -27,9 +27,9 @@ const SIZES = {
 
 const VARIANTS = {
   default: { bg: "var(--grad-btn)", hov: "var(--grad-btn-hover)", border: "var(--btn-border)", color: "var(--fg-1)" },
-  accent: { bg: "linear-gradient(#173a5c,#102941)", hov: "linear-gradient(#1c4a75,#143350)", border: "#2a5a8a", color: "#9fd0fb" },
-  take: { bg: "linear-gradient(#4a1410,#2a0d0b)", hov: "linear-gradient(#5c1813,#35100d)", border: "#6b1d17", color: "#ff6f66" },
-  armed: { bg: "linear-gradient(#3d2c07,#241a04)", hov: "linear-gradient(#4d3809,#2e2105)", border: "#6b4e10", color: "var(--warn)" },
+  accent: { bg: "var(--accent-bg)", hov: "var(--accent-bg-hover)", border: "var(--accent-border)", color: "var(--accent-fg)" },
+  take: { bg: "var(--take-bg)", hov: "var(--take-bg-hover)", border: "var(--take-border)", color: "var(--take-fg)" },
+  armed: { bg: "var(--armed-bg)", hov: "var(--armed-bg-hover)", border: "var(--armed-border)", color: "var(--warn)" },
 } as const;
 
 export function Button({ label, children, variant = "default", size = "md", disabled = false, active = false, onClick, title, style }: ButtonProps) {
